@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Custom YouTube",
+  "version": "0.7.0",
+  "description": "Allows you to remove elements on YouTube UI you don't wish to see.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": ["activeTab", "scripting", "storage"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["./scripts/content.js"]
+    }
+  ]
+}
