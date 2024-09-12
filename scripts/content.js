@@ -20,6 +20,8 @@ function hideElement(selector, hide) {
 
 // Function to handle changes in storage and apply to DOM
 function applyHiddenState() {
+  if (document.body === null) return; // Check if the DOM is still valid
+
   chrome.storage.sync.get(
     ["shortsHidden", "tabsHidden", "adsHidden"],
     function (result) {
