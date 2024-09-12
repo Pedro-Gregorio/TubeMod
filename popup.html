@@ -1,12 +1,27 @@
 <!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="index.css" />
+</head>
 <html>
   <body>
     <h1>Welcome to Your YouTube.</h1>
-    <label for="hide-shorts">Hide Shorts</label>
-    <input type="checkbox" id="hide-shorts" name="hide-shorts" />
 
-    <label for="hide-tabs">Hide Tabs</label>
-    <input type="checkbox" id="hide-tabs" name="hide-tabs" />
+    <div id="container">
+      <div class="checkbox-container">
+        <label for="hide-shorts">Hide Shorts</label>
+        <input type="checkbox" id="hide-shorts" name="hide-shorts" />
+      </div>
+
+      <div class="checkbox-container">
+        <label for="hide-tabs">Hide Tabs</label>
+        <input type="checkbox" id="hide-tabs" name="hide-tabs" />
+      </div>
+
+      <div class="checkbox-container">
+        <label for="hide-ads">Hide Ads Panel</label>
+        <input type="checkbox" id="hide-ads" name="hide-ads" />
+      </div>
+    </div>
 
     <script src="./scripts/popup.js"></script>
   </body>

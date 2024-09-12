@@ -1,5 +1,7 @@
 const SHORTS = "//a[@title='Shorts']/..";
 const TABS = "//ytd-feed-filter-chip-bar-renderer/..";
+const ADS =
+  "//ytd-ad-slot-renderer/ancestor::ytd-rich-item-renderer | //*[@id='player-ads']";
 
 // Function to hide or show the element
 function hideElement(selector, hide) {
@@ -18,15 +20,22 @@ function hideElement(selector, hide) {
 
 // Function to handle changes in storage and apply to DOM
 function applyHiddenState() {
-  chrome.storage.sync.get(["shortsHidden", "tabsHidden"], function (result) {
-    if (result.shortsHidden !== undefined) {
-      hideElement(SHORTS, result.shortsHidden);
-    }
+  chrome.storage.sync.get(
+    ["shortsHidden", "tabsHidden", "adsHidden"],
+    function (result) {
+      if (result.shortsHidden !== undefined) {
+        hideElement(SHORTS, result.shortsHidden);
+      }
 
-    if (result.tabsHidden !== undefined) {
-      hideElement(TABS, result.tabsHidden);
+      if (result.tabsHidden !== undefined) {
+        hideElement(TABS, result.tabsHidden);
+      }
+
+      if (result.adsHidden !== undefined) {
+        hideElement(ADS, result.adsHidden);
+      }
     }
-  });
+  );
 }
 
 // Use MutationObserver to track dynamic changes in YouTube's DOM
@@ -42,19 +51,6 @@ observer.observe(document.body, { childList: true, subtree: true });
 // Initially apply the hidden state when the content script runs
 applyHiddenState();
 
-// Listen for messages from the popup and apply changes accordingly
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "hideShorts") {
-    hideElement(SHORTS, true);
-    sendResponse({ result: "Shorts hidden." });
-  } else if (request.action === "showShorts") {
-    hideElement(SHORTS, false);
-    sendResponse({ result: "Shorts shown." });
-  } else if (request.action === "hideTabs") {
-    hideElement(TABS, true);
-    sendResponse({ result: "Tabs hidden." });
-  } else if (request.action === "showTabs") {
-    hideElement(TABS, false);
-    sendResponse({ result: "Tabs shown." });
-  }
+chrome.runtime.onMessage.addListener((request) => {
+  hideElement(request.action.target, request.action.hide);
 });
