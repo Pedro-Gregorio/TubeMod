@@ -20,6 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document.getElementById("reset").addEventListener("click", () => {
+  localStorage.clear();
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {
+      action: "clearLocalStorage",
+    });
+  });
+  window.close();
+});
+
 chrome.runtime.onMessage.addListener(function (message) {
   if (message.type === "popup") {
     localStorage.setItem("elements", JSON.stringify(message.data));

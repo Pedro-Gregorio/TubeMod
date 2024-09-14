@@ -2,14 +2,15 @@
   background-color: brown;
   color: white;
   outline: none;
-  width: 12rem;
+  width: 24rem;
 }
 
-#container {
+.container {
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
+  width: 100%;
   padding: 1rem 0rem;
 }
 
