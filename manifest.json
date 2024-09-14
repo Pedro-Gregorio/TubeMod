@@ -6,14 +6,15 @@
   "action": {
     "default_popup": "popup.html"
   },
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "storage"],
   "background": {
     "service_worker": "./scripts/background.js"
   },
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
-      "js": ["./scripts/content.js"]
+      "js": ["./scripts/content.js"],
+      "run_at": "document_start"
     }
   ]
 }
