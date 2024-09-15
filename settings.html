@@ -2,13 +2,16 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="index.css" />
-    <link rel="icon" type="image/x-icon" href="/icons/icon16.ico">
+    <link rel="icon" type="image/x-icon" href="/icons/icon16.ico" />
     <title>TubeMod - Settings</title>
   </head>
   <body>
-    <h1>TubeMod - Settings</h1>
+    <div class="settings-title-container">
+      <h1>TubeMod - Settings</h1>
+      <h3>Configure YouTube to your liking!</h3>
+    </div>
 
-    <div class="container" id="general"></div>
+    <div class="container" id="general">
       <h2>General</h2>
       <div class="checkbox-container">
         <label for="logo">Toggle YouTube Logo</label>
@@ -206,7 +209,7 @@
       </div>
     </div>
 
-    <button id="reset">Reset Settings</button>
+    <!-- <div class="btn-container"><button id="reset">Reset Settings</button></div> -->
 
     <script src="./scripts/settings.js"></script>
   </body>

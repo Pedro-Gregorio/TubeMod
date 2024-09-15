@@ -5,18 +5,20 @@
 </head>
 <html>
   <body>
-    <h1>TubeMod</h1>
-    <p>Make YouTube your own!</p>
+    <div class="title-container">
+      <h1>TubeMod</h1>
+      <h3>Make YouTube your own!</h3>
+    </div>
 
     <div class="container" id="general">
       <h2>General</h2>
       <div class="checkbox-container">
-        <label for="logo">Toggle YouTube Logo</label>
+        <label for="logo">Hide YouTube Logo</label>
         <input type="checkbox" id="logo" name="logo" />
       </div>
 
       <div class="checkbox-container">
-        <label for="microphone-search">Toggle Microphone Search Icon</label>
+        <label for="microphone-search">Hide Microphone Search Icon</label>
         <input
           type="checkbox"
           id="microphone-search"
@@ -25,18 +27,22 @@
       </div>
 
       <div class="checkbox-container">
-        <label for="create">Toggle Create Icon</label>
+        <label for="create">Hide Create Icon</label>
         <input type="checkbox" id="create" name="create" />
       </div>
 
       <div class="checkbox-container">
-        <label for="notifications">Toggle Notifications Icon</label>
+        <label for="notifications">Hide Notifications Icon</label>
         <input type="checkbox" id="notifications" name="notifications" />
       </div>
     </div>
 
-    <button id="open-settings">Open settings</button>
-    <button id="reset-settings">Reset Settings</button>
+    <div class="btn-container">
+      <button id="open-settings">Open settings</button>
+      <button id="reset-settings">Reset Settings</button>
+    </div>
+
+    <div class="version-container"><p>Current Version 0.8.0</p></div>
 
     <script src="./scripts/popup.js"></script>
   </body>
