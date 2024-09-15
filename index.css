@@ -1,6 +1,14 @@
+:root {
+  --color-background: #f0f5f9;
+  --color-primary: #753422;
+  --color-secondary: #b05b3b;
+  --color-tertiary: #b05b3b;
+  --color-accent: #ffebc9;
+}
+
 * {
-  background-color: brown;
-  color: white;
+  background-color: var(--color-background);
+  color: var(--color-primary);
   outline: none;
   width: 24rem;
 }

@@ -140,7 +140,7 @@ const getElements = () => {
       },
       {
         id: "subscriptions-scheduled-videos",
-        selector: undefined,
+        selector: "//ytd-rich-item-renderer[.//ytd-toggle-button-renderer]",
         hidden: undefined,
         category: "Subscriptions",
       },
