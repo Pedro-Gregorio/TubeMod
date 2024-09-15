@@ -127,6 +127,12 @@ const getElements = () => {
         category: "HomePage",
       },
       {
+        id: "posts",
+        selector: "//ytd-rich-section-renderer",
+        hidden: undefined,
+        category: "HomePage",
+      },
+      {
         id: "subscriptions-shorts",
         selector: "//ytd-rich-shelf-renderer/../..",
         hidden: undefined,
