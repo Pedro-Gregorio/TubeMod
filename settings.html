@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="settings.css" />
     <link rel="icon" type="image/x-icon" href="/icons/icon16.ico" />
     <title>TubeMod - Settings</title>
   </head>
@@ -11,90 +11,132 @@
       <h3>Configure YouTube to your liking!</h3>
     </div>
 
-    <div class="container" id="general">
+    <div class="container">
       <h2>General</h2>
       <div class="checkbox-container">
-        <label for="logo">Toggle YouTube Logo</label>
-        <input type="checkbox" id="logo" name="logo" />
+        <label for="microphone-search">Hide Microphone Search Icon</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="microphone-search"
+            name="microphone-search"
+          />
+          <span class="slider round"></span>
+        </label>
       </div>
 
       <div class="checkbox-container">
-        <label for="microphone-search">Toggle Microphone Search Icon</label>
-        <input
-          type="checkbox"
-          id="microphone-search"
-          name="microphone-search"
-        />
+        <label for="create">Hide Create Icon</label>
+        <label class="switch">
+          <input type="checkbox" id="create" name="create" />
+          <span class="slider round"></span>
+        </label>
       </div>
 
       <div class="checkbox-container">
-        <label for="create">Toggle Create Icon</label>
-        <input type="checkbox" id="create" name="create" />
-      </div>
-
-      <div class="checkbox-container">
-        <label for="notifications">Toggle Notifications Icon</label>
-        <input type="checkbox" id="notifications" name="notifications" />
+        <label for="notifications">Hide Notifications Icon</label>
+        <label class="switch">
+          <input type="checkbox" id="notifications" name="notifications" />
+          <span class="slider round"></span>
+        </label>
       </div>
     </div>
-
     <div class="container" id="sidebar">
       <h2>Sidebar</h2>
       <div class="checkbox-container">
         <label for="home">Toggle Home Page Button</label>
-        <input type="checkbox" id="home" name="home" />
+        <label class="switch">
+          <input type="checkbox" id="home" name="home" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="shorts">Toggle Shorts Button</label>
-        <input type="checkbox" id="shorts" name="shorts" />
+        <label class="switch">
+          <input type="checkbox" id="shorts" name="shorts" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="subscriptions">Toggle Subscriptions Button</label>
-        <input type="checkbox" id="subscriptions" name="subscriptions" />
+        <label class="switch">
+          <input type="checkbox" id="subscriptions" name="subscriptions" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="my-channel">Toggle My Channel Button</label>
-        <input type="checkbox" id="my-channel" name="my-channel" />
+        <label class="switch">
+          <input type="checkbox" id="my-channel" name="my-channel" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="history">Toggle History Button</label>
-        <input type="checkbox" id="history" name="history" />
+        <label class="switch">
+          <input type="checkbox" id="history" name="history" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="playlists">Toggle Playlists Button</label>
-        <input type="checkbox" id="playlists" name="playlists" />
+        <label class="switch">
+          <input type="checkbox" id="playlists" name="playlists" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="my-videos">Toggle My Videos Button</label>
-        <input type="checkbox" id="my-videos" name="my-videos" />
+        <label class="switch">
+          <input type="checkbox" id="my-videos" name="my-videos" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="watch-later">Toggle Watch Later Button</label>
-        <input type="checkbox" id="watch-later" name="watch-later" />
+        <label class="switch">
+          <input type="checkbox" id="watch-later" name="watch-later" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="liked-videos">Toggle Liked Videos Button</label>
-        <input type="checkbox" id="liked-videos" name="liked-videos" />
+        <label class="switch">
+          <input type="checkbox" id="liked-videos" name="liked-videos" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="my-clips">Toggle My Clips Button</label>
-        <input type="checkbox" id="my-clips" name="my-clips" />
+        <label class="switch">
+          <input type="checkbox" id="my-clips" name="my-clips" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="subscriptions-panel">Toggle Subscriptions Panel</label>
-        <input
-          type="checkbox"
-          id="subscriptions-panel"
-          name="subscriptions-panel"
-        />
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="subscriptions-panel"
+            name="subscriptions-panel"
+          />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="explore-panel">Toggle Explore Panel</label>
-        <input type="checkbox" id="explore-panel" name="explore-panel" />
+        <label class="switch">
+          <input type="checkbox" id="explore-panel" name="explore-panel" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="youtube-panel">Toggle Youtube Panel</label>
-        <input type="checkbox" id="youtube-panel" name="youtube-panel" />
+        <label class="switch">
+          <input type="checkbox" id="youtube-panel" name="youtube-panel" />
+          <span class="slider round"></span>
+        </label>
       </div>
     </div>
 
@@ -102,15 +144,24 @@
       <h2>Home Page</h2>
       <div class="checkbox-container">
         <label for="tabs">Toggle Tabs</label>
-        <input type="checkbox" id="tabs" name="tabs" />
+        <label class="switch">
+          <input type="checkbox" id="tabs" name="tabs" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="ads">Toggle Ads Panel</label>
-        <input type="checkbox" id="ads" name="ads" />
+        <label class="switch">
+          <input type="checkbox" id="ads" name="ads" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="posts">Toggle Posts</label>
-        <input type="checkbox" id="posts" name="posts" />
+        <label class="switch">
+          <input type="checkbox" id="posts" name="posts" />
+          <span class="slider round"></span>
+        </label>
       </div>
     </div>
 
@@ -118,21 +169,27 @@
       <h2>Subscriptions</h2>
       <div class="checkbox-container">
         <label for="subscriptions-shorts">Toggle Subscription Shorts</label>
-        <input
-          type="checkbox"
-          id="subscriptions-shorts"
-          name="subscriptions-shorts"
-        />
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="subscriptions-shorts"
+            name="subscriptions-shorts"
+          />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="subscriptions-scheduled-videos"
           >Toggle Scheduled Videos</label
         >
-        <input
-          type="checkbox"
-          id="subscriptions-scheduled-videos"
-          name="subscriptions-scheduled-videos"
-        />
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="subscriptions-scheduled-videos"
+            name="subscriptions-scheduled-videos"
+          />
+          <span class="slider round"></span>
+        </label>
       </div>
     </div>
 
@@ -140,64 +197,91 @@
       <h2>Video</h2>
       <div class="checkbox-container">
         <label for="video-title">Toggle Video Title</label>
-        <input type="checkbox" id="video-title" name="video-title" />
+        <label class="switch">
+          <input type="checkbox" id="video-title" name="video-title" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="video-likes-dislikes">Toggle Video Likes/Dislikes</label>
-        <input
-          type="checkbox"
-          id="video-likes-dislikes"
-          name="video-likes-dislikes"
-        />
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="video-likes-dislikes"
+            name="video-likes-dislikes"
+          />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="video-description">Toggle Video Description</label>
-        <input
-          type="checkbox"
-          id="video-description"
-          name="video-description"
-        />
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="video-description"
+            name="video-description"
+          />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="video-categories-games"
           >Toggle Video Categories/Games</label
         >
-        <input
-          type="checkbox"
-          id="video-categories-games"
-          name="video-categories-games"
-        />
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="video-categories-games"
+            name="video-categories-games"
+          />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="video-comments">Toggle Video Comments</label>
-        <input type="checkbox" id="video-comments" name="video-comments" />
+        <label class="switch">
+          <input type="checkbox" id="video-comments" name="video-comments" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="video-ads">Toggle Video Ads Panel</label>
-        <input type="checkbox" id="video-ads" name="video-ads" />
+        <label class="switch">
+          <input type="checkbox" id="video-ads" name="video-ads" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="video-tabs">Toggle Video Tabs</label>
-        <input type="checkbox" id="video-tabs" name="video-tabs" />
+        <label class="switch">
+          <input type="checkbox" id="video-tabs" name="video-tabs" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="video-suggested-videos"
           >Toggle Video Suggested Videos</label
         >
-        <input
-          type="checkbox"
-          id="video-suggested-videos"
-          name="video-suggested-videos"
-        />
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="video-suggested-videos"
+            name="video-suggested-videos"
+          />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div class="checkbox-container">
         <label for="video-suggested-shorts">Toggle Video Shorts</label>
-        <input
-          type="checkbox"
-          id="video-suggested-shorts"
-          name="video-suggested-shorts"
-          disabled
-        />
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="video-suggested-shorts"
+            name="video-suggested-shorts"
+            disabled
+          />
+          <span class="slider round"></span>
+        </label>
       </div>
     </div>
 
@@ -205,7 +289,10 @@
       <h2>Stream</h2>
       <div class="checkbox-container">
         <label for="stream-chat">Toggle Stream Chat</label>
-        <input type="checkbox" id="stream-chat" name="stream-chat" />
+        <label class="switch">
+          <input type="checkbox" id="stream-chat" name="stream-chat" />
+          <span class="slider round"></span>
+        </label>
       </div>
     </div>
 

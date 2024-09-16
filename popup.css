@@ -1,0 +1,158 @@
+:root {
+  --color-background: #eeeeee;
+  --color-primary: #1a3636;
+  --color-secondary: #40534c;
+  --color-tertiary: #677d6a;
+  --color-accent: #d6bd98;
+}
+
+* {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  outline: none;
+}
+
+label {
+  cursor: pointer;
+}
+
+.title-container h1 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: -10px;
+}
+
+.title-container h3 {
+  padding-left: 4px;
+}
+
+.title-container {
+  margin-bottom: -5px;
+}
+
+.settings-title-container {
+  padding: 0rem 1rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: 20rem;
+  margin-right: 1rem;
+}
+
+.container h2 {
+  margin-bottom: -3px;
+  padding-left: 4px;
+  font-size: 22px;
+}
+
+.checkbox-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  padding: 2px 4px;
+}
+
+.checkbox-container label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+}
+
+.version-container {
+  padding: 0rem 1rem;
+  text-align: end;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+  outline: none;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-accent);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  outline: none;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  outline: none;
+}
+
+input:checked + .slider {
+  background-color: var(--color-primary);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-primary);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(21px);
+  -ms-transform: translateX(21px);
+  transform: translateX(21px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.btn-container button {
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 8px;
+  outline: none;
+  background-color: var(--color-tertiary);
+  border: 1px solid var(--color-tertiary);
+  color: var(--color-background);
+  font-weight: bold;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.btn-container button:hover {
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  color: var(--color-background);
+}

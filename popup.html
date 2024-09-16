@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="popup.css" />
   <link rel="icon" type="image/x-icon" href="/icons/icon16.ico" />
 </head>
 <html>
@@ -11,29 +11,41 @@
     </div>
 
     <div class="container" id="general">
-      <h2>General</h2>
+      <h2>General Settings</h2>
       <div class="checkbox-container">
         <label for="logo">Hide YouTube Logo</label>
-        <input type="checkbox" id="logo" name="logo" />
+        <label class="switch">
+          <input type="checkbox" id="logo" name="logo" />
+          <span class="slider round"></span>
+        </label>
       </div>
 
       <div class="checkbox-container">
         <label for="microphone-search">Hide Microphone Search Icon</label>
-        <input
-          type="checkbox"
-          id="microphone-search"
-          name="microphone-search"
-        />
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="microphone-search"
+            name="microphone-search"
+          />
+          <span class="slider round"></span>
+        </label>
       </div>
 
       <div class="checkbox-container">
         <label for="create">Hide Create Icon</label>
-        <input type="checkbox" id="create" name="create" />
+        <label class="switch">
+          <input type="checkbox" id="create" name="create" />
+          <span class="slider round"></span>
+        </label>
       </div>
 
       <div class="checkbox-container">
         <label for="notifications">Hide Notifications Icon</label>
-        <input type="checkbox" id="notifications" name="notifications" />
+        <label class="switch">
+          <input type="checkbox" id="notifications" name="notifications" />
+          <span class="slider round"></span>
+        </label>
       </div>
     </div>
 
@@ -42,7 +54,7 @@
       <button id="reset-settings">Reset Settings</button>
     </div>
 
-    <div class="version-container"><p>Current Version 0.8.0</p></div>
+    <div class="version-container"><p>Current Version 0.9.0</p></div>
 
     <script src="./scripts/popup.js"></script>
   </body>

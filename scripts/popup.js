@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     elementsArray.forEach((element) => {
       element.addEventListener("change", () => {
+        // element.style.checked = !element.style.checked;
         chrome.tabs.query(
           { active: true, currentWindow: true },
           function (tabs) {
