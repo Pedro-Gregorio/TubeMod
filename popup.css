@@ -1,14 +1,14 @@
 :root {
-  --color-background: #eeeeee;
-  --color-primary: #1a3636;
-  --color-secondary: #40534c;
-  --color-tertiary: #677d6a;
-  --color-accent: #d6bd98;
+  --color-background: #1c1b1c;
+  --color-primary: #e36464;
+  --color-secondary: #bf3131;
+  --color-tertiary: #96ceb4;
+  --color-accent: #eeeeee;
 }
 
 * {
   background-color: var(--color-background);
-  color: var(--color-primary);
+  color: var(--color-accent);
   outline: none;
 }
 
@@ -21,6 +21,7 @@ label {
   font-weight: bold;
   text-align: center;
   margin-bottom: -10px;
+  color: var(--color-primary);
 }
 
 .title-container h3 {
@@ -110,7 +111,7 @@ label {
   width: 22px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: var(--color-background);
   -webkit-transition: 0.4s;
   transition: 0.4s;
   outline: none;
@@ -143,16 +144,16 @@ input:checked + .slider:before {
   border-radius: 10px;
   padding: 8px;
   outline: none;
-  background-color: var(--color-tertiary);
-  border: 1px solid var(--color-tertiary);
-  color: var(--color-background);
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  color: var(--color-accent);
   font-weight: bold;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 .btn-container button:hover {
-  background-color: var(--color-secondary);
-  border: 1px solid var(--color-secondary);
+  background-color: var(--color-tertiary);
+  border: 1px solid var(--color-tertiary);
   color: var(--color-background);
 }
