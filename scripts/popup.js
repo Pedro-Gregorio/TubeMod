@@ -1,4 +1,5 @@
-let elementsArray = document.querySelectorAll("input");
+let inputs = document.querySelectorAll("input");
+let collapsibleElements = document.getElementsByClassName("collapsible");
 
 document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local.get(["elements"], (result) => {
@@ -6,13 +7,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (elements !== null) {
       elements.forEach((element) => {
-        if (element.category === "General") {
+        if (document.getElementById(element.id)) {
           document.getElementById(element.id).checked = element.hidden;
         }
       });
     }
 
-    elementsArray.forEach((element) => {
+    for (i = 0; i < collapsibleElements.length; i++) {
+      collapsibleElements[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+
+    inputs.forEach((element) => {
       element.addEventListener("change", () => {
         // element.style.checked = !element.style.checked;
         chrome.tabs.query(
@@ -32,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 chrome.runtime.onMessage.addListener(function (message) {
-  console.log("Got message from content.");
   if (message.type === "popup") {
     chrome.storage.local.set({ elements: JSON.stringify(message.data) });
   }
@@ -48,12 +60,4 @@ document.getElementById("reset-settings").addEventListener("click", () => {
     });
   });
   window.close();
-});
-
-document.getElementById("open-settings").addEventListener("click", () => {
-  if (chrome.runtime.openOptionsPage) {
-    chrome.runtime.openOptionsPage();
-  } else {
-    window.open(chrome.runtime.getURL("settings.html"));
-  }
 });
