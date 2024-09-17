@@ -205,14 +205,13 @@ const getElements = () => {
             },
             {
               id: "stream-chat",
-              selector:
-                "//div[@id='panels-full-bleed-container'] | //div[@id='chat-container']/ytd-live-chat-frame",
+              selector: "//div[@id='chat-container']",
               hidden: undefined,
               category: "Stream",
             },
           ];
 
-      resolve(elements); // Resolve the promise with the retrieved or default elements
+      resolve(elements);
     });
   });
 };
@@ -250,7 +249,6 @@ async function setElementVisibility(target, hide) {
 
   elements.forEach((element) => {
     if (element.id === target) {
-      console.log("Updated element: " + element.id);
       selectorToHide = element.selector;
       element.hidden = hide;
     }
@@ -264,25 +262,29 @@ async function setElementVisibility(target, hide) {
       XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
       null
     );
+
     for (let i = 0, length = elementsToHide.snapshotLength; i < length; i++) {
       elementsToHide.snapshotItem(i).style.display = hide ? "none" : "";
     }
 
-    console.log(elements);
+    if (
+      target === "stream-chat" &&
+      document.getElementById("panels-full-bleed-container")
+    ) {
+      document.getElementById("panels-full-bleed-container").style.display =
+        "none";
+    }
+
     chrome.storage.local.set(
       { elements: JSON.stringify(elements) },
       function () {
         if (chrome.runtime.lastError) {
           console.error("Error setting data: ", chrome.runtime.lastError);
-        } else {
-          console.log("Data set successfully!");
         }
       }
     );
 
-    chrome.storage.local.get(["elements"], function (result) {
-      console.log("Retrieved elements: ", result.elements);
-    });
+    chrome.storage.local.get(["elements"]);
   } else {
     console.error("No selector found for the target element: " + target);
   }

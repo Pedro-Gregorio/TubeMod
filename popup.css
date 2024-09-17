@@ -1,8 +1,8 @@
 :root {
   --color-background: #1c1b1c;
-  --color-primary: #e36464;
-  --color-secondary: #bf3131;
-  --color-tertiary: #D8A25E;
+  --color-primary: #bf3131;
+  --color-secondary: #e36464;
+  --color-tertiary: #d8a25e;
   --color-accent: #eeeeee;
 }
 
@@ -148,7 +148,7 @@ input:checked + .slider:before {
   gap: 10px;
   font-size: 16px;
   font-weight: bold;
-  color: var(--color-background);
+  color: var(--color-accent);
   background-color: var(--color-primary);
   padding: 8px;
   border-radius: 12px;
