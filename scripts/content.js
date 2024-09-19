@@ -137,7 +137,8 @@ const getElements = () => {
             },
             {
               id: "subscriptions-shorts",
-              selector: "//ytd-rich-shelf-renderer/../..",
+              selector:
+                "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
               hidden: undefined,
               category: "Subscriptions",
             },
@@ -227,7 +228,7 @@ const setElementVisibilityOnce = (id, hidden) => {
 };
 
 const waitForElements = (selectorToHide, callback) => {
-  const checkExist = setInterval(() => {
+  const observer = new MutationObserver((mutations, obs) => {
     const elements = document.evaluate(
       selectorToHide,
       document,
@@ -235,12 +236,16 @@ const waitForElements = (selectorToHide, callback) => {
       XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
       null
     );
-
     if (elements.snapshotLength > 0) {
-      clearInterval(checkExist);
+      obs.disconnect();
       callback(elements);
     }
-  }, 500);
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 };
 
 async function setElementVisibility(target, hide) {
@@ -255,25 +260,30 @@ async function setElementVisibility(target, hide) {
   });
 
   if (selectorToHide) {
-    let elementsToHide = document.evaluate(
-      selectorToHide,
-      document,
-      null,
-      XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-      null
-    );
+    const applyVisibility = () => {
+      let elementsToHide = document.evaluate(
+        selectorToHide,
+        document,
+        null,
+        XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+        null
+      );
 
-    for (let i = 0, length = elementsToHide.snapshotLength; i < length; i++) {
-      elementsToHide.snapshotItem(i).style.display = hide ? "none" : "";
-    }
+      for (let i = 0, length = elementsToHide.snapshotLength; i < length; i++) {
+        elementsToHide.snapshotItem(i).style.display = hide ? "none" : "";
+      }
 
-    if (
-      target === "stream-chat" &&
-      document.getElementById("panels-full-bleed-container")
-    ) {
-      document.getElementById("panels-full-bleed-container").style.display =
-        "none";
-    }
+      if (
+        target === "stream-chat" &&
+        document.getElementById("panels-full-bleed-container")
+      ) {
+        document.getElementById("panels-full-bleed-container").style.display =
+          hide ? "none" : "";
+      }
+    };
+
+    applyVisibility();
+    waitForElements(selectorToHide, applyVisibility);
 
     chrome.storage.local.set(
       { elements: JSON.stringify(elements) },
@@ -283,8 +293,6 @@ async function setElementVisibility(target, hide) {
         }
       }
     );
-
-    chrome.storage.local.get(["elements"]);
   } else {
     console.error("No selector found for the target element: " + target);
   }
@@ -329,3 +337,18 @@ window.addEventListener("resize", async function () {
     });
   }
 });
+
+const applyElementVisibility = async () => {
+  const elements = await getElements();
+  if (elements) {
+    elements.forEach((element) => {
+      if (element.hidden !== undefined) {
+        setElementVisibility(element.id, element.hidden);
+      }
+    });
+  }
+};
+
+document.addEventListener("DOMContentLoaded", applyElementVisibility);
+window.addEventListener("load", applyElementVisibility);
+window.addEventListener("yt-navigate-finish", applyElementVisibility);
