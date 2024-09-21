@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TubeMod",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "TubeMod allows you to customize YouTube's UI to your preferences, by  keeping you focused on what matters!",
   "action": {
     "default_popup": "popup.html"
@@ -12,10 +12,13 @@
     "48": "/icons/icon_48.png",
     "128": "/icons/icon_128.png"
   },
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["tabs", "activeTab", "storage"],
+  "background": {
+    "service_worker": "./scripts/background.js"
+  },
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/*"],
+      "matches": ["*://www.youtube.com/*", "*://m.youtube.com/*"],
       "js": ["./scripts/content.js"],
       "run_at": "document_start"
     }

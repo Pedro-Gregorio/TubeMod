@@ -20,7 +20,8 @@ label {
   cursor: pointer;
 }
 
-.title-container h1 {
+.title-container,
+.error-container h1 {
   font-size: 30px;
   font-weight: bold;
   text-align: center;
@@ -28,9 +29,14 @@ label {
   color: var(--color-primary);
 }
 
-.title-container h3 {
+.title-container,
+.error-container h3 {
   font-size: 14px;
   padding-left: 1rem;
+}
+
+.error-container {
+  margin: 3rem 0rem;
 }
 
 .title-container {
