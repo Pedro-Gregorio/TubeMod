@@ -18,14 +18,13 @@ const getElements = () => {
             },
             {
               id: "create",
-              selector: "(//ytd-topbar-menu-button-renderer)[1]",
+              selector: "(//div[@id='buttons' and contains(@class, 'ytd-masthead')]//a/../..)[1]",
               hidden: undefined,
               category: "General",
             },
             {
               id: "notifications",
-              selector:
-                "(//div[@id='buttons' and contains(@class, 'ytd-masthead')]//a/../..)[1]",
+              selector: "//ytd-notification-topbar-button-renderer",
               hidden: undefined,
               category: "General",
             },
@@ -245,7 +244,7 @@ const waitForElements = (selectorToHide, callback) => {
 
   observer.observe(document.body, {
     childList: true,
-    subtree: true,
+    subtree: true
   });
 };
 
