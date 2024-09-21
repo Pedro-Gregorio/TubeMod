@@ -18,7 +18,7 @@ const getElements = () => {
             },
             {
               id: "create",
-              selector: "(//ytd-topbar-menu-button-renderer)[1]",
+              selector: "(//div[@id='buttons' and contains(@class, 'ytd-masthead')]//a/../..)[1]",
               hidden: undefined,
               category: "General",
             },
