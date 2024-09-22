@@ -179,11 +179,7 @@ input:checked + .slider:before {
   display: flex;
   justify-content: space-around;
   align-items: end;
-}
-
-.btn-settings-container p {
-  width: 35%;
-  text-align: center;
+  gap: 6px;
 }
 
 .button {

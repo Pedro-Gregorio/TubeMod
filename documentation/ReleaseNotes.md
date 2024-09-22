@@ -4,7 +4,9 @@
 
 Add:
 
-- "Support This Extension" Button
+- "Support This Extension" Button to popup
+- "Send Feedback" Button to popup
+- "Release Notes" hyperlink to popup
 
 Fix:
 
