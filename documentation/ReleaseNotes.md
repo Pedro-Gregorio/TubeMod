@@ -2,9 +2,13 @@
 
 ## 1.3.0 (Planned)
 
-Add: 
+Add:
 
 - "Support This Extension" Button
+
+Fix:
+
+- Hide Home Page Tabs was affecting Channel Video Section Tabs
 
 ## 1.2.0 (Released)
 

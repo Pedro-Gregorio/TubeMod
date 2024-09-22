@@ -18,7 +18,8 @@ const getElements = () => {
             },
             {
               id: "create",
-              selector: "(//div[@id='buttons' and contains(@class, 'ytd-masthead')]//a/../..)[1]",
+              selector:
+                "(//div[@id='buttons' and contains(@class, 'ytd-masthead')]//a/../..)[1]",
               hidden: undefined,
               category: "General",
             },
@@ -118,7 +119,8 @@ const getElements = () => {
             },
             {
               id: "tabs",
-              selector: "//ytd-feed-filter-chip-bar-renderer/..",
+              selector:
+                "//ytd-feed-filter-chip-bar-renderer[@component-style='FEED_FILTER_CHIP_BAR_STYLE_TYPE_DEFAULT']/..",
               hidden: undefined,
               category: "HomePage",
             },
@@ -244,7 +246,7 @@ const waitForElements = (selectorToHide, callback) => {
 
   observer.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
   });
 };
 
