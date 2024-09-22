@@ -20,12 +20,15 @@ label {
   cursor: pointer;
 }
 
-.title-container,
+.title-container {
+  margin-bottom: 1rem;
+}
+
+.title-container h1,
 .error-container h1 {
   font-size: 30px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: -10px;
   color: var(--color-primary);
 }
 
@@ -37,10 +40,6 @@ label {
 
 .error-container {
   margin: 3rem 0rem;
-}
-
-.title-container {
-  margin-bottom: -5px;
 }
 
 .settings-title-container {
@@ -175,10 +174,10 @@ input:checked + .slider:before {
 }
 
 .btn-settings-container {
+  margin-top: 1rem;
   width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: end;
 }
 
@@ -187,7 +186,7 @@ input:checked + .slider:before {
   text-align: center;
 }
 
-#reset-settings {
+.button {
   cursor: pointer;
   padding: 6px;
   outline: none;
@@ -196,8 +195,27 @@ input:checked + .slider:before {
   -webkit-transition: 0.4s;
   transition: 0.4s;
   width: 35%;
+  border-radius: 3px;
 }
 
-#reset-settings:hover {
+.button:hover {
   background-color: var(--color-secondary);
+
+  a {
+    background-color: var(--color-secondary);
+  }
+}
+
+.button a {
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  text-decoration: none;
+}
+
+.button:hover .version {
+  text-align: right;
+}
+
+.version {
+  text-align: right;
 }
