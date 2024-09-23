@@ -212,7 +212,8 @@ const getDefaultElements = () => [
   },
   {
     id: "video-suggested-shorts",
-    selector: undefined,
+    selector:
+      "//ytd-reel-shelf-renderer",
     hidden: undefined,
     category: "Video",
   },
