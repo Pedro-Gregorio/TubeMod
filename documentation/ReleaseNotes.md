@@ -1,5 +1,11 @@
 # TubeMod - Release Notes
 
+## 1.4.0 (Planned)
+
+Add:
+
+- Hide Video Suggested Shorts Option
+
 ## 1.3.0 (Released)
 
 Add:
