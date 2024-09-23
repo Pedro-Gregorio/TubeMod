@@ -107,7 +107,8 @@ const getDefaultElements = () => [
   },
   {
     id: "transfers",
-    selector: "//div[@id='section-items']/ytd-guide-downloads-entry-renderer",
+    selector:
+      "//div[@id='section-items']/ytd-guide-downloads-entry-renderer  | //ytd-mini-guide-entry-renderer[a[@href='/feed/downloads']]",
     hidden: false,
     category: "Sidebar",
   },
