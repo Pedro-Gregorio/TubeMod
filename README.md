@@ -16,8 +16,13 @@ After installing the extension:
 
 ### From the Chrome Web Store
 
-1. Go to the TubeMod Extension Page on your browsers extension Store.
+1. Go to the [TubeMod Extension Page on Chrome Web Store](https://chromewebstore.google.com/detail/tubemod/mhhalndcidpfcemnlidabgieccknndei).
 2. Click 'Add to _Your Browser_' and follow the prompts.
+
+### From the FireFox Add-Ons
+
+1. Go to the [TubeMod Extension Page on Firefox Add Ons](https://addons.mozilla.org/en-GB/firefox/addon/tubemod/).
+2. Click 'Add to Firefox' and follow the prompts.
 
 ## Features And Future Plans
 

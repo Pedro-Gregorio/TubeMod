@@ -1,5 +1,13 @@
 # TubeMod - Release Notes
 
+## 1.4.0 (Released)
+
+Add:
+
+- Hide YouTube Music in the Sidebar Option, for Premium users
+- Hide Transfers Sidebar Option, for Premium users
+- Hide Video Suggested Shorts Option
+
 ## 1.3.0 (Released)
 
 Add:
