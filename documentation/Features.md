@@ -7,7 +7,6 @@ This file contains the currently available features, as well as planned ones - a
 These are the features currently planned for future releases. More will be added upon users requests.
 
 - [New] Hide Subscribers Count
-- [New] Automatically expand Video Description
 - [New] Automatically Copy the current Video URL
 - [New] Access directly to the "Videos" tab, when visiting a specific Channel
 
@@ -62,6 +61,7 @@ These changes take effect when you open a new YouTube video.
 - Hide Title
 - Hide Likes/Dislikes
 - Hide Description
+- Automatically expand Video Description
 - Hide Categories/Games
 - Hide Comments
 - Hide Tabs

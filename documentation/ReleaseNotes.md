@@ -7,6 +7,7 @@ Add:
 - "Support This Extension" Button to popup
 - "Send Feedback" Button to popup
 - "Release Notes" hyperlink to popup
+- Auto Expand Video Description
 
 Fix:
 
