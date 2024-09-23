@@ -233,6 +233,19 @@
         </label>
       </div>
       <div class="checkbox-container">
+        <label for="expand-video-description"
+          >[NEW] Auto Expand Video Description</label
+        >
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="expand-video-description"
+            name="expand-video-description"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
         <label for="video-categories-games">Hide Video Categories/Games</label>
         <label class="switch">
           <input
@@ -289,10 +302,28 @@
     </div>
 
     <div class="btn-settings-container">
-      <button id="reset-settings">Reset Settings</button>
-      <p>Current Version 1.2.0</p>
+      <button class="button">
+        <a href="https://ko-fi.com/pedrogregorio" target="_blank">Support</a>
+      </button>
+      <button class="button">
+        <a
+          href="mailto:pedro-gregorio@outlook.pt?subject=TubeMod%20Feedback"
+          target="_blank"
+          >Send Feedback</a
+        >
+      </button>
+      <button class="button" id="reset-settings">Reset Settings</button>
     </div>
 
-    <script src="./scripts/popup.js"></script>
+    <p class="version">
+      Current Version 1.3.0 |
+      <a
+        href="https://github.com/Pedro-Gregorio/TubeMod/blob/master/documentation/ReleaseNotes.md"
+        target="_blank"
+        >Release Notes</a
+      >
+    </p>
+
+    <script src="../scripts/popup.js"></script>
   </body>
 </html>
