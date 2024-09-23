@@ -1,3 +1,14 @@
+const getElements = () => {
+  return new Promise((resolve) => {
+    chrome.storage.local.get("elements", (result) => {
+      const elements = result.elements
+        ? JSON.parse(result.elements)
+        : getDefaultElements();
+      resolve(elements);
+    });
+  });
+};
+
 const getDefaultElements = () => [
   {
     id: "logo",
@@ -213,17 +224,6 @@ const getDefaultElements = () => [
   },
 ];
 
-const getElements = () => {
-  return new Promise((resolve) => {
-    chrome.storage.local.get("elements", (result) => {
-      const elements = result.elements
-        ? JSON.parse(result.elements)
-        : getDefaultElements();
-      resolve(elements);
-    });
-  });
-};
-
 const setElementVisibilityOnce = (id, hidden) => {
   let hasRun = false;
   return () => {
@@ -304,13 +304,15 @@ const applyVisibility = (selector, hide) => {
     null
   );
 
-  for (let i = 0; i < elementsToHide.snapshotLength; i++) {
-    elementsToHide.snapshotItem(i).style.display = hide ? "none" : "";
-  }
+  requestAnimationFrame(() => {
+    for (let i = 0; i < elementsToHide.snapshotLength; i++) {
+      elementsToHide.snapshotItem(i).style.display = hide ? "none" : "";
+    }
 
-  if (selector === "stream-chat" && document.getElementById("panels-full-bleed-container")) {
-    document.getElementById("panels-full-bleed-container").style.display = hide ? "none" : "";
-  }
+    if (selector === "stream-chat" && document.getElementById("panels-full-bleed-container")) {
+      document.getElementById("panels-full-bleed-container").style.display = hide ? "none" : "";
+    }
+  });
 };
 
 const saveElements = (elements) => {
@@ -357,11 +359,19 @@ const applyElementVisibility = async () => {
   }
 };
 
+const debounce = (func, wait) => {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+};
+
 const initialize = () => {
   document.addEventListener("DOMContentLoaded", applyElementVisibility);
   window.addEventListener("load", applyElementVisibility);
-  window.addEventListener("yt-navigate-finish", applyElementVisibility);
-  window.addEventListener("resize", applyElementVisibility);
+  window.addEventListener("yt-navigate-finish", debounce(applyElementVisibility, 200));
+  window.addEventListener("resize", debounce(applyElementVisibility, 200));
 };
 
 initialize();
