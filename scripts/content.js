@@ -276,7 +276,7 @@ const setElementClick = async (target, click) => {
       null
     ).singleNodeValue;
 
-    if (elementToClick) {
+    if (click) {
       elementToClick.click();
     }
 
