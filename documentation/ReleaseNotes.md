@@ -1,6 +1,6 @@
 # TubeMod - Release Notes
 
-## 1.4.0 (Planned)
+## 1.4.0 (Released)
 
 Add:
 

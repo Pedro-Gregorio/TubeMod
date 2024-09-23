@@ -21,7 +21,7 @@ After installing the extension:
 
 ### From the FireFox Add-Ons
 
-1. Go to the Firefox add-ons [page for TubeMod](https://addons.mozilla.org/en-GB/firefox/addon/tubemod/)
+1. Go to the [TubeMod Extension Page on Firefox Add Ons](https://addons.mozilla.org/en-GB/firefox/addon/tubemod/).
 2. Click 'Add to Firefox' and follow the prompts.
 
 ## Features And Future Plans
