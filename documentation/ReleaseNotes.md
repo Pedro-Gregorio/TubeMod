@@ -4,6 +4,8 @@
 
 Add:
 
+- Hide YouTube Music in the Sidebar Option
+- Hide Transfers Sidebar Option
 - Hide Video Suggested Shorts Option
 
 ## 1.3.0 (Released)
