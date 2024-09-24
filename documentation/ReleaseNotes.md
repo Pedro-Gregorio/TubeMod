@@ -6,6 +6,10 @@ Add:
 
 - Hide 'You' Sidebar Option
 
+Change:
+
+- Hide Scheduled Videos was moved to General, as it also hides scheduled videos on the homepage
+
 ## 1.4.0 (Released)
 
 Add:
