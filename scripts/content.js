@@ -65,7 +65,7 @@ const getDefaultElements = () => [
   },
   {
     id: "you",
-    selector: "(//div[@id='header']/ytd-guide-entry-renderer)[1]",
+    selector: "(//div[@id='header']/ytd-guide-entry-renderer)[1] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
     hidden: false,
     category: "Sidebar",
   },
