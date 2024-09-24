@@ -1,5 +1,11 @@
 # TubeMod - Release Notes
 
+## 1.5.0 (Planned)
+
+Add:
+
+- Hide 'You' Sidebar Option
+
 ## 1.4.0 (Released)
 
 Add:
