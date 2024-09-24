@@ -36,6 +36,12 @@ const getDefaultElements = () => [
     category: "General",
   },
   {
+    id: "scheduled-videos",
+    selector: "//ytd-rich-item-renderer[.//ytd-toggle-button-renderer]",
+    hidden: false,
+    category: "General",
+  },
+  {
     id: "home",
     selector:
       "//ytd-guide-entry-renderer[a[@href='/']] | //ytd-mini-guide-entry-renderer[a[@href='/']]",
@@ -159,12 +165,6 @@ const getDefaultElements = () => [
   {
     id: "subscriptions-shorts",
     selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
-    hidden: false,
-    category: "Subscriptions",
-  },
-  {
-    id: "subscriptions-scheduled-videos",
-    selector: "//ytd-rich-item-renderer[.//ytd-toggle-button-renderer]",
     hidden: false,
     category: "Subscriptions",
   },

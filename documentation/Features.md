@@ -25,6 +25,7 @@ These changes affect every page on YouTube.
 - Hide Microphone Search Icon
 - Hide Create Icon
 - Hide Notifications Icon
+- Hide Scheduled Videos
 
 ### Sidebar
 
@@ -59,7 +60,6 @@ These options modify YouTube's Home Page.
 These changes apply when you access the Subscriptions page.
 
 - Hide Shorts Section
-- Hide Schedules Videos
 
 ### Video
 
