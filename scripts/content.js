@@ -64,6 +64,12 @@ const getDefaultElements = () => [
     category: "Sidebar",
   },
   {
+    id: "you",
+    selector: "(//div[@id='header']/ytd-guide-entry-renderer)[1]",
+    hidden: false,
+    category: "Sidebar",
+  },
+  {
     id: "my-channel",
     selector: "(//div[@id='section-items']/ytd-guide-entry-renderer)[1]",
     hidden: false,
