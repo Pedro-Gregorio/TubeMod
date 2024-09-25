@@ -10,6 +10,10 @@ Change:
 
 - Hide Scheduled Videos was moved to General, as it also hides scheduled videos on the homepage
 
+Fix:
+
+- Shorts were appearing on the Home Page, even when the toggle was enabled
+
 ## 1.4.0 (Released)
 
 Add:
