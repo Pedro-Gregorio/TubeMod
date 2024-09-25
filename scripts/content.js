@@ -1,16 +1,40 @@
 // Configuration
+
+const PAGE_TYPES = {
+  HOME: "home",
+  SUBSCRIPTIONS: "subscriptions",
+  VIDEO: "video",
+};
+
+function getCurrentPageType() {
+  const url = window.location.href;
+  if (
+    url === "https://www.youtube.com/" ||
+    url.startsWith("https://www.youtube.com/?")
+  ) {
+    return PAGE_TYPES.HOME;
+  } else if (url.includes("/watch")) {
+    return PAGE_TYPES.VIDEO;
+  } else if (url.includes("/feed/subscriptions")) {
+    return PAGE_TYPES.SUBSCRIPTIONS;
+  }
+  return null;
+}
+
 const DEFAULT_ELEMENTS = [
   {
     id: "logo",
     selector: "//ytd-topbar-logo-renderer",
     checked: false,
     category: "General",
+    pageTypes: [],
   },
   {
     id: "microphone-search",
     selector: "//*[@id='voice-search-button']",
     checked: false,
     category: "General",
+    pageTypes: [],
   },
   {
     id: "create",
@@ -18,18 +42,21 @@ const DEFAULT_ELEMENTS = [
       "(//div[@id='buttons' and contains(@class, 'ytd-masthead')]//a/../..)[1]",
     checked: false,
     category: "General",
+    pageTypes: [],
   },
   {
     id: "notifications",
     selector: "//ytd-notification-topbar-button-renderer",
     checked: false,
     category: "General",
+    pageTypes: [],
   },
   {
     id: "scheduled-videos",
     selector: "//ytd-rich-item-renderer[.//ytd-toggle-button-renderer]",
     checked: false,
     category: "General",
+    pageTypes: [],
   },
   {
     id: "home",
@@ -37,6 +64,7 @@ const DEFAULT_ELEMENTS = [
       "//ytd-guide-entry-renderer[a[@href='/']] | //ytd-mini-guide-entry-renderer[a[@href='/']]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "shorts",
@@ -44,6 +72,7 @@ const DEFAULT_ELEMENTS = [
       "//ytd-guide-entry-renderer[a[@title='Shorts']] | //ytd-mini-guide-entry-renderer[a[@title='Shorts']]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "subscriptions",
@@ -51,6 +80,7 @@ const DEFAULT_ELEMENTS = [
       "//ytd-guide-entry-renderer[a[@href='/feed/subscriptions']] | //ytd-mini-guide-entry-renderer[a[@href='/feed/subscriptions']]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "youtube-music",
@@ -58,6 +88,7 @@ const DEFAULT_ELEMENTS = [
       "(//ytd-guide-entry-renderer[a[@href='https://music.youtube.com/']])[1] | //ytd-mini-guide-entry-renderer[a[@href='https://music.youtube.com/']]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "you",
@@ -65,48 +96,56 @@ const DEFAULT_ELEMENTS = [
       "(//div[@id='header']/ytd-guide-entry-renderer)[1] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "my-channel",
     selector: "(//div[@id='section-items']/ytd-guide-entry-renderer)[1]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "history",
     selector: "(//div[@id='section-items']/ytd-guide-entry-renderer)[2]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "playlists",
     selector: "(//div[@id='section-items']/ytd-guide-entry-renderer)[3]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "my-videos",
     selector: "(//div[@id='section-items']/ytd-guide-entry-renderer)[4]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "watch-later",
     selector: "(//div[@id='section-items']/ytd-guide-entry-renderer)[5]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "liked-videos",
     selector: "(//div[@id='section-items']/ytd-guide-entry-renderer)[6]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "my-clips",
     selector: "(//div[@id='section-items']/ytd-guide-entry-renderer)[7]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "transfers",
@@ -114,24 +153,28 @@ const DEFAULT_ELEMENTS = [
       "//div[@id='section-items']/ytd-guide-downloads-entry-renderer  | //ytd-mini-guide-entry-renderer[a[@href='/feed/downloads']]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "subscriptions-panel",
     selector: "(//ytd-guide-section-renderer)[2]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "explore-panel",
     selector: "(//ytd-guide-section-renderer)[3]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "youtube-panel",
     selector: "(//ytd-guide-section-renderer)[4]",
     checked: false,
     category: "Sidebar",
+    pageTypes: [],
   },
   {
     id: "tabs",
@@ -139,6 +182,7 @@ const DEFAULT_ELEMENTS = [
       "//ytd-feed-filter-chip-bar-renderer[@component-style='FEED_FILTER_CHIP_BAR_STYLE_TYPE_DEFAULT']/..",
     checked: false,
     category: "HomePage",
+    pageTypes: [PAGE_TYPES.HOME],
   },
   {
     id: "ads",
@@ -146,70 +190,77 @@ const DEFAULT_ELEMENTS = [
       "//ytd-ad-slot-renderer/ancestor::ytd-rich-item-renderer | //*[@id='player-ads'] | //ytd-banner-promo-renderer/..",
     checked: false,
     category: "HomePage",
+    pageTypes: [PAGE_TYPES.HOME],
   },
   {
     id: "posts",
     selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
     checked: false,
     category: "HomePage",
-    urlCondition: (url) =>
-      url === "https://www.youtube.com/" ||
-      url.startsWith("https://www.youtube.com/?"),
+    pageTypes: [PAGE_TYPES.HOME],
   },
   {
     id: "subscriptions-shorts",
     selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
     checked: false,
     category: "Subscriptions",
-    urlCondition: (url) => url.includes("/feed/subscriptions"),
+    pageTypes: [PAGE_TYPES.SUBSCRIPTIONS],
   },
   {
     id: "video-title",
     selector: "//div[@id='above-the-fold']/div[@id='title']",
     checked: false,
     category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
     id: "video-likes-dislikes",
     selector: "//segmented-like-dislike-button-view-model",
     checked: false,
     category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
     id: "video-description",
     selector: "//div[@id='description-inner']/parent::div",
     checked: false,
     category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
     id: "expand-video-description",
     selector: "//div[@id='description-inner']/parent::div",
     checked: false,
     category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
     id: "video-comments",
     selector: "//ytd-comments[@id='comments']",
     checked: false,
     category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
     id: "video-categories-games",
     selector: "//ytd-rich-metadata-row-renderer/../..",
     checked: false,
     category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
     id: "video-ads",
     selector: "//div[@id='player-ads']",
     checked: false,
     category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
     id: "video-tabs",
     selector: "//yt-related-chip-cloud-renderer",
     checked: false,
     category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
     id: "video-suggested-videos",
@@ -217,18 +268,21 @@ const DEFAULT_ELEMENTS = [
       "//div[@id='contents']/parent::ytd-item-section-renderer[contains(@class, 'watch-next')]",
     checked: false,
     category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
     id: "video-suggested-shorts",
     selector: "//ytd-reel-shelf-renderer",
     checked: false,
     category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
     id: "stream-chat",
     selector: "//div[@id='chat-container']",
     checked: false,
     category: "Stream",
+    pageTypes: [PAGE_TYPES.VIDEO],
   },
 ];
 
@@ -295,7 +349,7 @@ class YouTubeElement {
     this.checked = config.checked;
     this.category = config.category;
     this.isClickAction = config.id === "expand-video-description"; // This will probably be changed in the future
-    this.urlCondition = config.urlCondition; // Probably will be added to every element / category in the future
+    this.pageTypes = config.pageTypes || []; // Array of page types where this element should be checked
   }
 
   async toggle(hide) {
@@ -321,14 +375,18 @@ class YouTubeElement {
   }
 
   async handleVisibility(hide) {
+    const currentPageType = getCurrentPageType();
+    if (
+      this.pageTypes.length > 0 &&
+      !this.pageTypes.includes(currentPageType)
+    ) {
+      return;
+    }
+
     const applyAndWait = () => {
       this.applyVisibility(hide);
       waitForElements(this.selector, () => this.applyVisibility(hide));
     };
-
-    if (this.urlCondition && !this.urlCondition(window.location.href)) {
-      return;
-    }
 
     applyAndWait();
   }
@@ -393,9 +451,12 @@ class ElementManager {
     }
   }
 
-  async applyAllElements() {
+  async applyAllElements(pageType) {
     for (const element of this.elements) {
-      if (element.checked !== undefined) {
+      if (
+        element.checked !== undefined &&
+        (element.pageTypes.length === 0 || element.pageTypes.includes(pageType))
+      ) {
         await element.toggle(element.checked);
       }
     }
@@ -446,15 +507,17 @@ class TubeMod {
   }
 
   handleYouTubeNavigate() {
-    this.debouncedApplyElements();
+    const currentPageType = getCurrentPageType();
+    this.debouncedApplyElements(currentPageType);
   }
 
   handleResize() {
-    this.debouncedApplyElements();
+    const currentPageType = getCurrentPageType();
+    this.debouncedApplyElements(currentPageType);
   }
 
-  debouncedApplyElements = debounce(() => {
-    this.elementManager.applyAllElements();
+  debouncedApplyElements = debounce((pageType) => {
+    this.elementManager.applyAllElements(pageType);
   }, 200);
 }
 
