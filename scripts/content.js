@@ -214,6 +214,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
+    id: "video-subscribers",
+    selector: "(//div[@id='upload-info'])[1]/yt-formatted-string",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
     id: "video-likes-dislikes",
     selector: "//segmented-like-dislike-button-view-model",
     checked: false,
