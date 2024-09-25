@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elements !== null) {
       elements.forEach((element) => {
         if (document.getElementById(element.id)) {
-          document.getElementById(element.id).checked = element.hidden;
+          document.getElementById(element.id).checked = element.checked;
         }
       });
     }
