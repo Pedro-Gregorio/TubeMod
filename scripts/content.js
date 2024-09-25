@@ -1,10 +1,7 @@
 const getElements = () => {
   return new Promise((resolve) => {
-    chrome.storage.local.get("elements", (result) => {
-      const elements = result.elements
-        ? JSON.parse(result.elements)
-        : getDefaultElements();
-      resolve(elements);
+    chrome.storage.local.get("elements", ({ elements }) => {
+      resolve(elements ? JSON.parse(elements) : getDefaultElements());
     });
   });
 };
@@ -71,7 +68,8 @@ const getDefaultElements = () => [
   },
   {
     id: "you",
-    selector: "(//div[@id='header']/ytd-guide-entry-renderer)[1] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
+    selector:
+      "(//div[@id='header']/ytd-guide-entry-renderer)[1] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
     hidden: false,
     category: "Sidebar",
   },
@@ -158,7 +156,7 @@ const getDefaultElements = () => [
   },
   {
     id: "posts",
-    selector: "//ytd-rich-section-renderer",
+    selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
     hidden: false,
     category: "HomePage",
   },
@@ -238,27 +236,25 @@ const getDefaultElements = () => [
 ];
 
 const setElementVisibilityOnce = (id, hidden) => {
-  let hasRun = false;
-  return () => {
-    if (!hasRun) {
-      setElementVisibility(id, hidden);
-      hasRun = true;
-    }
+  const setVisibility = () => {
+    setElementVisibility(id, hidden);
+    setVisibility = () => {};
   };
+  return setVisibility;
 };
 
 const waitForElements = (selectorToHide, callback) => {
   const observer = new MutationObserver((mutations, obs) => {
-    const elements = document.evaluate(
+    const element = document.evaluate(
       selectorToHide,
       document,
       null,
-      XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+      XPathResult.FIRST_ORDERED_NODE_TYPE,
       null
-    );
-    if (elements.snapshotLength > 0) {
+    ).singleNodeValue;
+    if (element) {
       obs.disconnect();
-      callback(elements);
+      callback([element]);
     }
   });
 
@@ -266,6 +262,18 @@ const waitForElements = (selectorToHide, callback) => {
     childList: true,
     subtree: true,
   });
+
+  const existingElement = document.evaluate(
+    selectorToHide,
+    document,
+    null,
+    XPathResult.FIRST_ORDERED_NODE_TYPE,
+    null
+  ).singleNodeValue;
+  if (existingElement) {
+    callback([existingElement]);
+    return;
+  }
 };
 
 const setElementClick = async (target, click) => {
@@ -274,16 +282,16 @@ const setElementClick = async (target, click) => {
 
   if (element) {
     element.hidden = click;
-    const elementToClick = document.evaluate(
-      element.selector,
-      document,
-      null,
-      XPathResult.FIRST_ORDERED_NODE_TYPE,
-      null
-    ).singleNodeValue;
-
     if (click) {
-      elementToClick.click();
+      const elementToClick = document.evaluate(
+        element.selector,
+        document,
+        null,
+        XPathResult.FIRST_ORDERED_NODE_TYPE,
+        null
+      ).singleNodeValue;
+
+      elementToClick?.click();
     }
 
     saveElements(elements);
@@ -294,24 +302,38 @@ const setElementVisibility = async (target, hide) => {
   const elements = await getElements();
   const element = elements.find((el) => el.id === target);
 
-  if (element) {
-    element.hidden = hide;
-    if (target !== "expand-video-description") {
+  if (!element) {
+    console.error("No selector found for the target element: " + target);
+    return;
+  }
+
+  element.hidden = hide;
+
+  if (target === "expand-video-description") {
+    setElementClick(target, hide);
+  } else {
+    const applyAndWait = () => {
       applyVisibility(element.selector, hide);
       waitForElements(element.selector, () =>
         applyVisibility(element.selector, hide)
       );
+    };
+
+    if (target === "subscriptions-shorts") {
+      if (window.location.href.includes("subscriptions")) {
+        applyAndWait();
+      }
     } else {
-      setElementClick(target, hide);
+      applyAndWait();
     }
-    saveElements(elements);
-  } else {
-    console.error("No selector found for the target element: " + target);
   }
+
+  saveElements(elements);
 };
 
 const applyVisibility = (selector, hide) => {
-  const elementsToHide = document.evaluate(
+  const displayValue = hide ? "none" : "";
+  const xpathResult = document.evaluate(
     selector,
     document,
     null,
@@ -320,22 +342,25 @@ const applyVisibility = (selector, hide) => {
   );
 
   requestAnimationFrame(() => {
-    for (let i = 0; i < elementsToHide.snapshotLength; i++) {
-      elementsToHide.snapshotItem(i).style.display = hide ? "none" : "";
+    const length = xpathResult.snapshotLength;
+    for (let i = 0; i < length; i++) {
+      xpathResult.snapshotItem(i).style.display = displayValue;
     }
 
-    if (
-      selector === "stream-chat" &&
-      document.getElementById("panels-full-bleed-container")
-    ) {
-      document.getElementById("panels-full-bleed-container").style.display =
-        hide ? "none" : "";
+    if (selector === "//div[@id='chat-container']") {
+      const panelsContainer = document.getElementById(
+        "panels-full-bleed-container"
+      );
+      if (panelsContainer) {
+        panelsContainer.style.display = displayValue;
+      }
     }
   });
 };
 
 const saveElements = (elements) => {
-  chrome.storage.local.set({ elements: JSON.stringify(elements) }, () => {
+  const serializedElements = JSON.stringify(elements);
+  chrome.storage.local.set({ elements: serializedElements }, () => {
     if (chrome.runtime.lastError) {
       console.error("Error setting data: ", chrome.runtime.lastError);
     }
@@ -346,19 +371,20 @@ chrome.runtime.onMessage.addListener((request) => {
   if (request.action === "clearLocalStorage") {
     chrome.storage.local.clear(() => {
       console.info("Settings cleared.");
+      location.reload();
     });
-    location.reload();
   } else {
     handleAction(request.action);
   }
 });
 
 const handleAction = async (action) => {
-  if (action.target !== "expand-video-description") {
-    await setElementVisibility(action.target, action.hide);
-  } else {
-    await setElementClick(action.target, action.hide);
-  }
+  const setFunction =
+    action.target === "expand-video-description"
+      ? setElementClick
+      : setElementVisibility;
+  await setFunction(action.target, action.hide);
+
   const elements = await getElements();
   chrome.runtime.sendMessage({ type: "info", data: elements });
 };
@@ -366,15 +392,15 @@ const handleAction = async (action) => {
 const applyElementVisibility = async () => {
   const elements = await getElements();
   if (elements) {
-    elements.forEach((element) => {
+    for (const element of elements) {
       if (element.hidden !== undefined) {
-        if (element.id !== "expand-video-description") {
-          setElementVisibility(element.id, element.hidden);
-        } else {
-          setElementClick(element.id, element.hidden);
-        }
+        const setFunction =
+          element.id === "expand-video-description"
+            ? setElementClick
+            : setElementVisibility;
+        setFunction(element.id, element.hidden);
       }
-    });
+    }
   }
 };
 
@@ -386,14 +412,22 @@ const debounce = (func, wait) => {
   };
 };
 
+const debouncedApplyElementVisibility = debounce(applyElementVisibility, 200);
+
 const initialize = () => {
-  document.addEventListener("DOMContentLoaded", applyElementVisibility);
-  window.addEventListener("load", applyElementVisibility);
+  const applyVisibilityOnce = () => {
+    applyElementVisibility();
+    document.removeEventListener("DOMContentLoaded", applyVisibilityOnce);
+    window.removeEventListener("load", applyVisibilityOnce);
+  };
+
+  document.addEventListener("DOMContentLoaded", applyVisibilityOnce);
+  window.addEventListener("load", applyVisibilityOnce);
   window.addEventListener(
     "yt-navigate-finish",
-    debounce(applyElementVisibility, 200)
+    debouncedApplyElementVisibility
   );
-  window.addEventListener("resize", debounce(applyElementVisibility, 200));
+  window.addEventListener("resize", debouncedApplyElementVisibility);
 };
 
 initialize();
