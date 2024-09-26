@@ -6,6 +6,7 @@ Add:
 
 - Hide 'You' Sidebar Option
 - Hide Subscribers Counter in Video
+- Hide Views in Video
 
 Change:
 
