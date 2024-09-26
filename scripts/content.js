@@ -221,6 +221,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
+    id: "video-views",
+    selector: "(//div[@id='description']//div[@id='info-container']//yt-formatted-string[@id='info']//span)[1]",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
     id: "video-likes-dislikes",
     selector: "//segmented-like-dislike-button-view-model",
     checked: false,
