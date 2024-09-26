@@ -351,21 +351,13 @@ function debounce(func, wait) {
 
 class YouTubeElement {
   constructor(config) {
-    this.id = config.id;
-    this.selector = config.selector;
-    this.checked = config.checked;
-    this.category = config.category;
-    this.isClickAction = config.id === "expand-video-description"; // This will probably be changed in the future
-    this.pageTypes = config.pageTypes || []; // Array of page types where this element should be checked
+    Object.assign(this, config);
+    this.isClickAction = config.id === "expand-video-description";
   }
 
   async toggle(hide) {
     this.checked = hide;
-    if (this.isClickAction) {
-      await this.handleClick(hide);
-    } else {
-      await this.handleVisibility(hide);
-    }
+    return this.isClickAction ? this.handleClick(hide) : this.handleVisibility(hide);
   }
 
   async handleClick(click) {
@@ -381,64 +373,51 @@ class YouTubeElement {
     }
   }
 
-  async handleVisibility(hide) {
+  handleVisibility(hide) {
     const currentPageType = getCurrentPageType();
-    if (
-      this.pageTypes.length > 0 &&
-      !this.pageTypes.includes(currentPageType)
-    ) {
+    if (this.pageTypes.length > 0 && !this.pageTypes.includes(currentPageType)) {
       return;
     }
-
-    const applyAndWait = () => {
-      this.applyVisibility(hide);
-      waitForElements(this.selector, () => this.applyVisibility(hide));
-    };
-
-    applyAndWait();
+    this.applyVisibility(hide);
   }
 
   applyVisibility(hide) {
     const displayValue = hide ? "none" : "";
-    const xpathResult = document.evaluate(
+    const elements = document.evaluate(
       this.selector,
       document,
       null,
-      XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+      XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
       null
     );
 
-    requestAnimationFrame(() => {
-      const length = xpathResult.snapshotLength;
-      for (let i = 0; i < length; i++) {
-        xpathResult.snapshotItem(i).style.display = displayValue;
-      }
+    for (let i = 0; i < elements.snapshotLength; i++) {
+      elements.snapshotItem(i).style.display = displayValue;
+    }
 
-      if (this.selector === "//div[@id='chat-container']") {
-        const panelsContainer = document.getElementById(
-          "panels-full-bleed-container"
-        );
-        if (panelsContainer) {
-          panelsContainer.style.display = displayValue;
-        }
+    if (this.selector === "//div[@id='chat-container']") {
+      const panelsContainer = document.getElementById("panels-full-bleed-container");
+      if (panelsContainer) {
+        panelsContainer.style.display = displayValue;
       }
-    });
+    }
   }
 }
 
 class ElementManager {
   constructor() {
     this.elements = [];
+    this.observer = null;
     this.initialize();
   }
 
   async initialize() {
     const storedElements = await this.getStoredElements();
-    this.elements = storedElements.map((el) => new YouTubeElement(el));
+    this.elements = storedElements.map(el => new YouTubeElement(el));
   }
 
   async getStoredElements() {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       chrome.storage.local.get("elements", ({ elements }) => {
         resolve(elements ? JSON.parse(elements) : DEFAULT_ELEMENTS);
       });
@@ -451,22 +430,31 @@ class ElementManager {
   }
 
   async handleAction(action) {
-    const element = this.elements.find((el) => el.id === action.target);
+    const element = this.elements.find(el => el.id === action.target);
     if (element) {
       await element.toggle(action.hide);
       await this.saveElements();
     }
   }
 
+  setupObserver() {
+    this.observer?.disconnect();
+    this.observer = new MutationObserver(debounce(this.handleMutations.bind(this), 100));
+    this.observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  handleMutations() {
+    this.applyAllElements(getCurrentPageType());
+  }
+
   async applyAllElements(pageType) {
-    for (const element of this.elements) {
-      if (
-        element.checked !== undefined &&
-        (element.pageTypes.length === 0 || element.pageTypes.includes(pageType))
-      ) {
-        await element.toggle(element.checked);
-      }
-    }
+    const relevantElements = this.elements.filter(el => 
+      el.pageTypes.length === 0 || el.pageTypes.includes(pageType)
+    );
+
+    await Promise.all(relevantElements.map(element => 
+      element.checked !== undefined ? element.toggle(element.checked) : null
+    ));
   }
 }
 
@@ -478,16 +466,8 @@ class TubeMod {
 
   setupEventListeners() {
     chrome.runtime.onMessage.addListener(this.handleMessage.bind(this));
-    eventBus.subscribe(
-      "DOMContentLoaded",
-      this.handleDOMContentLoaded.bind(this)
-    );
-    eventBus.subscribe("load", this.handleLoad.bind(this));
-    eventBus.subscribe(
-      "yt-navigate-finish",
-      this.handleYouTubeNavigate.bind(this)
-    );
-    eventBus.subscribe("resize", this.handleResize.bind(this));
+    window.addEventListener("yt-navigate-finish", this.handleYouTubeNavigate.bind(this));
+    window.addEventListener("load", this.handleLoad.bind(this));
   }
 
   handleMessage(request) {
@@ -505,36 +485,14 @@ class TubeMod {
     });
   }
 
-  handleDOMContentLoaded() {
-    this.elementManager.applyAllElements();
-  }
-
   handleLoad() {
-    this.elementManager.applyAllElements();
+    this.elementManager.applyAllElements(getCurrentPageType());
+    this.elementManager.setupObserver();
   }
 
   handleYouTubeNavigate() {
-    const currentPageType = getCurrentPageType();
-    this.debouncedApplyElements(currentPageType);
+    this.elementManager.applyAllElements(getCurrentPageType());
   }
-
-  handleResize() {
-    const currentPageType = getCurrentPageType();
-    this.debouncedApplyElements(currentPageType);
-  }
-
-  debouncedApplyElements = debounce((pageType) => {
-    this.elementManager.applyAllElements(pageType);
-  }, 200);
 }
 
 const tubeMod = new TubeMod();
-
-document.addEventListener("DOMContentLoaded", () =>
-  eventBus.publish("DOMContentLoaded")
-);
-window.addEventListener("load", () => eventBus.publish("load"));
-window.addEventListener("yt-navigate-finish", () =>
-  eventBus.publish("yt-navigate-finish")
-);
-window.addEventListener("resize", () => eventBus.publish("resize"));
