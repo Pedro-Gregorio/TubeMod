@@ -222,7 +222,8 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "video-views",
-    selector: "(//div[@id='description']//div[@id='info-container']//yt-formatted-string[@id='info']//span)[1]",
+    selector:
+      "//div[@id='description']//div[@id='info-container']//yt-formatted-string[@id='info']//span[position()=1 or position()=2]",
     checked: false,
     category: "Video",
     pageTypes: [PAGE_TYPES.VIDEO],
@@ -364,7 +365,9 @@ class YouTubeElement {
 
   async toggle(hide) {
     this.checked = hide;
-    return this.isClickAction ? this.handleClick(hide) : this.handleVisibility(hide);
+    return this.isClickAction
+      ? this.handleClick(hide)
+      : this.handleVisibility(hide);
   }
 
   async handleClick(click) {
@@ -382,7 +385,10 @@ class YouTubeElement {
 
   handleVisibility(hide) {
     const currentPageType = getCurrentPageType();
-    if (this.pageTypes.length > 0 && !this.pageTypes.includes(currentPageType)) {
+    if (
+      this.pageTypes.length > 0 &&
+      !this.pageTypes.includes(currentPageType)
+    ) {
       return;
     }
     this.applyVisibility(hide);
@@ -403,7 +409,9 @@ class YouTubeElement {
     }
 
     if (this.selector === "//div[@id='chat-container']") {
-      const panelsContainer = document.getElementById("panels-full-bleed-container");
+      const panelsContainer = document.getElementById(
+        "panels-full-bleed-container"
+      );
       if (panelsContainer) {
         panelsContainer.style.display = displayValue;
       }
@@ -420,11 +428,11 @@ class ElementManager {
 
   async initialize() {
     const storedElements = await this.getStoredElements();
-    this.elements = storedElements.map(el => new YouTubeElement(el));
+    this.elements = storedElements.map((el) => new YouTubeElement(el));
   }
 
   async getStoredElements() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       chrome.storage.local.get("elements", ({ elements }) => {
         resolve(elements ? JSON.parse(elements) : DEFAULT_ELEMENTS);
       });
@@ -437,7 +445,7 @@ class ElementManager {
   }
 
   async handleAction(action) {
-    const element = this.elements.find(el => el.id === action.target);
+    const element = this.elements.find((el) => el.id === action.target);
     if (element) {
       await element.toggle(action.hide);
       await this.saveElements();
@@ -446,7 +454,9 @@ class ElementManager {
 
   setupObserver() {
     this.observer?.disconnect();
-    this.observer = new MutationObserver(debounce(this.handleMutations.bind(this), 100));
+    this.observer = new MutationObserver(
+      debounce(this.handleMutations.bind(this), 100)
+    );
     this.observer.observe(document.body, { childList: true, subtree: true });
   }
 
@@ -455,13 +465,15 @@ class ElementManager {
   }
 
   async applyAllElements(pageType) {
-    const relevantElements = this.elements.filter(el => 
-      el.pageTypes.length === 0 || el.pageTypes.includes(pageType)
+    const relevantElements = this.elements.filter(
+      (el) => el.pageTypes.length === 0 || el.pageTypes.includes(pageType)
     );
 
-    await Promise.all(relevantElements.map(element => 
-      element.checked !== undefined ? element.toggle(element.checked) : null
-    ));
+    await Promise.all(
+      relevantElements.map((element) =>
+        element.checked !== undefined ? element.toggle(element.checked) : null
+      )
+    );
   }
 }
 
@@ -473,7 +485,10 @@ class TubeMod {
 
   setupEventListeners() {
     chrome.runtime.onMessage.addListener(this.handleMessage.bind(this));
-    window.addEventListener("yt-navigate-finish", this.handleYouTubeNavigate.bind(this));
+    window.addEventListener(
+      "yt-navigate-finish",
+      this.handleYouTubeNavigate.bind(this)
+    );
     window.addEventListener("load", this.handleLoad.bind(this));
   }
 
