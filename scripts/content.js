@@ -100,7 +100,7 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "my-channel",
-    selector: "//ytd-guide-entry-renderer[a[starts-with(@href, '/@')]]",
+    selector: "//div[@id='section-items']/ytd-guide-entry-renderer[a[starts-with(@href, '/@')]]",
     checked: false,
     category: "Sidebar",
     pageTypes: [],
