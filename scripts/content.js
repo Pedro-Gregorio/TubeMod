@@ -230,6 +230,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [PAGE_TYPES.HOME],
   },
   {
+    id: "new-badge",
+    selector: "//yt-thumbnail-overlay-badge-view-model",
+    checked: false,
+    category: "HomePage",
+    pageTypes: [PAGE_TYPES.HOME],
+  },
+  {
     id: "subscriptions-shorts",
     selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
     checked: false,
