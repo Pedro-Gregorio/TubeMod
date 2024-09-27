@@ -293,6 +293,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
+    id: "video-suggestion-wall",
+    selector: "//div[@class='ytp-endscreen-content']",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
     id: "stream-chat",
     selector: "//div[@id='chat-container']",
     checked: false,
