@@ -250,6 +250,27 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
+    id: "video-chapters-description",
+    selector: "//ytd-horizontal-card-list-renderer[contains (@class, 'ytd-structured-description-content-renderer')]",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
+    id: "video-transcription-description",
+    selector: "//ytd-video-description-transcript-section-renderer",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
+    id: "video-channel-links-description",
+    selector: "//ytd-video-description-infocards-section-renderer",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
     id: "video-comments",
     selector: "//ytd-comments[@id='comments']",
     checked: false,
