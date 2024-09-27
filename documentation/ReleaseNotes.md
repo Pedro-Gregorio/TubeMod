@@ -2,11 +2,22 @@
 
 ## 1.5.0 (Planned)
 
+**Note from Pedro**: 1.5.0 introduces a big performance upgrade, in comparison to 1.4.0. From what I've tested, having the extension on or off is the same, when it comes to components loading in the page. In the next few weeks, I'll study and think if it makes sense to remove elements, instead of simply hiding them - perhaps even give the users the option to choose between deleting elements, requiring a reload on unchecking, or simply hiding them, which requires no reload to show them again, but keeps them "loading" in the background (comments or suggested content in a video, for example).
+
 Add:
 
-- Hide 'You' Sidebar Option
-- Hide Subscribers Counter in Video
-- Hide Views in Video
+- Sidebar:
+  - Hide 'You' Sidebar Option
+  - Hide Settings Section
+  - Hide Footer Section
+
+- Video:
+  - Hide Subscribers Counter in Video
+  - Hide Views in Video
+  - Hide Chapters in Video Description
+  - Hide Transcript in Video Description
+  - Hide Links in Video Description
+  - Hide Suggested Videos Wall in the end of the video
 
 Change:
 
