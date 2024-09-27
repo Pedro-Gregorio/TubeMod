@@ -177,6 +177,20 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [],
   },
   {
+    id: "youtube-settings",
+    selector: "(//ytd-guide-section-renderer)[5]",
+    checked: false,
+    category: "Sidebar",
+    pageTypes: [],
+  },
+  {
+    id: "youtube-footer",
+    selector: "//div[@id='footer']",
+    checked: false,
+    category: "Sidebar",
+    pageTypes: [],
+  },
+  {
     id: "tabs",
     selector:
       "//ytd-feed-filter-chip-bar-renderer[@component-style='FEED_FILTER_CHIP_BAR_STYLE_TYPE_DEFAULT']/..",
