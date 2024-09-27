@@ -335,6 +335,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
+    id: "expand-video-chapters",
+    selector: "//div[contains(@class, 'ytp-chapter-container')]",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
     id: "stream-chat",
     selector: "//div[@id='chat-container']",
     checked: false,
@@ -401,8 +408,12 @@ function debounce(func, wait) {
 
 class YouTubeElement {
   constructor(config) {
+    const clickActionElementsIds = [
+      "expand-video-description",
+      "expand-video-chapters",
+    ];
     Object.assign(this, config);
-    this.isClickAction = config.id === "expand-video-description";
+    this.isClickAction = clickActionElementsIds.includes(config.id);
   }
 
   async toggle(hide) {
