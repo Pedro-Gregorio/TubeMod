@@ -424,6 +424,9 @@ class YouTubeElement {
   }
 
   async handleClick(click) {
+    const expandedStorage = await chrome.storage.local.get();
+    if (expandedStorage[`${this.id}-expanded`]) return;
+
     if (click) {
       const elementToClick = document.evaluate(
         this.selector,
@@ -432,7 +435,12 @@ class YouTubeElement {
         XPathResult.FIRST_ORDERED_NODE_TYPE,
         null
       ).singleNodeValue;
-      elementToClick?.click();
+
+      if (elementToClick) {
+        const prop = `${this.id}-expanded`;
+        await chrome.storage.local.set({ [prop]: true });
+        elementToClick.click();
+      }
     }
   }
 
@@ -565,8 +573,13 @@ class TubeMod {
     this.elementManager.setupObserver();
   }
 
-  handleYouTubeNavigate() {
+  async handleYouTubeNavigate() {
     this.elementManager.applyAllElements(getCurrentPageType());
+    for (const key in await chrome.storage.local.get()) {
+      if (key.includes("-expanded")) {
+        await chrome.storage.local.remove(key);
+      }
+    }
   }
 }
 
