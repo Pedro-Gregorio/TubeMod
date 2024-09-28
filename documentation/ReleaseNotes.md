@@ -27,6 +27,13 @@ Fix:
 
 - Shorts were appearing on the Home Page, even when the toggle was enabled
 
+Disabled:
+
+- Auto Expand Description 
+- Hide Stream Chat Automatically
+
+Note: Both these features are related to taking actions, and that will be a later focus of the extension. For now, the focus will be around hiding content, as gracefully as possible, without impacting on performance.
+
 ## 1.4.0 (Released)
 
 Add:
