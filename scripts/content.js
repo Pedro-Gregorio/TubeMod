@@ -130,7 +130,7 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "your-movies-and-tv",
-    selector: "//ytd-guide-entry-renderer[a[@href='/feed/storefront']]",
+    selector: "//ytd-guide-entry-renderer[a[@href='/feed/storefront?bp=ogUCKAQ%3D']]",
     checked: false,
     category: "Sidebar",
     pageTypes: [],

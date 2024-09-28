@@ -41,7 +41,7 @@ Depending on your browser you will have to take different routes:
 
 2.  Go to `chrome://extensions`. The "chrome" part might be changed to the name of the browser.
 3.  Enable the developer mode toggle.
-4.  Some buttons should appear. Click on "Load unpacked".
+4.  Click on "Load unpacked".
 5.  Select the folder where the repository is (it should contain the manifest.json)
 6.  Every time you make a change either reload the extension or remove it an add it again. The latter works better when dealing with js parts of the code.
 
@@ -49,9 +49,16 @@ Depending on your browser you will have to take different routes:
 
 2.  Change the name of the `manifest.json` to something like `manifest_chrome.json` to avoid conflicts.
 3.  Also rename `manifest_firefox.json` to `manifest.json`.
-4.  On firefox set it up as a temporary add-on by going to `about:debugging` and on the "Load Temporary Addon" click add and select any file of the repository.
+4.  On Firefox set it up as a temporary add-on by going to `about:debugging` and on the "Load Temporary Addon" click add and select any file of the repository.
 5.  Every time you make a change either reload the temporary add-on or remove it and add it again. The latter works better when dealing with js parts of the code.
 6.  Before pushing your changes to GitHub, make sure to revert the name changes in the manifests.
+
+Before pushing to GitHub, please update [the release notes](./documentation/ReleaseNotes.md) with the feature you're adding.
+
+Some things to consider:
+
+- Keep your commit messages clean by starting with `Add`, `Change`, `Fix` or `Remove`, depending on what you're doing.
+- If possible, add evidences, of what you're working on, to the PR message.
 
 ## Features and Future Plans
 
@@ -61,7 +68,7 @@ Check all the available and planned features [here](./documentation/Features.md)
 
 The extension will always remain free to use. While contributions are not required, any support is greatly appreciated! If you'd like to contribute, you can:
 
-- Buy me a coffee on [Ko-Fi](ko-fi.com/pedrogregorio).
+- Buy me a coffee on [Ko-Fi](https://ko-fi.com/pedrogregorio).
 - Share the extension with others or leave a review.
 - Submit feedback, report bugs, or suggest new features via the Issues section on GitHub or via [email](mailto:pedro-gregorio@outlook.pt).
 

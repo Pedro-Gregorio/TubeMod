@@ -2,11 +2,20 @@
 
 ## 1.5.0 (Planned)
 
-**Note from Pedro**: 1.5.0 introduces a big performance upgrade, in comparison to 1.4.0. From what I've tested, having the extension on or off is the same, when it comes to components loading in the page. In the next few weeks, I'll study and think if it makes sense to remove elements, instead of simply hiding them - perhaps even give the users the option to choose between deleting elements, requiring a reload on unchecking, or simply hiding them, which requires no reload to show them again, but keeps them "loading" in the background (comments or suggested content in a video, for example).
+### **Note from Pedro**:
+
+#### Regarding Performance
+
+1.5.0 introduces a big performance upgrade, in comparison to 1.4.0. From what I've tested, having the extension on or off is the same, when it comes to components loading in the page. In the next few weeks, I'll study and think if it makes sense to remove elements, instead of simply hiding them - perhaps even give the users the option to choose between deleting elements, requiring a reload on unchecking, or simply hiding them, which requires no reload to show them again, but keeps them "loading" in the background (comments or suggested content in a video, for example).
+
+#### Regarding Actions
+
+1.5.0 removes two actions, which could be performed: automatically expand the description and hide the Stream chat. TubeMod will focus on UI customization for now, leaving actions to a later stage of the extension.
 
 Add:
 
 - Sidebar:
+
   - Hide 'You' Sidebar Option
   - Hide Your Courses Option
   - Hide Your Movies and TV Option
@@ -16,6 +25,7 @@ Add:
 - Video:
   - Hide Subscribers Counter in Video
   - Hide Views in Video
+  - Hide Share Button
   - Hide Chapters in Video Description
   - Hide Transcript in Video Description
   - Hide Links in Video Description
@@ -31,7 +41,7 @@ Fix:
 
 Disabled:
 
-- Auto Expand Description 
+- Auto Expand Description
 - Hide Stream Chat Automatically
 
 Note: Both these features are related to taking actions, and that will be a later focus of the extension. For now, the focus will be around hiding content, as gracefully as possible, without impacting on performance.

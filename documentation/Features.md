@@ -10,7 +10,6 @@ These are the features currently planned for future releases. More will be added
 - Remove Rounded borders across YouTube
 - Hide Video Views
 - Hide the Likes counter, instead of the button itself
-- Hide Subscribers Count
 - Automatically Copy the current Video URL
 - Automatically set the video to Theatre Mode
 - Access directly to the "Videos" tab, when visiting a specific Channel
@@ -66,9 +65,11 @@ These changes apply when you access the Subscriptions page.
 These changes take effect when you open a new YouTube video.
 
 - Hide Title
+- Hide Subscribers Count
 - Hide Likes/Dislikes
+- Hide Share Button
 - Hide Description
-- Automatically expand Video Description
+- Hide Chapters, Transcript and Links in the Description
 - Hide Categories/Games
 - Hide Comments
 - Hide Tabs
