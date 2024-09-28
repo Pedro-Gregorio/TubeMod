@@ -243,6 +243,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
+    id: "video-likes-amount",
+    selector: "//*[@id='top-level-buttons-computed']/segmented-like-dislike-button-view-model/yt-smartimation/div/div/like-button-view-model/toggle-button-view-model/button-view-model/button/div[2]",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
     id: "video-likes-dislikes",
     selector: "//segmented-like-dislike-button-view-model",
     checked: false,
