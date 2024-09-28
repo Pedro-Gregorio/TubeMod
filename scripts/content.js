@@ -59,6 +59,14 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [],
   },
   {
+    id: "sidebar-popup",
+    selector:
+      "//div[@id='start']/yt-icon-button[@id='guide-button'] | //tp-yt-app-drawer[@id='guide']",
+    checked: false,
+    category: "Sidebar",
+    pageTypes: [],
+  },
+  {
     id: "home",
     selector:
       "//ytd-guide-entry-renderer[a[@href='/']] | //ytd-mini-guide-entry-renderer[a[@href='/']]",
