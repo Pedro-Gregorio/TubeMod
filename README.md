@@ -24,7 +24,6 @@ After installing the extension:
 1. Go to the [TubeMod Extension Page on Firefox Add Ons](https://addons.mozilla.org/en-GB/firefox/addon/tubemod/).
 2. Click 'Add to Firefox' and follow the prompts.
 
-## Features and Future Plans
 ## How to set up Dev
 
 1. Clone the repository
@@ -47,8 +46,8 @@ Depending on your browser you will have to take different routes:
 
 
 ### For Firefox based browsers:
-   2. Change the name of the `manifest.json` to something like `chrome_manifest.json` to avoid conflicts.
-   3. Also rename `firefox_manifest.json` to `manifest.json`.
+   2. Change the name of the `manifest.json` to something like `manifest_chrome.json` to avoid conflicts.
+   3. Also rename `manifest_firefox.json` to `manifest.json`.
    4. On firefox set it up as a temporary add-on by going to `about:debugging` and on the "Load Temporary Addon" click add and select any file of the repository.
    5.  Every time you make a change either reload the temporary add-on or remove it and add it again. The latter works better when dealing with js parts of the code.
    6.  Before pushing your changes to GitHub, make sure to revert the name changes in the manifests.
