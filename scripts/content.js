@@ -100,7 +100,8 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "my-channel",
-    selector: "//div[@id='section-items']/ytd-guide-entry-renderer[a[starts-with(@href, '/@')]]",
+    selector:
+      "//div[@id='section-items']/ytd-guide-entry-renderer[a[starts-with(@href, '/@')]]",
     checked: false,
     category: "Sidebar",
     pageTypes: [],
@@ -121,14 +122,15 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "my-videos",
-    selector: "//ytd-guide-entry-renderer[a[starts-with(@href, 'https://studio.youtube.com/channel')]]",
+    selector:
+      "//ytd-guide-entry-renderer[a[starts-with(@href, 'https://studio.youtube.com/channel')]]",
     checked: false,
     category: "Sidebar",
     pageTypes: [],
   },
   {
     id: "your-movies-and-tv",
-    selector: "//ytd-guide-entry-renderer[a[@href='/feed/storefront?bp=ogUCKAQ%3D']]",
+    selector: "//ytd-guide-entry-renderer[a[@href='/feed/storefront']]",
     checked: false,
     category: "Sidebar",
     pageTypes: [],
@@ -279,7 +281,8 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "video-chapters-description",
-    selector: "//ytd-horizontal-card-list-renderer[contains (@class, 'ytd-structured-description-content-renderer')]",
+    selector:
+      "//ytd-horizontal-card-list-renderer[contains (@class, 'ytd-structured-description-content-renderer')]",
     checked: false,
     category: "Video",
     pageTypes: [PAGE_TYPES.VIDEO],

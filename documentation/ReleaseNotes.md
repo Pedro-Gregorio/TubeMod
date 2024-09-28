@@ -8,6 +8,8 @@ Add:
 
 - Sidebar:
   - Hide 'You' Sidebar Option
+  - Hide Your Courses Option
+  - Hide Your Movies and TV Option
   - Hide Settings Section
   - Hide Footer Section
 
