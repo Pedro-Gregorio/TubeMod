@@ -127,6 +127,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [],
   },
   {
+    id: "your-movies-and-tv",
+    selector: "//ytd-guide-entry-renderer[a[@href='/feed/storefront?bp=ogUCKAQ%3D']]",
+    checked: false,
+    category: "Sidebar",
+    pageTypes: [],
+  },
+  {
     id: "watch-later",
     selector: "//ytd-guide-entry-renderer[a[@href='/playlist?list=WL']]",
     checked: false,
