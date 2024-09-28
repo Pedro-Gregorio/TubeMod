@@ -334,13 +334,6 @@ const DEFAULT_ELEMENTS = [
     category: "Video",
     pageTypes: [PAGE_TYPES.VIDEO],
   },
-  {
-    id: "stream-chat",
-    selector: "//div[@id='chat-container']",
-    checked: false,
-    category: "Stream",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
 ];
 
 const eventBus = {
@@ -402,27 +395,11 @@ function debounce(func, wait) {
 class YouTubeElement {
   constructor(config) {
     Object.assign(this, config);
-    this.isClickAction = config.id === "expand-video-description";
   }
 
   async toggle(hide) {
     this.checked = hide;
-    return this.isClickAction
-      ? this.handleClick(hide)
-      : this.handleVisibility(hide);
-  }
-
-  async handleClick(click) {
-    if (click) {
-      const elementToClick = document.evaluate(
-        this.selector,
-        document,
-        null,
-        XPathResult.FIRST_ORDERED_NODE_TYPE,
-        null
-      ).singleNodeValue;
-      elementToClick?.click();
-    }
+    return this.handleVisibility(hide);
   }
 
   handleVisibility(hide) {
