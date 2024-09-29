@@ -6,13 +6,19 @@ This file contains the currently available features, as well as planned ones - a
 
 These are the features currently planned for future releases. More will be added upon users requests.
 
-- Allow Popup to be placed anywhere / moved around
+- Allow Extension Popup to be placed anywhere / moved around
 - Remove Rounded borders across YouTube
-- Hide Video Views
+- Hide Video Views - across all YouTube
 - Hide the Likes counter, instead of the button itself
+
+In later versions of TubeMod (2.0.0+), actions and themes will be introduced:
+
+- Automatically Expand Video Description
 - Automatically Copy the current Video URL
 - Automatically set the video to Theatre Mode
+- Automatically set the video playback speed
 - Access directly to the "Videos" tab, when visiting a specific Channel
+- Allow users to change Themes - customizing YouTube's UI even further
 
 ## Features
 

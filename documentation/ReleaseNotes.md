@@ -1,6 +1,6 @@
 # TubeMod - Release Notes
 
-## 1.5.0 (Planned)
+## 1.5.0 (Released)
 
 ### **Note from Pedro**:
 

@@ -2,13 +2,13 @@
 
 ## What is it?
 
-TubeMod is a Chrome Extension that allows users to hide specific YouTube elements, giving them more control over their viewing experience. Rather than permanently removing elements, TubeMod provides simple toggles to hide parts of YouTube’s UI, making it a lightweight and customizable solution.
+TubeMod is a Browser Extension that allows users to hide specific YouTube elements, giving them more control over their viewing experience. Rather than permanently removing elements, TubeMod provides simple toggles to hide parts of YouTube’s UI, making it a lightweight and customizable solution. It is planned, for a future release, allowing users to completely remove elements, instead of simply hiding them.
 
 ## How to Use
 
 After installing the extension:
 
-1. Click on the TubeMod icon in your Chrome toolbar.
+1. Click on the TubeMod icon in your browser toolbar.
 2. Toggle the YouTube elements you want to hide via the popup interface.
 3. Changes will be applied instantly. Enjoy your customized YouTube experience!
 
