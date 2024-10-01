@@ -23,6 +23,13 @@ function getCurrentPageType() {
 
 const DEFAULT_ELEMENTS = [
   {
+    id: "hide-delete-toggle",
+    selector: "hide-delete-toggle",
+    checked: false,
+    category: "Behaviours",
+    pageTypes: [],
+  },
+  {
     id: "logo",
     selector: "//ytd-topbar-logo-renderer",
     checked: false,
@@ -353,6 +360,18 @@ const DEFAULT_ELEMENTS = [
   },
 ];
 
+let removeElements = false;
+
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === "set-hide-elements") {
+    removeElements = false;
+    console.log("Hide elements mode activated.");
+  } else if (message.action === "set-delete-elements") {
+    removeElements = true;
+    console.log("Delete elements mode activated.");
+  }
+});
+
 const eventBus = {
   listeners: {},
   subscribe(event, callback) {
@@ -441,7 +460,12 @@ class YouTubeElement {
     );
 
     for (let i = 0; i < elements.snapshotLength; i++) {
-      elements.snapshotItem(i).style.display = displayValue;
+      if (removeElements && (displayValue === "none")) {
+        elements.snapshotItem(i).remove();
+      }
+      else {
+        elements.snapshotItem(i).style.display = displayValue;
+      }
     }
 
     if (this.selector === "//div[@id='chat-container']") {
@@ -449,7 +473,12 @@ class YouTubeElement {
         "panels-full-bleed-container"
       );
       if (panelsContainer) {
-        panelsContainer.style.display = displayValue;
+        if (removeElements && (displayValue === "none")) {
+          panelsContainer.style.display = displayValue;
+        }
+        else {
+          panelsContainer.remove();
+        }
       }
     }
   }

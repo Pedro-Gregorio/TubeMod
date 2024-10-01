@@ -1,6 +1,8 @@
 let inputs = document.querySelectorAll("input");
 let collapsibleElements = document.getElementsByClassName("collapsible");
 
+let removeElements = false;
+
 document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local.get(["elements"], (result) => {
     const elements = result.elements ? JSON.parse(result.elements) : null;
@@ -11,9 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById(element.id).checked = element.checked;
         }
       });
+
+      const hideDeleteToggle = elements.find(el => el.id === "hide-delete-toggle");
+      console.log(hideDeleteToggle);
+      if (hideDeleteToggle && hideDeleteToggle.checked) {
+        removeElements = true;
+        console.log("RemoveElements is true");
+      } else {
+        removeElements = false;
+        console.log("RemoveElements is false");
+      }
     }
 
-    for (i = 0; i < collapsibleElements.length; i++) {
+    for (let i = 0; i < collapsibleElements.length; i++) {
       collapsibleElements[i].addEventListener("click", function () {
         this.classList.toggle("active");
         var content = this.nextElementSibling;
@@ -60,4 +72,22 @@ document.getElementById("reset-settings").addEventListener("click", () => {
     });
   });
   window.close();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hideDeleteToggle = document.getElementById("hide-delete-toggle");
+
+  hideDeleteToggle.addEventListener("change", () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      if (hideDeleteToggle.checked) {
+        chrome.tabs.sendMessage(tabs[0].id, {
+          action: "set-delete-elements",
+        });
+      } else {
+        chrome.tabs.sendMessage(tabs[0].id, {
+          action: "set-hide-elements",
+        });
+      }
+    });
+  });
 });
