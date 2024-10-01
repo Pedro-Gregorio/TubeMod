@@ -71,6 +71,16 @@ label {
   padding: 2px 4px;
 }
 
+.non-categorized {
+  padding: 0px;
+  margin-bottom: 10px;
+}
+
+.non-categorized label:not(.switch) {
+  text-align: center;
+  flex: 1;
+}
+
 .checkbox-container label {
   font-size: 14px;
   font-weight: bold;

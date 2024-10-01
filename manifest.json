@@ -22,5 +22,9 @@
       "js": ["./scripts/content.js"],
       "run_at": "document_start"
     }
+  ],
+  "host_permissions": [
+  "*://www.youtube.com/*",
+  "*://m.youtube.com/*"
   ]
 }
