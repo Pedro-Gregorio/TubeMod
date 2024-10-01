@@ -8,6 +8,9 @@ Change:
 
 Fix:
 
+- Sidebar
+  - Fixed an issue with the Sidebar Footer, as it was messing up with posts creation. [View the issue On GitHub](https://github.com/Pedro-Gregorio/TubeMod/issues/60).
+
 Disabled:
 
 ## 1.5.0 (Released)

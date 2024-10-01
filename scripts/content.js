@@ -201,7 +201,7 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "youtube-footer",
-    selector: "//div[@id='footer']",
+    selector: "//ytd-guide-renderer/div[@id='footer']",
     checked: false,
     category: "Sidebar",
     pageTypes: [],
