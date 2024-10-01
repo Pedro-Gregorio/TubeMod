@@ -201,7 +201,7 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "youtube-footer",
-    selector: "//div[@id='footer']",
+    selector: "//ytd-guide-renderer/div[@id='footer']",
     checked: false,
     category: "Sidebar",
     pageTypes: [],
@@ -225,6 +225,13 @@ const DEFAULT_ELEMENTS = [
   {
     id: "posts",
     selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
+    checked: false,
+    category: "HomePage",
+    pageTypes: [PAGE_TYPES.HOME],
+  },
+  {
+    id: "homepage-views",
+    selector: "//div[@id='metadata-line']/span[1]",
     checked: false,
     category: "HomePage",
     pageTypes: [PAGE_TYPES.HOME],
