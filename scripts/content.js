@@ -130,7 +130,8 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "your-movies-and-tv",
-    selector: "//ytd-guide-entry-renderer[a[@href='/feed/storefront?bp=ogUCKAQ%3D']]",
+    selector:
+      "//ytd-guide-entry-renderer[a[@href='/feed/storefront?bp=ogUCKAQ%3D']]",
     checked: false,
     category: "Sidebar",
     pageTypes: [],
@@ -225,6 +226,13 @@ const DEFAULT_ELEMENTS = [
   {
     id: "posts",
     selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
+    checked: false,
+    category: "HomePage",
+    pageTypes: [PAGE_TYPES.HOME],
+  },
+  {
+    id: "homepage-video-info",
+    selector: "//div[@id='metadata-line']",
     checked: false,
     category: "HomePage",
     pageTypes: [PAGE_TYPES.HOME],
@@ -456,15 +464,6 @@ class YouTubeElement {
 
     for (let i = 0; i < elements.snapshotLength; i++) {
       elements.snapshotItem(i).style.display = displayValue;
-    }
-
-    if (this.selector === "//div[@id='chat-container']") {
-      const panelsContainer = document.getElementById(
-        "panels-full-bleed-container"
-      );
-      if (panelsContainer) {
-        panelsContainer.style.display = displayValue;
-      }
     }
   }
 }

@@ -4,6 +4,10 @@
 
 Add:
 
+- HomePage:
+  - Hide Video Views
+  - Hide Video Posted Time
+
 Change:
 
 Fix:
