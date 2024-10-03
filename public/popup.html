@@ -10,7 +10,22 @@
       <h3>Make YouTube your own!</h3>
     </div>
 
-    <button class="collapsible">General</button>
+    <button class="collapsible">Presets</button>
+    <div class="container" id="presets" style="display: none">
+      <div class="checkbox-container">
+        <label for="scheduled-videos">Hide Scheduled Videos</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="scheduled-videos"
+            name="scheduled-videos"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <button class="collapsible">Header</button>
     <div class="container" id="general" style="display: none">
       <div class="checkbox-container">
         <label for="logo">Hide YouTube Logo</label>
@@ -44,18 +59,6 @@
         <label for="notifications">Hide Notifications Icon</label>
         <label class="switch">
           <input type="checkbox" id="notifications" name="notifications" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div class="checkbox-container">
-        <label for="scheduled-videos">Hide Scheduled Videos</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="scheduled-videos"
-            name="scheduled-videos"
-          />
           <span class="slider round"></span>
         </label>
       </div>
@@ -234,7 +237,7 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="homepage-video-info">Hide Video Views and Time</label>
+        <label for="homepage-video-info">Hide Video Extra Information</label>
         <label class="switch">
           <input
             type="checkbox"

@@ -23,17 +23,24 @@ function getCurrentPageType() {
 
 const DEFAULT_ELEMENTS = [
   {
+    id: "scheduled-videos",
+    selector: "//ytd-rich-item-renderer[.//ytd-toggle-button-renderer]",
+    checked: false,
+    category: "Presets",
+    pageTypes: [],
+  },
+  {
     id: "logo",
     selector: "//ytd-topbar-logo-renderer",
     checked: false,
-    category: "General",
+    category: "Header",
     pageTypes: [],
   },
   {
     id: "microphone-search",
     selector: "//*[@id='voice-search-button']",
     checked: false,
-    category: "General",
+    category: "Header",
     pageTypes: [],
   },
   {
@@ -41,21 +48,14 @@ const DEFAULT_ELEMENTS = [
     selector:
       "(//div[@id='buttons' and contains(@class, 'ytd-masthead')]//a/../..)[1]",
     checked: false,
-    category: "General",
+    category: "Header",
     pageTypes: [],
   },
   {
     id: "notifications",
     selector: "//ytd-notification-topbar-button-renderer",
     checked: false,
-    category: "General",
-    pageTypes: [],
-  },
-  {
-    id: "scheduled-videos",
-    selector: "//ytd-rich-item-renderer[.//ytd-toggle-button-renderer]",
-    checked: false,
-    category: "General",
+    category: "Header",
     pageTypes: [],
   },
   {
@@ -519,9 +519,9 @@ class ElementManager {
     );
 
     await Promise.all(
-      relevantElements.map((element) =>
-        element.checked !== undefined ? element.toggle(element.checked) : null
-      )
+      relevantElements.map((element) => {
+        element.checked !== undefined ? element.toggle(element.checked) : null;
+      })
     );
   }
 }
@@ -534,10 +534,7 @@ class TubeMod {
 
   setupEventListeners() {
     chrome.runtime.onMessage.addListener(this.handleMessage.bind(this));
-    window.addEventListener(
-      "yt-navigate-finish",
-      this.handleYouTubeNavigate.bind(this)
-    );
+    window.addEventListener("popstate", this.handleYouTubeNavigate.bind(this));
     window.addEventListener("load", this.handleLoad.bind(this));
   }
 
