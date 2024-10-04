@@ -37,6 +37,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [],
   },
   {
+    id: "search-bar",
+    selector: "//ytd-searchbox[@id='search']",
+    checked: false,
+    category: "Header",
+    pageTypes: [],
+  },
+  {
     id: "microphone-search",
     selector: "//*[@id='voice-search-button']",
     checked: false,
