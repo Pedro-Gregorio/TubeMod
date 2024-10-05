@@ -302,6 +302,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
+    id: "video-download",
+    selector: "(//ytd-download-button-renderer/parent::div)[1]",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
     id: "video-description",
     selector: "//div[@id='description-inner']/parent::div",
     checked: false,

@@ -7,6 +7,9 @@ Add:
 - Header:
   - Hide Search Bar
 
+- Video:
+  - Hide Download Button
+
 Change:
 
 Fix:
