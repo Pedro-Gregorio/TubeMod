@@ -303,7 +303,7 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "video-download",
-    selector: "(//ytd-download-button-renderer/parent::div)[1]",
+    selector: "//ytd-download-button-renderer",
     checked: false,
     category: "Video",
     pageTypes: [PAGE_TYPES.VIDEO],
