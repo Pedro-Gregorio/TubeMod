@@ -26,7 +26,14 @@ const DEFAULT_ELEMENTS = [
     id: "scheduled-videos",
     selector: "//ytd-rich-item-renderer[.//ytd-toggle-button-renderer]",
     checked: false,
-    category: "Presets",
+    category: "General",
+    pageTypes: [],
+  },
+  {
+    id: "live-videos",
+    selector: "//ytd-rich-item-renderer[.//div[@id='meta']/ytd-badge-supported-renderer[not(@hidden)]]",
+    checked: false,
+    category: "General",
     pageTypes: [],
   },
   {

@@ -4,11 +4,15 @@
 
 Add:
 
+- General:
+  - Hide Live Videos (Streams)
+
 - Header:
   - Hide Search Bar
 
 - Video:
   - Hide Download Button
+  - Hide Extra Buttons (besides Share and Download)
 
 Change:
 
