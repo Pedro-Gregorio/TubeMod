@@ -31,7 +31,8 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "live-videos",
-    selector: "//ytd-rich-item-renderer[.//div[@id='meta']/ytd-badge-supported-renderer[not(@hidden)]]",
+    selector:
+      "//ytd-rich-item-renderer[.//div[@id='meta']/ytd-badge-supported-renderer[not(@hidden)]]",
     checked: false,
     category: "General",
     pageTypes: [],
@@ -287,9 +288,8 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
-    id: "video-views",
-    selector:
-      "//div[@id='description']//div[@id='info-container']//yt-formatted-string[@id='info']//span[position()=1 or position()=2]",
+    id: "video-subscribed-button",
+    selector: "//div[@id='notification-preference-button']",
     checked: false,
     category: "Video",
     pageTypes: [PAGE_TYPES.VIDEO],
@@ -325,6 +325,14 @@ const DEFAULT_ELEMENTS = [
   {
     id: "video-description",
     selector: "//div[@id='description-inner']/parent::div",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
+    id: "video-views",
+    selector:
+      "//div[@id='description']//div[@id='info-container']//yt-formatted-string[@id='info']//span[position()=1 or position()=2]",
     checked: false,
     category: "Video",
     pageTypes: [PAGE_TYPES.VIDEO],
@@ -562,6 +570,10 @@ class TubeMod {
 
   setupEventListeners() {
     chrome.runtime.onMessage.addListener(this.handleMessage.bind(this));
+    window.addEventListener(
+      "DOMContentLoaded",
+      this.handleYouTubeNavigate.bind(this)
+    );
     window.addEventListener("popstate", this.handleYouTubeNavigate.bind(this));
     window.addEventListener("load", this.handleLoad.bind(this));
   }

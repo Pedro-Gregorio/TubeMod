@@ -11,6 +11,7 @@ Add:
   - Hide Search Bar
 
 - Video:
+  - Hide Subscribed Button
   - Hide Download Button
   - Hide Extra Buttons (besides Share and Download)
 
