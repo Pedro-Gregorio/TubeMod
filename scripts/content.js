@@ -52,6 +52,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [],
   },
   {
+    id: "video-meta-data",
+    selector: "//div[@id='metadata-line']",
+    checked: false,
+    category: "General",
+    pageTypes: [],
+  },
+  {
     id: "logo",
     selector: "//ytd-topbar-logo-renderer",
     checked: false,
