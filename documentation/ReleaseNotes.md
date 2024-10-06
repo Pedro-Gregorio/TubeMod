@@ -9,6 +9,7 @@ Add:
   - Hide Live Videos (Streams)
   - Hide Video Previews
   - Hide Thumbnails
+  - Hide Video Extra Information - Views and Posted Time
 
 - Header:
 
