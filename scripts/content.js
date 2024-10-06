@@ -309,6 +309,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [PAGE_TYPES.VIDEO],
   },
   {
+    id: "video-extra-buttons",
+    selector: "//div[@id='flexible-item-buttons']/yt-button-view-model",
+    checked: false,
+    category: "Video",
+    pageTypes: [PAGE_TYPES.VIDEO],
+  },
+  {
     id: "video-description",
     selector: "//div[@id='description-inner']/parent::div",
     checked: false,
