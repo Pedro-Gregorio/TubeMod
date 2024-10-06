@@ -5,25 +5,24 @@
 Add:
 
 - General:
+
   - Hide Live Videos (Streams)
   - Hide Video Previews
+  - Hide Thumbnails
 
 - Header:
+
   - Hide Search Bar
 
 - Video:
-  - Hide Subscribed Button
+  - Hide Subscribed Button (when you're subscribed to a channel)
   - Hide Download Button
   - Hide Extra Buttons (besides Share and Download)
-
-Change:
 
 Fix:
 
 - Sidebar
   - Fixed an issue with the Sidebar Footer, as it was messing up with posts creation. [View the issue On GitHub](https://github.com/Pedro-Gregorio/TubeMod/issues/60).
-
-Disabled:
 
 ## 1.5.0 (Released)
 

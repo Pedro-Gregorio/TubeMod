@@ -45,6 +45,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [],
   },
   {
+    id: "video-thumbnails",
+    selector: "//div[@id='thumbnail'] | //ytd-thumbnail",
+    checked: false,
+    category: "General",
+    pageTypes: [],
+  },
+  {
     id: "logo",
     selector: "//ytd-topbar-logo-renderer",
     checked: false,
