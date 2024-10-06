@@ -38,6 +38,13 @@ const DEFAULT_ELEMENTS = [
     pageTypes: [],
   },
   {
+    id: "video-previews",
+    selector: "//div[@id='video-preview']",
+    checked: false,
+    category: "General",
+    pageTypes: [],
+  },
+  {
     id: "logo",
     selector: "//ytd-topbar-logo-renderer",
     checked: false,

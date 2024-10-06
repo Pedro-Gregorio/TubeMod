@@ -6,6 +6,7 @@ Add:
 
 - General:
   - Hide Live Videos (Streams)
+  - Hide Video Previews
 
 - Header:
   - Hide Search Bar
