@@ -8,7 +8,7 @@ Add:
 
   - Hide Live Videos (Streams)
   - Hide Video Previews
-  - Hide Thumbnails
+  - Hide Thumbnails (both videos and playlists)
   - Hide Video Extra Information - Views and Posted Time
 
 - Header:
@@ -21,6 +21,9 @@ Add:
   - Hide Extra Buttons (besides Share and Download)
 
 Fix:
+
+- Miscellaneous
+  - Fixed an issue where users had to reset the settings every time a newer version was released.  
 
 - Sidebar
   - Fixed an issue with the Sidebar Footer, as it was messing up with posts creation. [View the issue On GitHub](https://github.com/Pedro-Gregorio/TubeMod/issues/60).

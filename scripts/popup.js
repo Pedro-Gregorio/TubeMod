@@ -2,8 +2,10 @@ let inputs = document.querySelectorAll("input");
 let collapsibleElements = document.getElementsByClassName("collapsible");
 
 document.addEventListener("DOMContentLoaded", () => {
-  chrome.storage.local.get(["elements"], (result) => {
-    const elements = result.elements ? JSON.parse(result.elements) : null;
+  chrome.storage.local.get(["tubemod_elements"], (result) => {
+    const elements = result.tubemod_elements
+      ? JSON.parse(result.tubemod_elements)
+      : null;
 
     if (elements !== null) {
       elements.forEach((element) => {

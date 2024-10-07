@@ -21,416 +21,419 @@ function getCurrentPageType() {
   return null;
 }
 
-const DEFAULT_ELEMENTS = [
-  {
-    id: "scheduled-videos",
-    selector: "//ytd-rich-item-renderer[.//ytd-toggle-button-renderer]",
-    checked: false,
-    category: "General",
-    pageTypes: [],
-  },
-  {
-    id: "live-videos",
-    selector:
-      "//ytd-rich-item-renderer[.//div[@id='meta']/ytd-badge-supported-renderer[not(@hidden)]]",
-    checked: false,
-    category: "General",
-    pageTypes: [],
-  },
-  {
-    id: "video-previews",
-    selector: "//div[@id='video-preview' or @id='mouseover-overlay']",
-    checked: false,
-    category: "General",
-    pageTypes: [],
-  },
-  {
-    id: "video-thumbnails",
-    selector: "//ytd-thumbnail",
-    checked: false,
-    category: "General",
-    pageTypes: [],
-  },
-  {
-    id: "video-meta-data",
-    selector: "//div[@id='metadata-line']",
-    checked: false,
-    category: "General",
-    pageTypes: [],
-  },
-  {
-    id: "logo",
-    selector: "//ytd-topbar-logo-renderer",
-    checked: false,
-    category: "Header",
-    pageTypes: [],
-  },
-  {
-    id: "search-bar",
-    selector: "//ytd-searchbox[@id='search']",
-    checked: false,
-    category: "Header",
-    pageTypes: [],
-  },
-  {
-    id: "microphone-search",
-    selector: "//*[@id='voice-search-button']",
-    checked: false,
-    category: "Header",
-    pageTypes: [],
-  },
-  {
-    id: "create",
-    selector:
-      "(//div[@id='buttons' and contains(@class, 'ytd-masthead')]//a/../..)[1]",
-    checked: false,
-    category: "Header",
-    pageTypes: [],
-  },
-  {
-    id: "notifications",
-    selector: "//ytd-notification-topbar-button-renderer",
-    checked: false,
-    category: "Header",
-    pageTypes: [],
-  },
-  {
-    id: "home",
-    selector:
-      "//ytd-guide-entry-renderer[a[@href='/']] | //ytd-mini-guide-entry-renderer[a[@href='/']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "shorts",
-    selector:
-      "//ytd-guide-entry-renderer[a[@title='Shorts']] | //ytd-mini-guide-entry-renderer[a[@title='Shorts']] | //ytd-guide-entry-renderer[a[@title='YouTube Shorts']] | //ytd-mini-guide-entry-renderer[a[@title='YouTube Shorts']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "subscriptions",
-    selector:
-      "//ytd-guide-entry-renderer[a[@href='/feed/subscriptions']] | //ytd-mini-guide-entry-renderer[a[@href='/feed/subscriptions']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "youtube-music",
-    selector:
-      "(//ytd-guide-entry-renderer[a[@href='https://music.youtube.com/']])[1] | //ytd-mini-guide-entry-renderer[a[@href='https://music.youtube.com/']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "you",
-    selector:
-      "(//div[@id='header']/ytd-guide-entry-renderer)[1] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "my-channel",
-    selector:
-      "//div[@id='section-items']/ytd-guide-entry-renderer[a[starts-with(@href, '/@')]]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "history",
-    selector: "//ytd-guide-entry-renderer[a[@href='/feed/history']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "playlists",
-    selector: "//ytd-guide-entry-renderer[a[@href='/feed/playlists']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "my-videos",
-    selector:
-      "//ytd-guide-entry-renderer[a[starts-with(@href, 'https://studio.youtube.com/channel')]]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "your-movies-and-tv",
-    selector:
-      "//ytd-guide-entry-renderer[a[@href='/feed/storefront?bp=ogUCKAQ%3D']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "watch-later",
-    selector: "//ytd-guide-entry-renderer[a[@href='/playlist?list=WL']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "courses",
-    selector: "//ytd-guide-entry-renderer[a[@href='/feed/courses']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "liked-videos",
-    selector: "//ytd-guide-entry-renderer[a[@href='/playlist?list=LL']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "my-clips",
-    selector: "//ytd-guide-entry-renderer[a[@href='/feed/clips']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "transfers",
-    selector:
-      "//div[@id='section-items']/ytd-guide-downloads-entry-renderer  | //ytd-mini-guide-entry-renderer[a[@href='/feed/downloads']]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "subscriptions-panel",
-    selector: "(//ytd-guide-section-renderer)[2]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "explore-panel",
-    selector: "(//ytd-guide-section-renderer)[3]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "youtube-panel",
-    selector: "(//ytd-guide-section-renderer)[4]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "youtube-settings",
-    selector: "(//ytd-guide-section-renderer)[5]",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "youtube-footer",
-    selector: "//ytd-guide-renderer/div[@id='footer']",
-    checked: false,
-    category: "Sidebar",
-    pageTypes: [],
-  },
-  {
-    id: "tabs",
-    selector:
-      "//ytd-feed-filter-chip-bar-renderer[@component-style='FEED_FILTER_CHIP_BAR_STYLE_TYPE_DEFAULT']/..",
-    checked: false,
-    category: "HomePage",
-    pageTypes: [PAGE_TYPES.HOME],
-  },
-  {
-    id: "ads",
-    selector:
-      "//ytd-ad-slot-renderer/ancestor::ytd-rich-item-renderer | //*[@id='player-ads'] | //ytd-banner-promo-renderer/..",
-    checked: false,
-    category: "HomePage",
-    pageTypes: [PAGE_TYPES.HOME],
-  },
-  {
-    id: "posts",
-    selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
-    checked: false,
-    category: "HomePage",
-    pageTypes: [PAGE_TYPES.HOME],
-  },
-  // {
-  //   id: "homepage-video-info",
-  //   selector: "//div[@id='metadata-line']",
-  //   checked: false,
-  //   category: "HomePage",
-  //   pageTypes: [PAGE_TYPES.HOME],
-  // },
-  // {
-  //   id: "homepage-views",
-  //   selector: "//div[@id='metadata-line']/span[1]",
-  //   checked: false,
-  //   category: "HomePage",
-  //   pageTypes: [PAGE_TYPES.HOME],
-  // },
-  // {
-  //   id: "time-posted",
-  //   selector: "//div[@id='metadata-line']/span[2]",
-  //   checked: false,
-  //   category: "HomePage",
-  //   pageTypes: [PAGE_TYPES.HOME],
-  // },
-  {
-    id: "subscriptions-shorts",
-    selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
-    checked: false,
-    category: "Subscriptions",
-    pageTypes: [PAGE_TYPES.SUBSCRIPTIONS],
-  },
-  {
-    id: "video-title",
-    selector: "//div[@id='above-the-fold']/div[@id='title']",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-subscribers",
-    selector: "(//div[@id='upload-info'])[1]/yt-formatted-string",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-subscribed-button",
-    selector: "//div[@id='notification-preference-button']",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-likes-dislikes",
-    selector: "//segmented-like-dislike-button-view-model",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-share",
-    selector: "//div[@id='top-level-buttons-computed']/yt-button-view-model",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-download",
-    selector: "//ytd-download-button-renderer",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-extra-buttons",
-    selector: "//div[@id='flexible-item-buttons']/yt-button-view-model",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-description",
-    selector: "//div[@id='description-inner']/parent::div",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-views",
-    selector:
-      "//div[@id='description']//div[@id='info-container']//yt-formatted-string[@id='info']//span[position()=1 or position()=2]",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-chapters-description",
-    selector:
-      "//ytd-horizontal-card-list-renderer[contains (@class, 'ytd-structured-description-content-renderer')]",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-transcription-description",
-    selector: "//ytd-video-description-transcript-section-renderer",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-channel-links-description",
-    selector: "//ytd-video-description-infocards-section-renderer",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-comments",
-    selector: "//ytd-comments[@id='comments']",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-categories-games",
-    selector: "//ytd-rich-metadata-row-renderer/../..",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-ads",
-    selector: "//div[@id='player-ads']",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-tabs",
-    selector: "//yt-related-chip-cloud-renderer",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-suggested-videos",
-    selector:
-      "//div[@id='contents']/parent::ytd-item-section-renderer[contains(@class, 'watch-next')]",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-suggested-shorts",
-    selector: "//ytd-reel-shelf-renderer",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-  {
-    id: "video-suggestion-wall",
-    selector: "//div[@class='ytp-endscreen-content']",
-    checked: false,
-    category: "Video",
-    pageTypes: [PAGE_TYPES.VIDEO],
-  },
-];
+const STORAGE = {
+  tubemod_version: "1.6.0",
+  tubemod_elements: [
+    {
+      id: "scheduled-videos",
+      selector: "//ytd-rich-item-renderer[.//ytd-toggle-button-renderer]",
+      checked: false,
+      category: "General",
+      pageTypes: [],
+    },
+    {
+      id: "live-videos",
+      selector:
+        "//ytd-rich-item-renderer[.//div[@id='meta']/ytd-badge-supported-renderer[not(@hidden)]]",
+      checked: false,
+      category: "General",
+      pageTypes: [],
+    },
+    {
+      id: "video-previews",
+      selector: "//div[@id='video-preview' or @id='mouseover-overlay']",
+      checked: false,
+      category: "General",
+      pageTypes: [],
+    },
+    {
+      id: "video-thumbnails",
+      selector: "//ytd-thumbnail | //ytd-playlist-thumbnail",
+      checked: false,
+      category: "General",
+      pageTypes: [],
+    },
+    {
+      id: "video-meta-data",
+      selector: "//div[@id='metadata-line']",
+      checked: false,
+      category: "General",
+      pageTypes: [],
+    },
+    {
+      id: "logo",
+      selector: "//ytd-topbar-logo-renderer",
+      checked: false,
+      category: "Header",
+      pageTypes: [],
+    },
+    {
+      id: "search-bar",
+      selector: "//ytd-searchbox[@id='search']",
+      checked: false,
+      category: "Header",
+      pageTypes: [],
+    },
+    {
+      id: "microphone-search",
+      selector: "//*[@id='voice-search-button']",
+      checked: false,
+      category: "Header",
+      pageTypes: [],
+    },
+    {
+      id: "create",
+      selector:
+        "(//div[@id='buttons' and contains(@class, 'ytd-masthead')]//a/../..)[1]",
+      checked: false,
+      category: "Header",
+      pageTypes: [],
+    },
+    {
+      id: "notifications",
+      selector: "//ytd-notification-topbar-button-renderer",
+      checked: false,
+      category: "Header",
+      pageTypes: [],
+    },
+    {
+      id: "home",
+      selector:
+        "//ytd-guide-entry-renderer[a[@href='/']] | //ytd-mini-guide-entry-renderer[a[@href='/']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "shorts",
+      selector:
+        "//ytd-guide-entry-renderer[a[@title='Shorts']] | //ytd-mini-guide-entry-renderer[a[@title='Shorts']] | //ytd-guide-entry-renderer[a[@title='YouTube Shorts']] | //ytd-mini-guide-entry-renderer[a[@title='YouTube Shorts']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "subscriptions",
+      selector:
+        "//ytd-guide-entry-renderer[a[@href='/feed/subscriptions']] | //ytd-mini-guide-entry-renderer[a[@href='/feed/subscriptions']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "youtube-music",
+      selector:
+        "(//ytd-guide-entry-renderer[a[@href='https://music.youtube.com/']])[1] | //ytd-mini-guide-entry-renderer[a[@href='https://music.youtube.com/']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "you",
+      selector:
+        "(//div[@id='header']/ytd-guide-entry-renderer)[1] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "my-channel",
+      selector:
+        "//div[@id='section-items']/ytd-guide-entry-renderer[a[starts-with(@href, '/@')]]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "history",
+      selector: "//ytd-guide-entry-renderer[a[@href='/feed/history']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "playlists",
+      selector: "//ytd-guide-entry-renderer[a[@href='/feed/playlists']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "my-videos",
+      selector:
+        "//ytd-guide-entry-renderer[a[starts-with(@href, 'https://studio.youtube.com/channel')]]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "your-movies-and-tv",
+      selector:
+        "//ytd-guide-entry-renderer[a[@href='/feed/storefront?bp=ogUCKAQ%3D']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "watch-later",
+      selector: "//ytd-guide-entry-renderer[a[@href='/playlist?list=WL']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "courses",
+      selector: "//ytd-guide-entry-renderer[a[@href='/feed/courses']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "liked-videos",
+      selector: "//ytd-guide-entry-renderer[a[@href='/playlist?list=LL']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "my-clips",
+      selector: "//ytd-guide-entry-renderer[a[@href='/feed/clips']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "transfers",
+      selector:
+        "//div[@id='section-items']/ytd-guide-downloads-entry-renderer  | //ytd-mini-guide-entry-renderer[a[@href='/feed/downloads']]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "subscriptions-panel",
+      selector: "(//ytd-guide-section-renderer)[2]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "explore-panel",
+      selector: "(//ytd-guide-section-renderer)[3]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "youtube-panel",
+      selector: "(//ytd-guide-section-renderer)[4]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "youtube-settings",
+      selector: "(//ytd-guide-section-renderer)[5]",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "youtube-footer",
+      selector: "//ytd-guide-renderer/div[@id='footer']",
+      checked: false,
+      category: "Sidebar",
+      pageTypes: [],
+    },
+    {
+      id: "tabs",
+      selector:
+        "//ytd-feed-filter-chip-bar-renderer[@component-style='FEED_FILTER_CHIP_BAR_STYLE_TYPE_DEFAULT']/..",
+      checked: false,
+      category: "HomePage",
+      pageTypes: [PAGE_TYPES.HOME],
+    },
+    {
+      id: "ads",
+      selector:
+        "//ytd-ad-slot-renderer/ancestor::ytd-rich-item-renderer | //*[@id='player-ads'] | //ytd-banner-promo-renderer/..",
+      checked: false,
+      category: "HomePage",
+      pageTypes: [PAGE_TYPES.HOME],
+    },
+    {
+      id: "posts",
+      selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
+      checked: false,
+      category: "HomePage",
+      pageTypes: [PAGE_TYPES.HOME],
+    },
+    // {
+    //   id: "homepage-video-info",
+    //   selector: "//div[@id='metadata-line']",
+    //   checked: false,
+    //   category: "HomePage",
+    //   pageTypes: [PAGE_TYPES.HOME],
+    // },
+    // {
+    //   id: "homepage-views",
+    //   selector: "//div[@id='metadata-line']/span[1]",
+    //   checked: false,
+    //   category: "HomePage",
+    //   pageTypes: [PAGE_TYPES.HOME],
+    // },
+    // {
+    //   id: "time-posted",
+    //   selector: "//div[@id='metadata-line']/span[2]",
+    //   checked: false,
+    //   category: "HomePage",
+    //   pageTypes: [PAGE_TYPES.HOME],
+    // },
+    {
+      id: "subscriptions-shorts",
+      selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
+      checked: false,
+      category: "Subscriptions",
+      pageTypes: [PAGE_TYPES.SUBSCRIPTIONS],
+    },
+    {
+      id: "video-title",
+      selector: "//div[@id='above-the-fold']/div[@id='title']",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-subscribers",
+      selector: "(//div[@id='upload-info'])[1]/yt-formatted-string",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-subscribed-button",
+      selector: "//div[@id='notification-preference-button']",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-likes-dislikes",
+      selector: "//segmented-like-dislike-button-view-model",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-share",
+      selector: "//div[@id='top-level-buttons-computed']/yt-button-view-model",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-download",
+      selector: "//ytd-download-button-renderer",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-extra-buttons",
+      selector: "//div[@id='flexible-item-buttons']/yt-button-view-model",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-description",
+      selector: "//div[@id='description-inner']/parent::div",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-views",
+      selector:
+        "//div[@id='description']//div[@id='info-container']//yt-formatted-string[@id='info']//span[position()=1 or position()=2]",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-chapters-description",
+      selector:
+        "//ytd-horizontal-card-list-renderer[contains (@class, 'ytd-structured-description-content-renderer')]",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-transcription-description",
+      selector: "//ytd-video-description-transcript-section-renderer",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-channel-links-description",
+      selector: "//ytd-video-description-infocards-section-renderer",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-comments",
+      selector: "//ytd-comments[@id='comments']",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-categories-games",
+      selector: "//ytd-rich-metadata-row-renderer/../..",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-ads",
+      selector: "//div[@id='player-ads']",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-tabs",
+      selector: "//yt-related-chip-cloud-renderer",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-suggested-videos",
+      selector:
+        "//div[@id='contents']/parent::ytd-item-section-renderer[contains(@class, 'watch-next')]",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-suggested-shorts",
+      selector: "//ytd-reel-shelf-renderer",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-suggestion-wall",
+      selector: "//div[@class='ytp-endscreen-content']",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+  ],
+};
 
 const eventBus = {
   listeners: {},
@@ -539,15 +542,53 @@ class ElementManager {
 
   async getStoredElements() {
     return new Promise((resolve) => {
-      chrome.storage.local.get("elements", ({ elements }) => {
-        resolve(elements ? JSON.parse(elements) : DEFAULT_ELEMENTS);
-      });
+      chrome.storage.local.get(
+        ["tubemod_elements", "tubemod_version"],
+        (result) => {
+          if (
+            result.tubemod_elements &&
+            result.tubemod_version === STORAGE.tubemod_version
+          ) {
+            resolve(JSON.parse(result.tubemod_elements));
+          } else if (
+            result.tubemod_elements &&
+            result.tubemod_version !== STORAGE.tubemod_version
+          ) {
+            const storedElements = JSON.parse(result.tubemod_elements);
+            const mergedElements = STORAGE.tubemod_elements.map(
+              (newElement) => {
+                const storedElement = storedElements.find(
+                  (el) => el.id === newElement.id
+                );
+                if (storedElement) {
+                  return { ...newElement, checked: storedElement.checked };
+                }
+                return newElement;
+              }
+            );
+            chrome.storage.local.set({
+              tubemod_elements: JSON.stringify(mergedElements),
+              tubemod_version: STORAGE.tubemod_version,
+            });
+            resolve(mergedElements);
+          } else {
+            chrome.storage.local.set({
+              tubemod_elements: JSON.stringify(STORAGE.tubemod_elements),
+              tubemod_version: STORAGE.tubemod_version,
+            });
+            resolve(STORAGE.tubemod_elements);
+          }
+        }
+      );
     });
   }
 
   async saveElements() {
     const serializedElements = JSON.stringify(this.elements);
-    await chrome.storage.local.set({ elements: serializedElements });
+    await chrome.storage.local.set({
+      tubemod_elements: serializedElements,
+      tubemod_version: STORAGE.tubemod_version,
+    });
   }
 
   async handleAction(action) {
@@ -609,8 +650,13 @@ class TubeMod {
 
   clearLocalStorage() {
     chrome.storage.local.clear(() => {
-      console.info("Settings cleared.");
-      location.reload();
+      chrome.storage.local.set(
+        { elements: JSON.stringify(STORAGE.tubemod_elements) },
+        () => {
+          console.info("Default settings restored.");
+          location.reload();
+        }
+      );
     });
   }
 
