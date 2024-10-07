@@ -8,7 +8,6 @@ These are the features currently planned for future releases. More will be added
 
 - Allow Extension Popup to be placed anywhere / moved around
 - Remove Rounded borders across YouTube
-- Hide Video Views - across all YouTube
 - Hide the Likes counter, instead of the button itself
 
 In later versions of TubeMod (2.0.0+), actions and themes will be introduced:
@@ -26,11 +25,21 @@ In later versions of TubeMod (2.0.0+), actions and themes will be introduced:
 
 These changes affect every page on YouTube.
 
+- Hide Scheduled Videos
+- Hide Livestreams
+- Hide Video Previews
+- Hide Video Thumbnails
+- Hide Video Extra Information (Views and Posted Time)
+
+### Header
+
+These apply to the header of YouTube - visible across every page.
+
 - Hide YouTube Logo
+- Hide Search Bar
 - Hide Microphone Search Icon
 - Hide Create Icon
 - Hide Notifications Icon
-- Hide Scheduled Videos
 
 ### Sidebar
 
@@ -40,17 +49,23 @@ These changes are applied to YouTube's Sidebar.
 - Hide Shorts Button
 - Hide Subscriptions Button
 - Hide YouTube Music Button, for Premium users
-- Hide My Channel Button
+- Hide You Button
+- Hide Your Channel Button
 - Hide History Button
 - Hide Playlists Button
-- Hide My Videos Button
+- Hide Your Videos Button
+- Hide Your Movies and TV Button
+- Hide Your Courses Button
 - Hide Watch Later Button
 - Hide Liked Videos Button
+- Hide Downloads Button, for Premium Users
 - Hide My Clips Button
 - Hide Downloads Button, for Premium users
 - Hide Subscriptions Panel
 - Hide Explore Panel
-- Hide YouTube Panel
+- Hide YouTube Content Panel
+- Hide YouTube Settings Panel
+- Hide YouTube Footer Panel
 
 ### Home Page
 
@@ -58,7 +73,7 @@ These options modify YouTube's Home Page.
 
 - Hide Tabs
 - Hide Ads Panel
-- Hide Posts / Shorts
+- Hide Posts / Shorts / News
 
 ### Subscriptions
 
@@ -72,9 +87,13 @@ These changes take effect when you open a new YouTube video.
 
 - Hide Title
 - Hide Subscribers Count
+- Hide Subscribed Button (when you're subscribed to a channel)
 - Hide Likes/Dislikes
-- Hide Share Button
+- Hide Share Video Button
+- Hide Download Button
+- Hide Extra Buttons (Clip, Save, Donate, etc.)
 - Hide Description
+- Hide Views Count
 - Hide Chapters, Transcript and Links in the Description
 - Hide Categories/Games
 - Hide Comments
@@ -82,9 +101,4 @@ These changes take effect when you open a new YouTube video.
 - Hide Ads Panel
 - Hide Suggested Videos
 - Hide Shorts on Suggested Videos
-
-### Stream
-
-These changes apply when you open an YouTube Stream.
-
-- Hide Chat
+- Hide Suggestion Wall, in the end of the video

@@ -1,5 +1,33 @@
 # TubeMod - Release Notes
 
+## 1.6.0 (Released)
+
+Add:
+
+- General:
+
+  - Hide Live Videos (Streams)
+  - Hide Video Previews
+  - Hide Thumbnails (both videos and playlists)
+  - Hide Video Extra Information - Views and Posted Time
+
+- Header:
+
+  - Hide Search Bar
+
+- Video:
+  - Hide Subscribed Button (when you're subscribed to a channel)
+  - Hide Download Button
+  - Hide Extra Buttons (besides Share and Download)
+
+Fix:
+
+- Miscellaneous
+  - Fixed an issue where users had to reset the settings every time a newer version was released.  
+
+- Sidebar
+  - Fixed an issue with the Sidebar Footer, as it was messing up with posts creation. [View the issue On GitHub](https://github.com/Pedro-Gregorio/TubeMod/issues/60).
+
 ## 1.5.0 (Released)
 
 ### **Note from Pedro**:

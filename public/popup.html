@@ -13,9 +13,64 @@
     <button class="collapsible">General</button>
     <div class="container" id="general" style="display: none">
       <div class="checkbox-container">
+        <label for="scheduled-videos">Hide Scheduled Videos</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="scheduled-videos"
+            name="scheduled-videos"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="live-videos">Hide Livestreams</label>
+        <label class="switch">
+          <input type="checkbox" id="live-videos" name="live-videos" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="video-previews">Hide Video Previews</label>
+        <label class="switch">
+          <input type="checkbox" id="video-previews" name="video-previews" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="video-thumbnails">Hide Video Thumbnails</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="video-thumbnails"
+            name="video-thumbnails"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="video-meta-data">Hide Video Views and Posted Time</label>
+        <label class="switch">
+          <input type="checkbox" id="video-meta-data" name="video-meta-data" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <button class="collapsible">Header</button>
+    <div class="container" id="general" style="display: none">
+      <div class="checkbox-container">
         <label for="logo">Hide YouTube Logo</label>
         <label class="switch">
           <input type="checkbox" id="logo" name="logo" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <div class="checkbox-container">
+        <label for="search-bar">Hide Search Bar</label>
+        <label class="switch">
+          <input type="checkbox" id="search-bar" name="search-bar" />
           <span class="slider round"></span>
         </label>
       </div>
@@ -44,18 +99,6 @@
         <label for="notifications">Hide Notifications Icon</label>
         <label class="switch">
           <input type="checkbox" id="notifications" name="notifications" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div class="checkbox-container">
-        <label for="scheduled-videos">Hide Scheduled Videos</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="scheduled-videos"
-            name="scheduled-videos"
-          />
           <span class="slider round"></span>
         </label>
       </div>
@@ -129,7 +172,11 @@
       <div class="checkbox-container">
         <label for="your-movies-and-tv">Hide Your Movies & TV Button</label>
         <label class="switch">
-          <input type="checkbox" id="your-movies-and-tv" name="your-movies-and-tv" />
+          <input
+            type="checkbox"
+            id="your-movies-and-tv"
+            name="your-movies-and-tv"
+          />
           <span class="slider round"></span>
         </label>
       </div>
@@ -196,7 +243,11 @@
       <div class="checkbox-container">
         <label for="youtube-settings">Hide Youtube Settings</label>
         <label class="switch">
-          <input type="checkbox" id="youtube-settings" name="youtube-settings" />
+          <input
+            type="checkbox"
+            id="youtube-settings"
+            name="youtube-settings"
+          />
           <span class="slider round"></span>
         </label>
       </div>
@@ -225,8 +276,33 @@
           <span class="slider round"></span>
         </label>
       </div>
+      <!-- <div class="checkbox-container">
+        <label for="homepage-video-info">Hide Video Extra Information</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="homepage-video-info"
+            name="homepage-video-info"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
       <div class="checkbox-container">
-        <label for="posts">Hide Posts and Shorts</label>
+        <label for="homepage-views">Hide Video Views</label>
+        <label class="switch">
+          <input type="checkbox" id="homepage-views" name="homepage-views" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="time-posted">Hide Video Posted Time</label>
+        <label class="switch">
+          <input type="checkbox" id="time-posted" name="time-posted" />
+          <span class="slider round"></span>
+        </label>
+      </div> -->
+      <div class="checkbox-container">
+        <label for="posts">Hide Posts, News or Shorts</label>
         <label class="switch">
           <input type="checkbox" id="posts" name="posts" />
           <span class="slider round"></span>
@@ -237,7 +313,7 @@
     <button class="collapsible">Subscriptions</button>
     <div class="container" id="subscriptions" style="display: none">
       <div class="checkbox-container">
-        <label for="subscriptions-shorts">Hide Subscription Shorts</label>
+        <label for="subscriptions-shorts">Hide Shorts</label>
         <label class="switch">
           <input
             type="checkbox"
@@ -252,7 +328,7 @@
     <button class="collapsible">Video</button>
     <div class="container" id="video" style="display: none">
       <div class="checkbox-container">
-        <label for="video-title">Hide Video Title</label>
+        <label for="video-title">Hide Title</label>
         <label class="switch">
           <input type="checkbox" id="video-title" name="video-title" />
           <span class="slider round"></span>
@@ -270,18 +346,18 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-views">Hide Views Count</label>
+        <label for="video-subscribed-button">Hide Subscribed Button</label>
         <label class="switch">
           <input
             type="checkbox"
-            id="video-views"
-            name="video-views"
+            id="video-subscribed-button"
+            name="video-subscribed-button"
           />
           <span class="slider round"></span>
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-likes-dislikes">Hide Video Likes/Dislikes</label>
+        <label for="video-likes-dislikes">Hide Likes/Dislikes Buttons</label>
         <label class="switch">
           <input
             type="checkbox"
@@ -292,18 +368,34 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-share">Hide Video Share Button</label>
+        <label for="video-share">Hide Share Video Button</label>
+        <label class="switch">
+          <input type="checkbox" id="video-share" name="video-share" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="video-download">Hide Download Button</label>
+        <label class="switch">
+          <input type="checkbox" id="video-download" name="video-download" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="video-extra-buttons"
+          >Hide Extra Buttons (Clip, Save, etc.)</label
+        >
         <label class="switch">
           <input
             type="checkbox"
-            id="video-share"
-            name="video-share"
+            id="video-extra-buttons"
+            name="video-extra-buttons"
           />
           <span class="slider round"></span>
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-description">Hide Video Description</label>
+        <label for="video-description">Hide Description</label>
         <label class="switch">
           <input
             type="checkbox"
@@ -314,7 +406,16 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-chapters-description">Hide Video Chapters (from Description)</label>
+        <label for="video-views">Hide Views Count</label>
+        <label class="switch">
+          <input type="checkbox" id="video-views" name="video-views" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="video-chapters-description"
+          >Hide Chapters in Video Description</label
+        >
         <label class="switch">
           <input
             type="checkbox"
@@ -325,7 +426,9 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-transcription-description">Hide Video Transcription (from Description)</label>
+        <label for="video-transcription-description"
+          >Hide Transcription in Video Description</label
+        >
         <label class="switch">
           <input
             type="checkbox"
@@ -336,7 +439,9 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-channel-links-description">Hide Channel Links (from Description)</label>
+        <label for="video-channel-links-description"
+          >Hide Channel Links in Video Description</label
+        >
         <label class="switch">
           <input
             type="checkbox"
@@ -347,7 +452,7 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-categories-games">Hide Video Categories/Games</label>
+        <label for="video-categories-games">Hide Categories/Games</label>
         <label class="switch">
           <input
             type="checkbox"
@@ -358,28 +463,28 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-comments">Hide Video Comments</label>
+        <label for="video-comments">Hide Comments</label>
         <label class="switch">
           <input type="checkbox" id="video-comments" name="video-comments" />
           <span class="slider round"></span>
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-ads">Hide Video Ads Panel</label>
+        <label for="video-ads">Hide Ads Panel</label>
         <label class="switch">
           <input type="checkbox" id="video-ads" name="video-ads" />
           <span class="slider round"></span>
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-tabs">Hide Video Tabs</label>
+        <label for="video-tabs">Hide Suggested Videos Tabs</label>
         <label class="switch">
           <input type="checkbox" id="video-tabs" name="video-tabs" />
           <span class="slider round"></span>
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-suggested-videos">Hide Video Suggested Videos</label>
+        <label for="video-suggested-videos">Hide Suggested Videos</label>
         <label class="switch">
           <input
             type="checkbox"
@@ -390,7 +495,7 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-suggested-shorts">Hide Video Suggested Shorts</label>
+        <label for="video-suggested-shorts">Hide Suggested Videos Shorts</label>
         <label class="switch">
           <input
             type="checkbox"
@@ -401,7 +506,9 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-suggestion-wall">Hide Suggestion Wall</label>
+        <label for="video-suggestion-wall"
+          >Hide Suggestion Wall (End of the Video)</label
+        >
         <label class="switch">
           <input
             type="checkbox"
@@ -415,7 +522,9 @@
 
     <div class="btn-settings-container">
       <button class="button">
-        <a href="https://ko-fi.com/pedrogregorio" target="_blank">Donate</a>
+        <a href="https://ko-fi.com/pedrogregorio" target="_blank"
+          >Buy me a Coffee</a
+        >
       </button>
       <button class="button">
         <a
@@ -428,7 +537,7 @@
     </div>
 
     <p class="version">
-      Current Version 1.5.0 |
+      Current Version 1.6.0 |
       <a
         href="https://github.com/Pedro-Gregorio/TubeMod/blob/master/documentation/ReleaseNotes.md"
         target="_blank"
