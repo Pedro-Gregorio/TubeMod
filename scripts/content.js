@@ -39,14 +39,14 @@ const DEFAULT_ELEMENTS = [
   },
   {
     id: "video-previews",
-    selector: "//div[@id='video-preview']",
+    selector: "//div[@id='video-preview' or @id='mouseover-overlay']",
     checked: false,
     category: "General",
     pageTypes: [],
   },
   {
     id: "video-thumbnails",
-    selector: "//div[@id='thumbnail'] | //ytd-thumbnail",
+    selector: "//ytd-thumbnail",
     checked: false,
     category: "General",
     pageTypes: [],
