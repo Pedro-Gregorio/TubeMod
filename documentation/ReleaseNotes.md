@@ -1,6 +1,10 @@
 # TubeMod - Release Notes
 
-## 1.6.0 (Released)
+## 1.7.0
+
+
+
+## 1.6.0 
 
 Add:
 
@@ -28,7 +32,7 @@ Fix:
 - Sidebar
   - Fixed an issue with the Sidebar Footer, as it was messing up with posts creation. [View the issue On GitHub](https://github.com/Pedro-Gregorio/TubeMod/issues/60).
 
-## 1.5.0 (Released)
+## 1.5.0 
 
 ### **Note from Pedro**:
 
@@ -74,7 +78,7 @@ Disabled:
 
 Note: Both these features are related to taking actions, and that will be a later focus of the extension. For now, the focus will be around hiding content, as gracefully as possible, without impacting on performance.
 
-## 1.4.0 (Released)
+## 1.4.0 
 
 Add:
 
@@ -82,7 +86,7 @@ Add:
 - Hide Transfers Sidebar Option, for Premium users
 - Hide Video Suggested Shorts Option
 
-## 1.3.0 (Released)
+## 1.3.0 
 
 Add:
 
@@ -95,7 +99,7 @@ Fix:
 
 - Hide Home Page Tabs was affecting Channel Video Section Tabs
 
-## 1.2.0 (Released)
+## 1.2.0 
 
 Add:
 
@@ -105,7 +109,7 @@ Fix:
 
 - "Create Button" Locator for Opera
 
-## 1.1.0 (Released)
+## 1.1.0 
 
 Add:
 
@@ -115,7 +119,7 @@ Change:
 
 - Subscription Page Shorts Locator
 
-## 1.0.0 (Released)
+## 1.0.0 
 
 Add:
 
