@@ -339,8 +339,15 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
-      id: "video-extra-buttons",
-      selector: "//div[@id='flexible-item-buttons']/yt-button-view-model",
+      id: "video-clip-button",
+      selector: "//div[@id='flexible-item-buttons']//yt-button-view-model[1]",
+      checked: false,
+      category: "Video",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-save-button",
+      selector: "//div[@id='flexible-item-buttons']//yt-button-view-model[2]",
       checked: false,
       category: "Video",
       pageTypes: [PAGE_TYPES.VIDEO],
