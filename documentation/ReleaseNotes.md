@@ -2,10 +2,14 @@
 
 ## 1.7.0
 
+Add:
+
+- Video:
+  - Hide Video Live Chat Replay
+
 Fix: 
 
-- Toggles now mantain their width regardless of label length 
-
+- Toggles now maintain their width regardless of label length 
 
 ## 1.6.0 
 
