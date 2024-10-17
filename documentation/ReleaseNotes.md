@@ -2,6 +2,9 @@
 
 ## 1.7.0
 
+Fix: 
+
+- Toggles now mantain their width regardless of label length 
 
 
 ## 1.6.0 
