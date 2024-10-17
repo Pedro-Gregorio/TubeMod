@@ -22,7 +22,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "PRE-RELEASE-1.7.0A",
+  tubemod_version: "PRE-RELEASE-1.7.0B",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -306,6 +306,13 @@ const STORAGE = {
     {
       id: "video-subscribers",
       selector: "(//div[@id='upload-info'])[1]/yt-formatted-string",
+      checked: false,
+      style: "display: none",
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-subscribe-button",
+      selector: "//yt-button-shape[@id='subscribe-button-shape']",
       checked: false,
       style: "display: none",
       pageTypes: [PAGE_TYPES.VIDEO],

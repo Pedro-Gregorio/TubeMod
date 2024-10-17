@@ -5,6 +5,7 @@
 Add:
 
 - Video:
+  - Hide Subscribe Button
   - Hide Video Live Chat Replay
 
 Fix: 
