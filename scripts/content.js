@@ -22,7 +22,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "PRE-RELEASE-1.7.0B",
+  tubemod_version: "PRE-RELEASE-1.7.0C",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -264,6 +264,14 @@ const STORAGE = {
     {
       id: "posts",
       selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
+      checked: false,
+      style: "display: none",
+      pageTypes: [PAGE_TYPES.HOME],
+    },
+    {
+      id: "playlist-mix",
+      selector:
+        "//ytd-rich-item-renderer[.//ytd-playlist-thumbnail[not(@hidden)]]",
       checked: false,
       style: "display: none",
       pageTypes: [PAGE_TYPES.HOME],

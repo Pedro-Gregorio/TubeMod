@@ -4,6 +4,9 @@
 
 Add:
 
+- Home:
+  - Hide Mix Playlists
+
 - Video:
   - Hide Subscribe Button
   - Hide Video Live Chat Replay
