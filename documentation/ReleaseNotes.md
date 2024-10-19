@@ -4,6 +4,9 @@
 
 Add:
 
+- Profile Settings:
+  - Hide 'Sign Out' Button
+
 - Home:
   - Hide Mix Playlists
 

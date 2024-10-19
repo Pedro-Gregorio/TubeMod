@@ -22,7 +22,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "PRE-RELEASE-1.7.0C",
+  tubemod_version: "PRE-RELEASE-1.7.0D",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -92,6 +92,13 @@ const STORAGE = {
     {
       id: "notifications",
       selector: "//ytd-notification-topbar-button-renderer",
+      checked: false,
+      style: "display: none",
+      pageTypes: [],
+    },
+    {
+      id: "profile-sign-out",
+      selector: "//ytd-compact-link-renderer/a[@href='/logout']",
       checked: false,
       style: "display: none",
       pageTypes: [],
