@@ -22,7 +22,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "PRE-RELEASE-1.7.0D",
+  tubemod_version: "PRE-RELEASE-1.7.0E",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -51,6 +51,13 @@ const STORAGE = {
       selector: "//ytd-thumbnail | //ytd-playlist-thumbnail",
       checked: false,
       style: "display: none",
+      pageTypes: [],
+    },
+    {
+      id: "video-thumbnails-blur",
+      selector: "//ytd-thumbnail | //ytd-playlist-thumbnail",
+      checked: false,
+      style: "filter: blur(15px); -webkit-filter: blur(15px);",
       pageTypes: [],
     },
     {
@@ -543,7 +550,6 @@ class YouTubeElement {
 
   applyVisibility(hide) {
     const displayValue = hide ? this.style : "";
-    console.log("Display Value: " + displayValue);
     const elements = document.evaluate(
       this.selector,
       document,

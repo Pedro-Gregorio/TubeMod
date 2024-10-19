@@ -4,6 +4,9 @@
 
 Add:
 
+- General:
+  - Blur Video Thumbnails
+
 - Profile Settings:
   - Hide 'Sign Out' Button
 
