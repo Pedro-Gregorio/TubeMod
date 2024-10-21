@@ -13,6 +13,9 @@ Add:
 - Home:
   - Hide Mix Playlists
 
+- Search:
+  - Hide Shorts
+
 - Video:
   - Hide Subscribe Button
   - Hide Video Live Chat Replay
