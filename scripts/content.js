@@ -25,7 +25,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "PRE-RELEASE-1.7.0G",
+  tubemod_version: "PRE-RELEASE-1.7.0H",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -333,7 +333,7 @@ const STORAGE = {
       selector: "//div[@id='contents']/ytd-horizontal-card-list-renderer",
       checked: false,
       style: DISPLAY_NONE,
-      pageTypes: [PAGE_TYPES.SEARCH]
+      pageTypes: [PAGE_TYPES.SEARCH],
     },
     {
       id: "video-title",
@@ -577,6 +577,28 @@ class YouTubeElement {
 
     for (let i = 0; i < elements.snapshotLength; i++) {
       elements.snapshotItem(i).style = `${displayValue}`;
+    }
+
+    if (this.id === "you") {
+      const elementWithTopBorder = document.querySelector(
+        "ytd-guide-collapsible-section-entry-renderer"
+      );
+      if (elementWithTopBorder) {
+        elementWithTopBorder.style.borderTop = hide
+          ? "none"
+          : "1px solid var(--yt-spec-10-percent-layer)";
+      }
+    }
+
+    if (this.id === "my-clips") {
+      const elementWithBottomBorder = document.querySelector(
+        "ytd-guide-section-renderer"
+      );
+      if (elementWithBottomBorder) {
+        elementWithBottomBorder.style.borderBottom = hide
+          ? "none"
+          : "1px solid var(--yt-spec-10-percent-layer)";
+      }
     }
   }
 }

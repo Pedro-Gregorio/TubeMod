@@ -24,6 +24,7 @@ Add:
 Fix: 
 
 - Toggles now maintain their width regardless of label length 
+- When removing everything from the sidebar, no more horizontal bars are shown
 
 ## 1.6.0 
 

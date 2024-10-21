@@ -59,3 +59,5 @@ document.getElementById("reset-settings").addEventListener("click", () => {
   });
   window.close();
 });
+
+// [...document.querySelectorAll('#sidebar input')].every(checkbox => checkbox.checked) -> if all the checkboxes are checked, we may want to collapse the sidebar or simply remove the left margin
