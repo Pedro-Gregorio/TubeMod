@@ -15,6 +15,7 @@ Add:
 
 - Search:
   - Hide Shorts
+  - Hide 'People Also Search For'
 
 - Video:
   - Hide Subscribe Button

@@ -25,7 +25,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "PRE-RELEASE-1.7.0F",
+  tubemod_version: "PRE-RELEASE-1.7.0G",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -327,6 +327,13 @@ const STORAGE = {
       checked: false,
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.SEARCH],
+    },
+    {
+      id: "search-people-also-searched",
+      selector: "//div[@id='contents']/ytd-horizontal-card-list-renderer",
+      checked: false,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.SEARCH]
     },
     {
       id: "video-title",
