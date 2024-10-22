@@ -17,6 +17,9 @@ Add:
   - Hide Shorts
   - Hide 'People Also Search For'
 
+- Trending:
+  - Hide Shorts
+
 - Video:
   - Hide Subscribe Button
   - Hide Video Live Chat Replay

@@ -5,6 +5,7 @@ const PAGE_TYPES = {
   SUBSCRIPTIONS: "subscriptions",
   VIDEO: "video",
   SEARCH: "search",
+  TRENDING: "trending",
 };
 
 function saveSettings() {
@@ -50,12 +51,14 @@ function getCurrentPageType() {
     return PAGE_TYPES.SUBSCRIPTIONS;
   } else if (url.includes("/results?search_query")) {
     return PAGE_TYPES.SEARCH;
+  } else if (url.includes("/feed/trending")) {
+    return PAGE_TYPES.TRENDING;
   }
   return null;
 }
 
 const STORAGE = {
-  tubemod_version: "PRE-RELEASE-1.7.0H",
+  tubemod_version: "1.7.0",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -364,6 +367,13 @@ const STORAGE = {
       checked: false,
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.SEARCH],
+    },
+    {
+      id: "trending-shorts",
+      selector: "//ytd-video-renderer[.//a[contains(@href, '/shorts')]]",
+      checked: false,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.TRENDING],
     },
     {
       id: "video-title",
