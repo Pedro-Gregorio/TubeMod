@@ -192,6 +192,8 @@ input:checked + .slider:before {
   transition: 0.4s;
   width: 35%;
   border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
 }
 
 .button:hover {

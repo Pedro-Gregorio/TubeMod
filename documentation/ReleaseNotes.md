@@ -21,6 +21,8 @@ Add:
   - Hide Subscribe Button
   - Hide Video Live Chat Replay
 
+- Import / Export TubeMod Settings
+
 Fix: 
 
 - Toggles now maintain their width regardless of label length 

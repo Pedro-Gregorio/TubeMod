@@ -7,6 +7,36 @@ const PAGE_TYPES = {
   SEARCH: "search",
 };
 
+function saveSettings() {
+  const a = document.createElement("a");
+  chrome.storage.local.get(
+    ["tubemod_elements", "tubemod_version"],
+    (result) => {
+      if (chrome.runtime.lastError) {
+        console.error(chrome.runtime.lastError);
+      } else {
+        console.log(result);
+        const file = new Blob([JSON.stringify(result)], {
+          type: "application/json",
+        });
+        a.href = URL.createObjectURL(file);
+        a.download = "tubeModSettings.json";
+        a.click();
+      }
+    }
+  );
+  document.body.removeChild(a);
+}
+
+function importSettings(settings) {
+  chrome.storage.local.set({
+    tubemod_elements: JSON.parse(settings)["tubemod_elements"],
+    tubemod_version: JSON.parse(settings)["tubemod_version"],
+  });
+  location.reload();
+  alert("TubeMod settings uploaded and applied!");
+}
+
 function getCurrentPageType() {
   const url = window.location.href;
   if (
@@ -718,6 +748,10 @@ class TubeMod {
   handleMessage(request) {
     if (request.action === "clearLocalStorage") {
       this.clearLocalStorage();
+    } else if (request.action === "saveSettings") {
+      saveSettings();
+    } else if (request.action === "importSettings") {
+      importSettings(request.content);
     } else {
       this.elementManager.handleAction(request.action);
     }
