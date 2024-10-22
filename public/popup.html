@@ -2,6 +2,7 @@
 <head>
   <link rel="stylesheet" href="popup.css" />
   <link rel="icon" type="image/x-icon" href="/icons/icon_128.png" />
+  <meta charset="UTF-8">
 </head>
 <html>
   <body>
@@ -31,7 +32,7 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-previews">Hide Video Previews</label>
+        <label for="video-previews">Hide Video Previews (on hover)</label>
         <label class="switch">
           <input type="checkbox" id="video-previews" name="video-previews" />
           <span class="slider round"></span>
@@ -49,6 +50,17 @@
         </label>
       </div>
       <div class="checkbox-container">
+        <label for="video-thumbnails-blur">Blur Video Thumbnails</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="video-thumbnails-blur"
+            name="video-thumbnails-blur"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
         <label for="video-meta-data">Hide Video Views and Posted Time</label>
         <label class="switch">
           <input type="checkbox" id="video-meta-data" name="video-meta-data" />
@@ -58,7 +70,7 @@
     </div>
 
     <button class="collapsible">Header</button>
-    <div class="container" id="general" style="display: none">
+    <div class="container" id="header" style="display: none">
       <div class="checkbox-container">
         <label for="logo">Hide YouTube Logo</label>
         <label class="switch">
@@ -99,6 +111,17 @@
         <label for="notifications">Hide Notifications Icon</label>
         <label class="switch">
           <input type="checkbox" id="notifications" name="notifications" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <button class="collapsible">Profile Settings</button>
+    <div class="container" id="profile-settings" style="display: none;">
+      <div class="checkbox-container">
+        <label for="profile-sign-out">Hide Sign Out Button</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-sign-out" name="profile-sign-out" />
           <span class="slider round"></span>
         </label>
       </div>
@@ -308,6 +331,13 @@
           <span class="slider round"></span>
         </label>
       </div>
+      <div class="checkbox-container">
+        <label for="playlist-mix">Hide Mix Playlists</label>
+        <label class="switch">
+          <input type="checkbox" id="playlist-mix" name="playlist-mix" />
+          <span class="slider round"></span>
+        </label>
+      </div>
     </div>
 
     <button class="collapsible">Subscriptions</button>
@@ -320,6 +350,35 @@
             id="subscriptions-shorts"
             name="subscriptions-shorts"
           />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <button class="collapsible">Search</button>
+    <div class="container" id="search" style="display: none;">
+      <div class="checkbox-container">
+        <label for="search-shorts">Hide Shorts</label>
+        <label class="switch">
+          <input type="checkbox" id="search-shorts" name="search-shorts" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="search-people-also-searched">Hide 'People Also Search For' Section</label>
+        <label class="switch">
+          <input type="checkbox" id="search-people-also-searched" name="search-people-also-searched" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <button class="collapsible">Trending</button>
+    <div class="container" id="search" style="display: none;">
+      <div class="checkbox-container">
+        <label for="trending-shorts">Hide Shorts</label>
+        <label class="switch">
+          <input type="checkbox" id="trending-shorts" name="trending-shorts" />
           <span class="slider round"></span>
         </label>
       </div>
@@ -341,6 +400,17 @@
             type="checkbox"
             id="video-subscribers"
             name="video-subscribers"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="video-subscribe-button">Hide Subscribe Button</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="video-subscribe-button"
+            name="video-subscribe-button"
           />
           <span class="slider round"></span>
         </label>
@@ -452,6 +522,19 @@
         </label>
       </div>
       <div class="checkbox-container">
+        <label for="video-live-chat-replay""
+          >Hide Video Live Chat Replay</label
+        >
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="video-live-chat-replay""
+            name="video-live-chat-replay""
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
         <label for="video-categories-games">Hide Categories/Games</label>
         <label class="switch">
           <input
@@ -533,11 +616,16 @@
           >Send Feedback</a
         >
       </button>
+    </div>
+    <div class="btn-settings-container">
+      <label class="button" for="import-settings">Import Settings</label>
+      <input id="import-settings" type="file" accept=".json" hidden>
+      <button class="button" id="save-settings">Export Settings</button>   
       <button class="button" id="reset-settings">Reset Settings</button>
     </div>
 
     <p class="version">
-      Current Version 1.6.0 |
+      Current Version 1.7.0 |
       <a
         href="https://github.com/Pedro-Gregorio/TubeMod/blob/master/documentation/ReleaseNotes.md"
         target="_blank"

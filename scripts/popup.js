@@ -59,3 +59,27 @@ document.getElementById("reset-settings").addEventListener("click", () => {
   });
   window.close();
 });
+
+document.getElementById("save-settings").addEventListener("click", () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {
+      action: "saveSettings",
+    });
+  });
+});
+
+document
+  .getElementById("import-settings")
+  .addEventListener("change", async (e) => {
+    let file = e.target.files.item(0);
+
+    const text = await file.text();
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {
+        action: "importSettings",
+        content: text,
+      });
+    });
+  });
+
+// [...document.querySelectorAll('#sidebar input')].every(checkbox => checkbox.checked) -> if all the checkboxes are checked, we may want to collapse the sidebar or simply remove the left margin

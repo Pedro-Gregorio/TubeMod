@@ -84,7 +84,7 @@ label {
 .switch {
   position: relative;
   display: inline-block;
-  width: 50px;
+  min-width: 50px;
   height: 30px;
   outline: none;
 }
@@ -192,6 +192,8 @@ input:checked + .slider:before {
   transition: 0.4s;
   width: 35%;
   border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
 }
 
 .button:hover {
