@@ -16,7 +16,6 @@ function saveSettings() {
       if (chrome.runtime.lastError) {
         console.error(chrome.runtime.lastError);
       } else {
-        console.log(result);
         const file = new Blob([JSON.stringify(result)], {
           type: "application/json",
         });
@@ -58,7 +57,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.7.0",
+  tubemod_version: "1.7.1A",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -606,7 +605,6 @@ class YouTubeElement {
   }
 
   applyVisibility(hide) {
-    const displayValue = hide ? this.style : "";
     const elements = document.evaluate(
       this.selector,
       document,
@@ -616,7 +614,7 @@ class YouTubeElement {
     );
 
     for (let i = 0; i < elements.snapshotLength; i++) {
-      elements.snapshotItem(i).style = `${displayValue}`;
+      hide ? elements.snapshotItem(i).style.display = 'none' : elements.snapshotItem(i).style.display = '';
     }
 
     if (this.id === "you") {

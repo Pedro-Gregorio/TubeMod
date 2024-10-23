@@ -1,5 +1,11 @@
 # TubeMod - Release Notes
 
+
+## 1.7.1
+
+Fix:
+  - Suggestion Wall (on the end of the video) wasn't properly formatted when using TubeMod;
+
 ## 1.7.0
 
 Add:
