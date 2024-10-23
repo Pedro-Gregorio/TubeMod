@@ -445,6 +445,13 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
+      id: "video-collapsed-buttons",
+      selector: "//div[@id='top-row']//ytd-menu-renderer//yt-button-shape[@id='button-shape']",
+      checked: false,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
       id: "video-description",
       selector: "//div[@id='description-inner']/parent::div",
       checked: false,

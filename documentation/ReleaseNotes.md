@@ -10,6 +10,7 @@ Add:
 
 - Video:
   - Hide Join Button
+  - Hide Collapsed Actions Button
 
 Fix:
 
