@@ -8,6 +8,9 @@ Add:
 - Home:
   - Hide All Videos
 
+- Video:
+  - Hide Join Button
+
 Fix:
 
 - Suggestion Wall (on the end of the video) wasn't properly formatted when using TubeMod;

@@ -57,7 +57,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.8.0A",
+  tubemod_version: "1.8.0B",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -408,6 +408,13 @@ const STORAGE = {
       checked: false,
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-join-button",
+      selector: "//div[@id='sponsor-button']",
+      checked: false,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO]
     },
     {
       id: "video-likes-dislikes",
