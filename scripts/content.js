@@ -57,7 +57,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.7.1A",
+  tubemod_version: "1.8.0A",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -309,6 +309,13 @@ const STORAGE = {
       checked: false,
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.HOME],
+    },
+    {
+      id: "all-videos",
+      selector: "//div[@id='primary']",
+      checked: false,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.HOME]
     },
     {
       id: "posts",

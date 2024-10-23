@@ -1,10 +1,16 @@
 # TubeMod - Release Notes
 
 
-## 1.7.1
+## 1.8.0
+
+Add:
+
+- Home:
+  - Hide All Videos
 
 Fix:
-  - Suggestion Wall (on the end of the video) wasn't properly formatted when using TubeMod;
+
+- Suggestion Wall (on the end of the video) wasn't properly formatted when using TubeMod;
 
 ## 1.7.0
 
