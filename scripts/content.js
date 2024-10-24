@@ -57,7 +57,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.8.0B",
+  tubemod_version: "1.8.0C",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -315,7 +315,7 @@ const STORAGE = {
       selector: "//div[@id='primary']",
       checked: false,
       style: DISPLAY_NONE,
-      pageTypes: [PAGE_TYPES.HOME]
+      pageTypes: [PAGE_TYPES.HOME],
     },
     {
       id: "posts",
@@ -414,7 +414,7 @@ const STORAGE = {
       selector: "//div[@id='sponsor-button']",
       checked: false,
       style: DISPLAY_NONE,
-      pageTypes: [PAGE_TYPES.VIDEO]
+      pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
       id: "video-likes-dislikes",
@@ -446,7 +446,8 @@ const STORAGE = {
     },
     {
       id: "video-collapsed-buttons",
-      selector: "//div[@id='top-row']//ytd-menu-renderer//yt-button-shape[@id='button-shape']",
+      selector:
+        "//div[@id='top-row']//ytd-menu-renderer//yt-button-shape[@id='button-shape']",
       checked: false,
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.VIDEO],
@@ -460,8 +461,7 @@ const STORAGE = {
     },
     {
       id: "video-views",
-      selector:
-        "//div[@id='description']//div[@id='info-container']//yt-formatted-string[@id='info']//span[position()=1 or position()=2]",
+      selector: "//div[@id='view-count']",
       checked: false,
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.VIDEO],
@@ -635,7 +635,18 @@ class YouTubeElement {
     );
 
     for (let i = 0; i < elements.snapshotLength; i++) {
-      hide ? elements.snapshotItem(i).style.display = 'none' : elements.snapshotItem(i).style.display = '';
+      hide
+        ? (elements.snapshotItem(i).style.display = "none")
+        : (elements.snapshotItem(i).style.display = "");
+    }
+
+    if (this.id === "video-views") {
+      const viewsElement = document.getElementById("view-count");
+      if (viewsElement) {
+        hide
+          ? (viewsElement.disabled = "true")
+          : (viewsElement.disabled = "false");
+      }
     }
 
     if (this.id === "you") {

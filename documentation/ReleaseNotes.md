@@ -14,7 +14,8 @@ Add:
 
 Fix:
 
-- Suggestion Wall (on the end of the video) wasn't properly formatted when using TubeMod;
+- Suggestion Wall (on the end of the video) wasn't properly formatted when using TubeMod
+- Preventing Views from showing again if hidden
 
 ## 1.7.0
 
