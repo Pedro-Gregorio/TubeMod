@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.9.0B",
+  tubemod_version: "1.9.0C",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -470,6 +470,14 @@ const STORAGE = {
       id: "video-collapsed-buttons",
       selector:
         "//div[@id='top-row']//ytd-menu-renderer//yt-button-shape[@id='button-shape']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "stream-show-chat",
+      selector: "//div[@id='show-hide-button']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

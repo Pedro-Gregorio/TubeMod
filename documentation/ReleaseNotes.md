@@ -2,10 +2,15 @@
 
 ## 1.9.0
 
- Remove:
+Add :
 
-  - Sidebar:
-    - Hide 'Your Channel' Feature
+- Video:
+  - Hide 'Show Chat' Button on Live Streams
+
+Remove:
+
+- Sidebar:
+  - Hide 'Your Channel' Feature
 
 Fix:
 
