@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.8.0",
+  tubemod_version: "1.9.0A",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -199,15 +199,6 @@ const STORAGE = {
       id: "you",
       selector:
         "(//div[@id='header']/ytd-guide-entry-renderer)[1] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "my-channel",
-      selector:
-        "//div[@id='section-items']/ytd-guide-entry-renderer[a[starts-with(@href, '/@')]]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

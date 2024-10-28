@@ -1,5 +1,11 @@
 # TubeMod - Release Notes
 
+## 1.9.0
+
+ Remove:
+
+  - Sidebar:
+    - Hide 'Your Channel' Feature
 
 ## 1.8.0
 
