@@ -7,6 +7,10 @@
   - Sidebar:
     - Hide 'Your Channel' Feature
 
+Fix:
+
+- Hiding Scheduled Videos no longer hides posts
+
 ## 1.8.0
 
 Add:

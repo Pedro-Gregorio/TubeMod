@@ -59,11 +59,11 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.9.0A",
+  tubemod_version: "1.9.0B",
   tubemod_elements: [
     {
       id: "scheduled-videos",
-      selector: "//ytd-rich-item-renderer[.//ytd-toggle-button-renderer]",
+      selector: "//ytd-rich-item-renderer[.//ytd-thumbnail-overlay-time-status-renderer[@overlay-style='UPCOMING']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
