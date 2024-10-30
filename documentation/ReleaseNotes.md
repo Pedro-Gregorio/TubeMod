@@ -20,6 +20,7 @@ Remove:
 Fix:
 
 - Hiding Scheduled Videos no longer hides posts
+- Issue with Hiding Video Views
 
 ## 1.8.0
 

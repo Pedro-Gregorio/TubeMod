@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.9.0D",
+  tubemod_version: "1.9.0E",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -517,7 +517,7 @@ const STORAGE = {
     },
     {
       id: "video-views",
-      selector: "//div[@id='view-count']",
+      selector: "//div[@id='view-count'] | (//yt-formatted-string[@id='info']/span)[position()<3]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
