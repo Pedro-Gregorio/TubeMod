@@ -7,6 +7,7 @@ Add :
 - Home:
   - Hide 'Posts' Feature
   - Hide 'Shorts' Feature
+  - Hide Already Viewed Videos (100%)
 
 - Video:
   - Hide 'Show Chat' Button on Live Streams

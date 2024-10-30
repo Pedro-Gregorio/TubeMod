@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.9.0C",
+  tubemod_version: "1.9.0D",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -377,6 +377,14 @@ const STORAGE = {
       property: DISPLAY,
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.HOME],
+    },
+    {
+      id: "viewed-videos",
+      selector: "//ytd-rich-item-renderer[.//div[@id='progress'][contains(@style, 'width: 100%')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.HOME]
     },
     {
       id: "subscriptions-shorts",
