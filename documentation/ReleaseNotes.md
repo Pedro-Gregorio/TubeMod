@@ -4,6 +4,10 @@
 
 Add :
 
+- Home:
+  - Hide 'Posts' Feature
+  - Hide 'Shorts' Feature
+
 - Video:
   - Hide 'Show Chat' Button on Live Streams
 
