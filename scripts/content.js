@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.9.0E",
+  tubemod_version: "1.9.0G",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -288,6 +288,14 @@ const STORAGE = {
       pageTypes: [],
     },
     {
+      id: "subscriptions-panel-new-indicator",
+      selector: "//ytd-guide-entry-renderer[@line-end-style='dot']//div[@id='newness-dot']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
       id: "explore-panel",
       selector: "(//ytd-guide-section-renderer)[3]",
       checked: false,
@@ -361,14 +369,14 @@ const STORAGE = {
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.HOME],
     },
-    {
-      id: "home-news",
-      selector: "",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [PAGE_TYPES.HOME],
-    },
+    // {
+    //   id: "home-news",
+    //   selector: "",
+    //   checked: false,
+    //   property: DISPLAY,
+    //   style: DISPLAY_NONE,
+    //   pageTypes: [PAGE_TYPES.HOME],
+    // },
     {
       id: "playlist-mix",
       selector:

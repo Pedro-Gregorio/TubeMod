@@ -4,6 +4,9 @@
 
 Add :
 
+- Sidebar:
+  - Hide 'New' (Blue Dot) Indicator on Channels
+
 - Home:
   - Hide 'Posts' Feature
   - Hide 'Shorts' Feature
