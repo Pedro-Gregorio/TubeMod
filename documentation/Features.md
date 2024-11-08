@@ -55,6 +55,7 @@ These changes are applied to YouTube's Sidebar.
 - Hide Playlists Button
 - Hide Your Videos Button
 - Hide Your Movies and TV Button
+- Hide Your Podcasts Button
 - Hide Your Courses Button
 - Hide Watch Later Button
 - Hide Liked Videos Button
