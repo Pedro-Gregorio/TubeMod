@@ -3,11 +3,16 @@
 ## 1.10.0
 
 Add:
+
 - Sidebar:
   - Hide 'Your Podcasts'
 
 - Video
   - Hide 'Watch on YouTube' Offer Module
+
+Fix:
+
+- Playlist mixes on the Home Page weren't being properly hidden.
 
 ## 1.9.0
 

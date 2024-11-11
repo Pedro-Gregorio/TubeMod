@@ -388,7 +388,7 @@ const STORAGE = {
     {
       id: "playlist-mix",
       selector:
-        "//ytd-rich-item-renderer[.//ytd-playlist-thumbnail[not(@hidden)]]",
+        "//ytd-rich-item-renderer[.//ytd-playlist-thumbnail[not(@hidden)]] | //ytd-rich-item-renderer[.//a[contains(@href, 'start_radio=1')]]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
