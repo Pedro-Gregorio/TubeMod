@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.9.1G",
+  tubemod_version: "1.10.0",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -233,6 +233,14 @@ const STORAGE = {
       id: "your-movies-and-tv",
       selector:
         "//ytd-guide-entry-renderer[a[@href='/feed/storefront?bp=ogUCKAQ%3D']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "your-podcasts",
+      selector: "//ytd-guide-entry-renderer[a[@href='/feed/podcasts']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
