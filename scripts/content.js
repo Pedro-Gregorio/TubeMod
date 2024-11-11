@@ -395,6 +395,15 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.HOME],
     },
     {
+      id: "podcast-playlist",
+      selector:
+        "//ytd-rich-item-renderer[.//a[contains(@href, 'pp=')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.HOME],
+    },
+    {
       id: "viewed-videos",
       selector: "//ytd-rich-item-renderer[.//div[@id='progress'][contains(@style, 'width: 100%')]]",
       checked: false,

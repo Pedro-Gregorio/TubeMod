@@ -7,6 +7,9 @@ Add:
 - Sidebar:
   - Hide 'Your Podcasts'
 
+- Home:
+  - Hide 'Podcasts' and 'Playlists'
+
 - Video
   - Hide 'Watch on YouTube' Offer Module
 
