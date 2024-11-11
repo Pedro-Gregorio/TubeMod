@@ -1,8 +1,17 @@
 # TubeMod - Release Notes
 
+## 1.10.0
+
+Add:
+- Sidebar:
+  - Hide 'Your Podcasts'
+
+- Video
+  - Hide 'Watch on YouTube' Offer Module
+
 ## 1.9.0
 
-Add :
+Add:
 
 - Sidebar:
   - Hide 'New' (Blue Dot) Indicator on Channels

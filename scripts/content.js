@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.10.0",
+  tubemod_version: "1.10.0A",
   tubemod_elements: [
     {
       id: "scheduled-videos",
