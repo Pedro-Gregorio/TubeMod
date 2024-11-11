@@ -100,6 +100,7 @@ These changes take effect when you open a new YouTube video.
 - Hide Comments
 - Hide Tabs
 - Hide Ads Panel
+- Hide Offer Module
 - Hide Suggested Videos
 - Hide Shorts on Suggested Videos
 - Hide Suggestion Wall, in the end of the video

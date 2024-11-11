@@ -597,6 +597,14 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
+      id: "video-offer-module",
+      selector: "//div[@id='offer-module']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
       id: "video-tabs",
       selector: "//yt-related-chip-cloud-renderer",
       checked: false,
@@ -717,7 +725,7 @@ class YouTubeElement {
       XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
       null
     );
-
+    
     for (let i = 0; i < elements.snapshotLength; i++) {
       hide
         ? (elements.snapshotItem(i).style[this.property] = this.style)
