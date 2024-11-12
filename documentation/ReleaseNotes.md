@@ -17,6 +17,7 @@ Add:
 Fix:
 
 - Playlist mixes on the Home Page weren't being properly hidden.
+- Hiding all videos on the Home Page would also cause videos on the subscription page to hide, by going back and forth.
 
 ## 1.9.0
 
