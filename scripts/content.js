@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.10.0C",
+  tubemod_version: "1.10.0A",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -588,6 +588,14 @@ const STORAGE = {
     {
       id: "video-live-chat-replay",
       selector: "//div[@id='teaser-carousel']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-summary-ai-generated",
+      selector: "//div[@id='expandable-metadata']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

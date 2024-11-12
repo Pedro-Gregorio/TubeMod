@@ -12,6 +12,7 @@ Add:
 
 - Video
   - Hide 'Sleep Timer' Video Settings Option
+  - Hide 'AI-generated video summary'
   - Hide 'Watch on YouTube' Offer Module
   - Show (not hide 😉) Video Thumbnail next to the Video Player
 
