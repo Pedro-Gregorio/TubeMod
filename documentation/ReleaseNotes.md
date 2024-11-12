@@ -13,6 +13,7 @@ Add:
 - Video
   - Hide 'Sleep Timer' Video Settings Option
   - Hide 'Watch on YouTube' Offer Module
+  - Show (not hide 😉) Video Thumbnail next to the Video Player
 
 Fix:
 

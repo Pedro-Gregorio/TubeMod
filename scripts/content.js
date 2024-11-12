@@ -59,11 +59,12 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.10.0B",
+  tubemod_version: "1.10.0C",
   tubemod_elements: [
     {
       id: "scheduled-videos",
-      selector: "//ytd-rich-item-renderer[.//ytd-thumbnail-overlay-time-status-renderer[@overlay-style='UPCOMING']]",
+      selector:
+        "//ytd-rich-item-renderer[.//ytd-thumbnail-overlay-time-status-renderer[@overlay-style='UPCOMING']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -297,7 +298,8 @@ const STORAGE = {
     },
     {
       id: "subscriptions-panel-new-indicator",
-      selector: "//ytd-guide-entry-renderer[@line-end-style='dot']//div[@id='newness-dot']",
+      selector:
+        "//ytd-guide-entry-renderer[@line-end-style='dot']//div[@id='newness-dot']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -396,8 +398,7 @@ const STORAGE = {
     },
     {
       id: "podcast-playlist",
-      selector:
-        "//ytd-rich-item-renderer[.//a[contains(@href, 'pp=')]]",
+      selector: "//ytd-rich-item-renderer[.//a[contains(@href, 'pp=')]]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -405,11 +406,12 @@ const STORAGE = {
     },
     {
       id: "viewed-videos",
-      selector: "//ytd-rich-item-renderer[.//div[@id='progress'][contains(@style, 'width: 100%')]]",
+      selector:
+        "//ytd-rich-item-renderer[.//div[@id='progress'][contains(@style, 'width: 100%')]]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
-      pageTypes: [PAGE_TYPES.HOME]
+      pageTypes: [PAGE_TYPES.HOME],
     },
     {
       id: "subscriptions-shorts",
@@ -445,7 +447,8 @@ const STORAGE = {
     },
     {
       id: "video-settings-sleep-timer",
-      selector: "(//div[contains(@class, 'ytp-settings-menu')]//div[@class='ytp-menuitem' and @role='menuitem'])[3]",
+      selector:
+        "(//div[contains(@class, 'ytp-settings-menu')]//div[@class='ytp-menuitem' and @role='menuitem'])[3]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -550,7 +553,8 @@ const STORAGE = {
     },
     {
       id: "video-views",
-      selector: "//div[@id='view-count'] | (//yt-formatted-string[@id='info']/span)[position()<3]",
+      selector:
+        "//div[@id='view-count'] | (//yt-formatted-string[@id='info']/span)[position()<3]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -619,6 +623,14 @@ const STORAGE = {
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-thumbnail",
+      selector: "//ytd-watch-next-secondary-results-renderer/div[@id='items']",
+      checked: false,
+      // property: DISPLAY,
+      // style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
@@ -742,7 +754,7 @@ class YouTubeElement {
       XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
       null
     );
-    
+
     for (let i = 0; i < elements.snapshotLength; i++) {
       hide
         ? (elements.snapshotItem(i).style[this.property] = this.style)
@@ -777,6 +789,39 @@ class YouTubeElement {
         elementWithBottomBorder.style.borderBottom = hide
           ? "none"
           : "1px solid var(--yt-spec-10-percent-layer)";
+      }
+    }
+
+    if (this.id === "video-thumbnail") {
+      const thumbnailElement = document.getElementById(
+        "video-thumbnail-tubemod"
+      );
+
+      if (hide && thumbnailElement === null) {
+        const items = document.querySelector(
+          "ytd-watch-next-secondary-results-renderer div#items"
+        );
+
+        let currentVideo = new URL(document.URL);
+        let videoId = currentVideo.searchParams.get("v");
+        let thumbnailSource = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+
+        if (items) {
+          let ytImage = document.createElement("ytd-thumbnail");
+          let node = document.createElement("img");
+          node.setAttribute("id", "video-thumbnail-tubemod");
+          node.setAttribute("src", thumbnailSource);
+          node.setAttribute(
+            "class",
+            "yt-core-image--fill-parent-width yt-core-image--loaded"
+          );
+          node.setAttribute("style", "border-radius: 8px; margin-bottom: 8px;");
+
+          ytImage.append(node);
+          items.prepend(ytImage);
+        }
+      } else if (!hide && thumbnailElement) {
+        thumbnailElement.remove();
       }
     }
   }
