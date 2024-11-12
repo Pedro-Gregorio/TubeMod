@@ -444,6 +444,14 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.TRENDING],
     },
     {
+      id: "video-settings-sleep-timer",
+      selector: "(//div[contains(@class, 'ytp-settings-menu')]//div[@class='ytp-menuitem' and @role='menuitem'])[3]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
       id: "video-title",
       selector: "//div[@id='above-the-fold']/div[@id='title']",
       checked: false,

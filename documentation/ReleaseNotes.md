@@ -11,6 +11,7 @@ Add:
   - Hide 'Podcasts' and 'Playlists'
 
 - Video
+  - Hide 'Sleep Timer' Video Settings Option
   - Hide 'Watch on YouTube' Offer Module
 
 Fix:
