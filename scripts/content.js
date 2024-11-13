@@ -677,6 +677,13 @@ const STORAGE = {
   ],
 };
 
+const THUMBNAIL_VARIANTS = [
+  'maxresdefault.jpg',  // HD (1280x720)
+  'maxres1.jpg',              // Alternate 1
+  'maxres2.jpg',              // Alternate 2
+  'maxres3.jpg'               // Alternate 3
+];
+
 const eventBus = {
   listeners: {},
   subscribe(event, callback) {
@@ -735,6 +742,7 @@ function debounce(func, wait) {
 
 class YouTubeElement {
   constructor(config) {
+    this.currentThumbnailIndex = 0;
     Object.assign(this, config);
   }
 
@@ -753,6 +761,34 @@ class YouTubeElement {
     }
     this.applyVisibility(hide);
   }
+
+  createCycleButton() {
+    const button = document.createElement('button');
+    button.innerHTML = '→';
+    button.setAttribute('style', `
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      z-index: 2;
+    `);
+    return button;
+  }
+
+  cycleThumbnail(videoId, image, container) {
+    this.currentThumbnailIndex = (this.currentThumbnailIndex + 1) % THUMBNAIL_VARIANTS.length;
+    const newThumbnailUrl = `https://img.youtube.com/vi/${videoId}/${THUMBNAIL_VARIANTS[this.currentThumbnailIndex]}`;
+    image.setAttribute('src', newThumbnailUrl);
+    container.setAttribute('href', newThumbnailUrl);
+  }
+
 
   applyVisibility(hide) {
     const elements = document.evaluate(
@@ -801,41 +837,42 @@ class YouTubeElement {
     }
 
     if (this.id === "video-thumbnail") {
-      const thumbnailElement = document.getElementById(
-        "video-thumbnail-tubemod"
-      );
-
+      const thumbnailElement = document.getElementById("video-thumbnail-tubemod");
       if (hide && thumbnailElement === null) {
         const items = document.querySelector(
           "ytd-watch-next-secondary-results-renderer div#items"
         );
-
         let currentVideo = new URL(document.URL);
         let videoId = currentVideo.searchParams.get("v");
-        let thumbnailSource = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
+        let thumbnailSource = `https://img.youtube.com/vi/${videoId}/${THUMBNAIL_VARIANTS[0]}`;
+        
         if (items) {
           let ytImage = document.createElement("ytd-thumbnail");
-
+          ytImage.setAttribute('style', 'position: relative;');
+          
           let anchorTag = document.createElement("a");
           anchorTag.setAttribute("target", "_blank");
           anchorTag.setAttribute("href", thumbnailSource);
-
+          
           let image = document.createElement("img");
           image.setAttribute("id", "video-thumbnail-tubemod");
           image.setAttribute("src", thumbnailSource);
-          image.setAttribute(
-            "class",
-            "yt-core-image--fill-parent-width yt-core-image--loaded"
-          );
+          image.setAttribute("class", "yt-core-image--fill-parent-width yt-core-image--loaded");
           image.setAttribute("style", "border-radius: 8px; margin-bottom: 8px;");
-
+          
+          const cycleButton = this.createCycleButton();
+          cycleButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.cycleThumbnail(videoId, image, anchorTag);
+          });
+          
           anchorTag.append(image);
           ytImage.append(anchorTag);
+          ytImage.append(cycleButton);
           items.prepend(ytImage);
         }
       } else if (!hide && thumbnailElement) {
-        thumbnailElement.remove();
+        thumbnailElement.closest('ytd-thumbnail').remove();
       }
     }
   }
