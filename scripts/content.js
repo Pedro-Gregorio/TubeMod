@@ -816,16 +816,22 @@ class YouTubeElement {
 
         if (items) {
           let ytImage = document.createElement("ytd-thumbnail");
-          let node = document.createElement("img");
-          node.setAttribute("id", "video-thumbnail-tubemod");
-          node.setAttribute("src", thumbnailSource);
-          node.setAttribute(
+
+          let anchorTag = document.createElement("a");
+          anchorTag.setAttribute("target", "_blank");
+          anchorTag.setAttribute("href", thumbnailSource);
+
+          let image = document.createElement("img");
+          image.setAttribute("id", "video-thumbnail-tubemod");
+          image.setAttribute("src", thumbnailSource);
+          image.setAttribute(
             "class",
             "yt-core-image--fill-parent-width yt-core-image--loaded"
           );
-          node.setAttribute("style", "border-radius: 8px; margin-bottom: 8px;");
+          image.setAttribute("style", "border-radius: 8px; margin-bottom: 8px;");
 
-          ytImage.append(node);
+          anchorTag.append(image);
+          ytImage.append(anchorTag);
           items.prepend(ytImage);
         }
       } else if (!hide && thumbnailElement) {
