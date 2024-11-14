@@ -762,12 +762,11 @@ class YouTubeElement {
     this.applyVisibility(hide);
   }
 
-  createCycleButton() {
+  createCycleButtons(direction) {
     const button = document.createElement('button');
-    button.innerHTML = '→';
-    button.setAttribute('style', `
+    button.innerHTML = direction === 'next' ? '→' : '←';
+    const baseStyles = `
       position: absolute;
-      right: 10px;
       top: 50%;
       transform: translateY(-50%);
       background: rgba(0, 0, 0, 0.7);
@@ -778,17 +777,25 @@ class YouTubeElement {
       height: 32px;
       cursor: pointer;
       z-index: 2;
+    `;
+    button.setAttribute('style', `
+      ${baseStyles}
+      ${direction === 'next' ? 'right: 10px;' : 'left: 10px;'}
     `);
     return button;
   }
 
-  cycleThumbnail(videoId, image, container) {
-    this.currentThumbnailIndex = (this.currentThumbnailIndex + 1) % THUMBNAIL_VARIANTS.length;
+  cycleThumbnail(videoId, image, container, direction) {
+    const totalVariants = THUMBNAIL_VARIANTS.length;
+    if (direction === 'next') {
+      this.currentThumbnailIndex = (this.currentThumbnailIndex + 1) % totalVariants;
+    } else {
+      this.currentThumbnailIndex = (this.currentThumbnailIndex - 1 + totalVariants) % totalVariants;
+    }
     const newThumbnailUrl = `https://img.youtube.com/vi/${videoId}/${THUMBNAIL_VARIANTS[this.currentThumbnailIndex]}`;
     image.setAttribute('src', newThumbnailUrl);
     container.setAttribute('href', newThumbnailUrl);
   }
-
 
   applyVisibility(hide) {
     const elements = document.evaluate(
@@ -860,15 +867,23 @@ class YouTubeElement {
           image.setAttribute("class", "yt-core-image--fill-parent-width yt-core-image--loaded");
           image.setAttribute("style", "border-radius: 8px; margin-bottom: 8px;");
           
-          const cycleButton = this.createCycleButton();
-          cycleButton.addEventListener('click', (e) => {
+          const nextButton = this.createCycleButtons('next');
+          const prevButton = this.createCycleButtons('prev');
+          
+          nextButton.addEventListener('click', (e) => {
             e.preventDefault();
-            this.cycleThumbnail(videoId, image, anchorTag);
+            this.cycleThumbnail(videoId, image, anchorTag, 'next');
           });
           
+          prevButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.cycleThumbnail(videoId, image, anchorTag, 'prev');
+          });
+
           anchorTag.append(image);
           ytImage.append(anchorTag);
-          ytImage.append(cycleButton);
+          ytImage.append(nextButton);
+          ytImage.append(prevButton);
           items.prepend(ytImage);
         }
       } else if (!hide && thumbnailElement) {
