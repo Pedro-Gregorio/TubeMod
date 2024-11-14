@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.10.0A",
+  tubemod_version: "1.10.1",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -777,6 +777,9 @@ class YouTubeElement {
       height: 32px;
       cursor: pointer;
       z-index: 2;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+      pointer-events: all;
     `;
     button.setAttribute('style', `
       ${baseStyles}
@@ -878,6 +881,16 @@ class YouTubeElement {
           prevButton.addEventListener('click', (e) => {
             e.preventDefault();
             this.cycleThumbnail(videoId, image, anchorTag, 'prev');
+          });
+
+          ytImage.addEventListener('mouseenter', () => {
+            nextButton.style.opacity = '1';
+            prevButton.style.opacity = '1';
+          });
+          
+          ytImage.addEventListener('mouseleave', () => {
+            nextButton.style.opacity = '0';
+            prevButton.style.opacity = '0';
           });
 
           anchorTag.append(image);
