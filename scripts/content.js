@@ -693,6 +693,13 @@ const STORAGE = {
   ],
 };
 
+const THUMBNAIL_VARIANTS = [
+  'maxresdefault.jpg',  // HD (1280x720)
+  'maxres1.jpg',              // Alternate 1
+  'maxres2.jpg',              // Alternate 2
+  'maxres3.jpg'               // Alternate 3
+];
+
 const eventBus = {
   listeners: {},
   subscribe(event, callback) {
@@ -751,6 +758,7 @@ function debounce(func, wait) {
 
 class YouTubeElement {
   constructor(config) {
+    this.currentThumbnailIndex = 0;
     Object.assign(this, config);
   }
 
@@ -768,6 +776,44 @@ class YouTubeElement {
       return;
     }
     this.applyVisibility(hide);
+  }
+
+  createCycleButtons(direction) {
+    const button = document.createElement('button');
+    button.innerHTML = direction === 'next' ? '→' : '←';
+    const baseStyles = `
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+      pointer-events: all;
+    `;
+    button.setAttribute('style', `
+      ${baseStyles}
+      ${direction === 'next' ? 'right: 10px;' : 'left: 10px;'}
+    `);
+    return button;
+  }
+
+  cycleThumbnail(videoId, image, container, direction) {
+    const totalVariants = THUMBNAIL_VARIANTS.length;
+    if (direction === 'next') {
+      this.currentThumbnailIndex = (this.currentThumbnailIndex + 1) % totalVariants;
+    } else {
+      this.currentThumbnailIndex = (this.currentThumbnailIndex - 1 + totalVariants) % totalVariants;
+    }
+    const newThumbnailUrl = `https://img.youtube.com/vi/${videoId}/${THUMBNAIL_VARIANTS[this.currentThumbnailIndex]}`;
+    image.setAttribute('src', newThumbnailUrl);
+    container.setAttribute('href', newThumbnailUrl);
   }
 
   applyVisibility(hide) {
@@ -826,41 +872,60 @@ class YouTubeElement {
     }
 
     if (this.id === "video-thumbnail") {
-      const thumbnailElement = document.getElementById(
-        "video-thumbnail-tubemod"
-      );
-
+      const thumbnailElement = document.getElementById("video-thumbnail-tubemod");
       if (hide && thumbnailElement === null) {
         const items = document.querySelector(
           "ytd-watch-next-secondary-results-renderer div#items"
         );
-
         let currentVideo = new URL(document.URL);
         let videoId = currentVideo.searchParams.get("v");
-        let thumbnailSource = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
+        let thumbnailSource = `https://img.youtube.com/vi/${videoId}/${THUMBNAIL_VARIANTS[0]}`;
+        
         if (items) {
           let ytImage = document.createElement("ytd-thumbnail");
-
+          ytImage.setAttribute('style', 'position: relative;');
+          
           let anchorTag = document.createElement("a");
           anchorTag.setAttribute("target", "_blank");
           anchorTag.setAttribute("href", thumbnailSource);
-
+          
           let image = document.createElement("img");
           image.setAttribute("id", "video-thumbnail-tubemod");
           image.setAttribute("src", thumbnailSource);
-          image.setAttribute(
-            "class",
-            "yt-core-image--fill-parent-width yt-core-image--loaded"
-          );
+          image.setAttribute("class", "yt-core-image--fill-parent-width yt-core-image--loaded");
           image.setAttribute("style", "border-radius: 8px; margin-bottom: 8px;");
+          
+          const nextButton = this.createCycleButtons('next');
+          const prevButton = this.createCycleButtons('prev');
+          
+          nextButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.cycleThumbnail(videoId, image, anchorTag, 'next');
+          });
+          
+          prevButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.cycleThumbnail(videoId, image, anchorTag, 'prev');
+          });
+
+          ytImage.addEventListener('mouseenter', () => {
+            nextButton.style.opacity = '1';
+            prevButton.style.opacity = '1';
+          });
+          
+          ytImage.addEventListener('mouseleave', () => {
+            nextButton.style.opacity = '0';
+            prevButton.style.opacity = '0';
+          });
 
           anchorTag.append(image);
           ytImage.append(anchorTag);
+          ytImage.append(nextButton);
+          ytImage.append(prevButton);
           items.prepend(ytImage);
         }
       } else if (!hide && thumbnailElement) {
-        thumbnailElement.remove();
+        thumbnailElement.closest('ytd-thumbnail').remove();
       }
     }
   }
