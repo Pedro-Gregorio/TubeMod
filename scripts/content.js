@@ -578,6 +578,14 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
+      id: "video-shorts-description",
+      selector: "//ytd-structured-description-content-renderer//ytd-reel-shelf-renderer",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
       id: "video-transcription-description",
       selector: "//ytd-video-description-transcript-section-renderer",
       checked: false,
@@ -668,7 +676,7 @@ const STORAGE = {
     },
     {
       id: "video-suggested-shorts",
-      selector: "//ytd-reel-shelf-renderer",
+      selector: "//div[@id='contents']/parent::ytd-item-section-renderer[contains(@class, 'watch-next')]//ytd-reel-shelf-renderer",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -781,8 +789,17 @@ class YouTubeElement {
       const viewsElement = document.getElementById("view-count");
       if (viewsElement) {
         hide
-          ? (viewsElement.disabled = "true")
-          : (viewsElement.disabled = "false");
+          ? (viewsElement.disabled = true)
+          : (viewsElement.disabled = false);
+      }
+    }
+
+    if (this.id === "video-shorts-description") {
+      const descriptionShorts = document.querySelector("ytd-structured-description-content-renderer > div#items > ytd-reel-shelf-renderer");
+      if (descriptionShorts) {
+        hide
+          ? (descriptionShorts.disabled = true)
+          : (descriptionShorts.disabled = false);
       }
     }
 

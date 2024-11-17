@@ -12,6 +12,8 @@ Add:
 
 - Video
   - Hide 'Sleep Timer' Video Settings Option
+  - Hide 'Shorts remixing this video' in Video Description
+  - Hide 'People mentioned' in Video Description
   - Hide 'AI-generated video summary'
   - Hide 'Watch on YouTube' Offer Module
   - Show (not hide 😉) Video Thumbnail next to the Video Player
