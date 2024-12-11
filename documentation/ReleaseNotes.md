@@ -1,5 +1,12 @@
 # TubeMod - Release Notes
 
+## 1.11.0
+
+Add:
+
+- Video
+  - Hide 'Avatars' on video comments
+
 ## 1.10.0
 
 Add:
