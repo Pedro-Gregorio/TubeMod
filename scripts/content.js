@@ -121,7 +121,7 @@ const STORAGE = {
     },
     {
       id: "search-bar",
-      selector: "//ytd-searchbox[@id='search']",
+      selector: "//ytd-searchbox[@id='search'] | //yt-searchbox",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -138,7 +138,7 @@ const STORAGE = {
     {
       id: "create",
       selector:
-        "(//div[@id='buttons' and contains(@class, 'ytd-masthead')]//a/../..)[1]",
+        "//div[@id='buttons' and contains(@class, 'ytd-masthead')]/ytd-button-renderer",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

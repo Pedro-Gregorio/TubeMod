@@ -10,6 +10,11 @@ Add:
 - Video
   - Hide 'Avatars' on video comments
 
+Fix:
+
+- Header
+  - Hide Search Bar and Create Icon are again working properly.
+
 ## 1.10.0
 
 Add:
