@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.11.0B",
+  tubemod_version: "1.11.0A",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -349,7 +349,7 @@ const STORAGE = {
     {
       id: "ads",
       selector:
-        "//ytd-ad-slot-renderer/ancestor::ytd-rich-item-renderer | //*[@id='player-ads'] | //ytd-banner-promo-renderer/..",
+        "//ytd-ad-slot-renderer/ancestor::ytd-rich-item-renderer | //*[@id='player-ads'] | //ytd-banner-promo-renderer/.. | //div[@id='masthead-ad']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

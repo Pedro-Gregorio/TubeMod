@@ -4,6 +4,9 @@
 
 Add:
 
+- Home
+  - Hide Video Ad (included in the Hide Sponsored Content toggle)
+
 - Video
   - Hide 'Avatars' on video comments
 
