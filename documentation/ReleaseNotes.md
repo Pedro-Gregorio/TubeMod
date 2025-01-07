@@ -8,7 +8,12 @@ Add:
   - Set all video titles to lowercase
 
 - Video:
+  - Hide 'Playback Speed' Video Settings Option
   - Hide Video Progress Bar dot
+
+Fix:
+
+- Selector being used to hide the Sleep Timer element is properly defined now;
 
 ## 1.11.0
 
