@@ -1,6 +1,8 @@
 const DISPLAY = "display";
 const FILTER = "filter";
+const TEXT_TRANSFORM = "text-transform";
 const DISPLAY_NONE = "none";
+const LOWERCASE = "lowercase";
 
 const PAGE_TYPES = {
   HOME: "home",
@@ -59,7 +61,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0A",
+  tubemod_version: "1.12.0B",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -109,6 +111,15 @@ const STORAGE = {
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "lowercase-title",
+      selector:
+        "//ytd-watch-metadata//div[@id='title'] | //*[@id='video-title']",
+      checked: false,
+      property: TEXT_TRANSFORM,
+      style: LOWERCASE,
       pageTypes: [],
     },
     {

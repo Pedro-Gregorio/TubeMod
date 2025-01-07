@@ -4,17 +4,20 @@
 
 Add:
 
-- Video
+- General:
+  - Set all video titles to lowercase
+
+- Video:
   - Hide Video Progress Bar dot
 
 ## 1.11.0
 
 Add:
 
-- Home
+- Home:
   - Hide Video Ad (included in the Hide Sponsored Content toggle)
 
-- Video
+- Video:
   - Hide 'Avatars' on video comments
 
 Fix:
