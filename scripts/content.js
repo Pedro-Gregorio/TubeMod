@@ -61,7 +61,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0C",
+  tubemod_version: "1.12.0D",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -351,7 +351,7 @@ const STORAGE = {
     {
       id: "tabs",
       selector:
-        "//ytd-feed-filter-chip-bar-renderer[@component-style='FEED_FILTER_CHIP_BAR_STYLE_TYPE_DEFAULT']/..",
+        "//ytd-feed-filter-chip-bar-renderer[@component-style='FEED_FILTER_CHIP_BAR_STYLE_TYPE_DEFAULT']/.. | //div[@id='frosted-glass']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
