@@ -61,7 +61,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0D",
+  tubemod_version: "1.12.0E",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -398,6 +398,14 @@ const STORAGE = {
     //   style: DISPLAY_NONE,
     //   pageTypes: [PAGE_TYPES.HOME],
     // },
+    {
+      id: "home-playables",
+      selector: "//ytd-rich-section-renderer[.//a[contains(@href, '/playables')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.HOME],
+    },
     {
       id: "playlist-mix",
       selector:

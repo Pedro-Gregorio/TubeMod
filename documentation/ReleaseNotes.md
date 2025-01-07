@@ -7,6 +7,9 @@ Add:
 - General:
   - Set all video titles to lowercase
 
+- Home:
+  - Hide Youtube Playables
+
 - Video:
   - Hide 'Playback Speed' Video Settings Option
   - Hide Video Progress Bar dot
