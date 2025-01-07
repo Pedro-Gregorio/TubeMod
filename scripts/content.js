@@ -59,7 +59,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.11.0A",
+  tubemod_version: "1.12.0A",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -444,6 +444,14 @@ const STORAGE = {
       property: DISPLAY,
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.TRENDING],
+    },
+    {
+      id: "video-progress-bar-dot",
+      selector: "//div[@class='ytp-scrubber-container']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
       id: "video-settings-sleep-timer",

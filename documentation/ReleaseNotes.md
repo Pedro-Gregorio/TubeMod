@@ -1,5 +1,12 @@
 # TubeMod - Release Notes
 
+## 1.12.0
+
+Add:
+
+- Video
+  - Hide Video Progress Bar dot
+
 ## 1.11.0
 
 Add:
