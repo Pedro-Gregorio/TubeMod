@@ -13,11 +13,17 @@ Add:
 - Video:
   - Hide 'Playback Speed' Video Settings Option
   - Hide Video Progress Bar dot
+  - Hide 'Thanks' Button
 
 Fix:
 
 - Hiding Home Page tabs no longer cuts the top thumbnails;
 - Selector being used to hide the Sleep Timer element is properly defined now;
+
+Remove:
+
+- Video:
+  - Hide 'Extra Buttons' Option was removed, but individual options were added.
 
 ## 1.11.0
 

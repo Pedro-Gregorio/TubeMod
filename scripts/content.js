@@ -61,7 +61,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0G",
+  tubemod_version: "1.12.0H",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -400,7 +400,8 @@ const STORAGE = {
     // },
     {
       id: "home-playables",
-      selector: "//ytd-rich-section-renderer[.//a[contains(@href, '/playables')]]",
+      selector:
+        "//ytd-rich-section-renderer[.//a[contains(@href, '/playables')]]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -555,8 +556,8 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
-      id: "video-extra-buttons",
-      selector: "//div[@id='flexible-item-buttons']/yt-button-view-model",
+      id: "video-thanks",
+      selector: "//div[@id='flexible-item-buttons']/yt-button-view-model[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm5.5-15c-1.74 0-3.41.88-4.5 2.28C10.91 2.88 9.24 2 7.5 2 4.42 2 2 4.64 2 7.99c0 4.12 3.4 7.48 8.55 12.58L12 22l1.45-1.44C18.6 15.47 22 12.11 22 7.99 22 4.64 19.58 2 16.5 2zm-3.75 17.85-.75.74-.74-.73-.04-.04C6.27 14.92 3 11.69 3 7.99 3 5.19 4.98 3 7.5 3c1.4 0 2.79.71 3.71 1.89L12 5.9l.79-1.01C13.71 3.71 15.1 3 16.5 3 19.02 3 21 5.19 21 7.99c0 3.7-3.28 6.94-8.25 11.86z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -615,7 +616,8 @@ const STORAGE = {
     },
     {
       id: "video-shorts-description",
-      selector: "//ytd-structured-description-content-renderer//ytd-reel-shelf-renderer",
+      selector:
+        "//ytd-structured-description-content-renderer//ytd-reel-shelf-renderer",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -712,7 +714,8 @@ const STORAGE = {
     },
     {
       id: "video-suggested-shorts",
-      selector: "//div[@id='contents']/parent::ytd-item-section-renderer[contains(@class, 'watch-next')]//ytd-reel-shelf-renderer",
+      selector:
+        "//div[@id='contents']/parent::ytd-item-section-renderer[contains(@class, 'watch-next')]//ytd-reel-shelf-renderer",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -832,14 +835,14 @@ class YouTubeElement {
     if (this.id === "video-views") {
       const viewsElement = document.getElementById("view-count");
       if (viewsElement) {
-        hide
-          ? (viewsElement.disabled = true)
-          : (viewsElement.disabled = false);
+        hide ? (viewsElement.disabled = true) : (viewsElement.disabled = false);
       }
     }
 
     if (this.id === "video-shorts-description") {
-      const descriptionShorts = document.querySelector("ytd-structured-description-content-renderer > div#items > ytd-reel-shelf-renderer");
+      const descriptionShorts = document.querySelector(
+        "ytd-structured-description-content-renderer > div#items > ytd-reel-shelf-renderer"
+      );
       if (descriptionShorts) {
         hide
           ? (descriptionShorts.disabled = true)
@@ -850,9 +853,9 @@ class YouTubeElement {
     if (this.id === "tabs") {
       const frostedBar = document.getElementById("frosted-glass");
       if (frostedBar) {
-        frostedBar.style.height = hide 
-        ? (frostedBar.style.setProperty('height', '56px'))
-        : (frostedBar.style.setProperty('height', '112px'));
+        frostedBar.style.height = hide
+          ? frostedBar.style.setProperty("height", "56px")
+          : frostedBar.style.setProperty("height", "112px");
       }
     }
 
@@ -906,7 +909,10 @@ class YouTubeElement {
             "class",
             "yt-core-image--fill-parent-width yt-core-image--loaded"
           );
-          image.setAttribute("style", "border-radius: 8px; margin-bottom: 8px;");
+          image.setAttribute(
+            "style",
+            "border-radius: 8px; margin-bottom: 8px;"
+          );
 
           anchorTag.append(image);
           ytImage.append(anchorTag);
