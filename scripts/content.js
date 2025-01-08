@@ -61,7 +61,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0F",
+  tubemod_version: "1.12.0G",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -694,14 +694,6 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
-      id: "video-thumbnail",
-      selector: "//ytd-watch-next-secondary-results-renderer/div[@id='items']",
-      checked: false,
-      // property: DISPLAY,
-      // style: DISPLAY_NONE,
-      pageTypes: [PAGE_TYPES.VIDEO],
-    },
-    {
       id: "video-tabs",
       selector: "//yt-related-chip-cloud-renderer",
       checked: false,
@@ -732,6 +724,14 @@ const STORAGE = {
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-thumbnail",
+      selector: "//ytd-watch-next-secondary-results-renderer/div[@id='items']",
+      checked: false,
+      // property: DISPLAY,
+      // style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.VIDEO],
     },
   ],
@@ -890,7 +890,7 @@ class YouTubeElement {
 
         let currentVideo = new URL(document.URL);
         let videoId = currentVideo.searchParams.get("v");
-        let thumbnailSource = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        let thumbnailSource = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
 
         if (items) {
           let ytImage = document.createElement("ytd-thumbnail");
