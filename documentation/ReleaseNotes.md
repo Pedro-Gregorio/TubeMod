@@ -14,6 +14,7 @@ Add:
   - Hide 'Playback Speed' Video Settings Option
   - Hide Video Progress Bar dot
   - Hide 'Thanks' Button
+  - Hide 'Clip' Button
   - Hide 'Save' Button
 
 Fix:
