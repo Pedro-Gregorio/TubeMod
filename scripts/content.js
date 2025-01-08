@@ -564,6 +564,14 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
+      id: "video-save",
+      selector: "//div[@id='flexible-item-buttons']/yt-button-view-model[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M18 4v15.06l-5.42-3.87-.58-.42-.58.42L6 19.06V4h12m1-1H5v18l7-5 7 5V3z']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
       id: "video-collapsed-buttons",
       selector:
         "//div[@id='top-row']//ytd-menu-renderer//yt-button-shape[@id='button-shape']",
@@ -900,7 +908,7 @@ class YouTubeElement {
 
           let anchorTag = document.createElement("a");
           anchorTag.setAttribute("target", "_blank");
-          anchorTag.setAttribute("href", thumbnailSource);
+          anchorTag.setAttribute("href", "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg");
 
           let image = document.createElement("img");
           image.setAttribute("id", "video-thumbnail-tubemod");
