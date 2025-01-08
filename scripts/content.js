@@ -61,7 +61,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0E",
+  tubemod_version: "1.12.0F",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -351,7 +351,7 @@ const STORAGE = {
     {
       id: "tabs",
       selector:
-        "//ytd-feed-filter-chip-bar-renderer[@component-style='FEED_FILTER_CHIP_BAR_STYLE_TYPE_DEFAULT']/.. | //div[@id='frosted-glass']",
+        "//ytd-feed-filter-chip-bar-renderer[@component-style='FEED_FILTER_CHIP_BAR_STYLE_TYPE_DEFAULT']/..",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -844,6 +844,15 @@ class YouTubeElement {
         hide
           ? (descriptionShorts.disabled = true)
           : (descriptionShorts.disabled = false);
+      }
+    }
+
+    if (this.id === "tabs") {
+      const frostedBar = document.getElementById("frosted-glass");
+      if (frostedBar) {
+        frostedBar.style.height = hide 
+        ? (frostedBar.style.setProperty('height', '56px'))
+        : (frostedBar.style.setProperty('height', '112px'));
       }
     }
 
