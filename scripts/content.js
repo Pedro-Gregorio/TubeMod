@@ -63,7 +63,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0J",
+  tubemod_version: "1.12.0K",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -684,6 +684,14 @@ const STORAGE = {
     {
       id: "video-comments-avatars",
       selector: "//ytd-comments[@id='comments']//div[@id='author-thumbnail']/a",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-comments-replies",
+      selector: "//ytd-comments[@id='comments']//div[@id='replies']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

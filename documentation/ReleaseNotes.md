@@ -17,6 +17,7 @@ Add:
   - Hide 'Clip' Button
   - Hide 'Save' Button
   - Hide Progress Bar Gradient
+  - Hide Comments Replies
 
 Fix:
 
