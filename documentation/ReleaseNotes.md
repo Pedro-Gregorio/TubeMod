@@ -16,6 +16,7 @@ Add:
   - Hide 'Thanks' Button
   - Hide 'Clip' Button
   - Hide 'Save' Button
+  - Hide Progress Bar Gradient
 
 Fix:
 

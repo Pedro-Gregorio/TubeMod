@@ -1,8 +1,10 @@
 const DISPLAY = "display";
+const BACKGROUND = "background";
 const FILTER = "filter";
 const TEXT_TRANSFORM = "text-transform";
 const DISPLAY_NONE = "none";
 const LOWERCASE = "lowercase";
+const YT_RED = "#F03"
 
 const PAGE_TYPES = {
   HOME: "home",
@@ -61,7 +63,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0I",
+  tubemod_version: "1.12.0J",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -753,6 +755,14 @@ const STORAGE = {
       // style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.VIDEO],
     },
+    {
+      id: "youtube-progress-bar",
+      selector: "//div[contains(@class,'ytp-play-progress')]",
+      checked: false,
+      property: BACKGROUND,
+      style: YT_RED,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    }
   ],
 };
 
