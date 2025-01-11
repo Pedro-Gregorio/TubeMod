@@ -63,7 +63,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0K",
+  tubemod_version: "1.12.0M",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -392,14 +392,22 @@ const STORAGE = {
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.HOME],
     },
-    // {
-    //   id: "home-news",
-    //   selector: "",
-    //   checked: false,
-    //   property: DISPLAY,
-    //   style: DISPLAY_NONE,
-    //   pageTypes: [PAGE_TYPES.HOME],
-    // },
+    {
+      id: "home-news",
+      selector: "//ytd-rich-section-renderer[not(.//ytm-shorts-lockup-view-model) and not(.//div[contains(@class, 'button-container') and not(@hidden)][.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='m18 9.28-6.35 6.35-6.37-6.35.72-.71 5.64 5.65 5.65-5.65z']])]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.HOME],
+    },
+    {
+      id: "home-trending",
+      selector: "//ytd-rich-section-renderer[.//div[contains(@class, 'button-container') and not(@hidden)][.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='m18 9.28-6.35 6.35-6.37-6.35.72-.71 5.64 5.65 5.65-5.65z']]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.HOME],
+    },
     {
       id: "home-playables",
       selector:

@@ -9,6 +9,8 @@ Add:
 
 - Home:
   - Hide Youtube Playables
+  - Hide Trending
+  - Hide Breaking News
 
 - Video:
   - Hide 'Playback Speed' Video Settings Option
