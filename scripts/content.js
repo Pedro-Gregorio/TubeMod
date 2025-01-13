@@ -63,7 +63,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0N",
+  tubemod_version: "1.12.0O",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -977,7 +977,7 @@ class YouTubeElement {
       const videoContainer = document.querySelector("ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app");
 
       if (videoContainer) {
-        videoContainer.style.marginLeft = 0;
+        videoContainer.style.marginLeft = hide ? 0 : null;
       }
     }
   }
