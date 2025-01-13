@@ -7,6 +7,9 @@ Add:
 - General:
   - Set all video titles to lowercase
 
+- Sidebar:
+  - Hide Sidebar
+
 - Home:
   - Hide Youtube Playables
   - Hide Trending

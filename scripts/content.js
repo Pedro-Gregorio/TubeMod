@@ -63,7 +63,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0M",
+  tubemod_version: "1.12.0N",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -172,6 +172,14 @@ const STORAGE = {
       property: DISPLAY,
       style: DISPLAY_NONE,
       pageTypes: [],
+    },
+    {
+      id: "sidebar",
+      selector: "//tp-yt-app-drawer | //ytd-mini-guide-renderer | //yt-icon-button[@id='guide-button']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: []
     },
     {
       id: "home",
@@ -962,6 +970,14 @@ class YouTubeElement {
         }
       } else if (!hide && thumbnailElement) {
         thumbnailElement.remove();
+      }
+    }
+
+    if (this.id === "sidebar") {
+      const videoContainer = document.querySelector("ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app");
+
+      if (videoContainer) {
+        videoContainer.style.marginLeft = 0;
       }
     }
   }
