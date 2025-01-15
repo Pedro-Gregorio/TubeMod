@@ -7,6 +7,9 @@ Add:
 - General:
   - Set all video titles to lowercase
 
+- Header:
+  - Add Youtube Studio Icon next to the Notification Icon
+
 - Sidebar:
   - Hide Sidebar
 
