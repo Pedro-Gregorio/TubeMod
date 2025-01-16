@@ -12,6 +12,7 @@ const PAGE_TYPES = {
   VIDEO: "video",
   SEARCH: "search",
   TRENDING: "trending",
+  DOWNLOADS: "downloads"
 };
 
 function saveSettings() {
@@ -58,6 +59,8 @@ function getCurrentPageType() {
     return PAGE_TYPES.SEARCH;
   } else if (url.includes("/feed/trending")) {
     return PAGE_TYPES.TRENDING;
+  } else if (url.includes("/feed/downloads")) {
+    return PAGE_TYPES.DOWNLOADS;
   }
   return null;
 }
@@ -122,6 +125,14 @@ const STORAGE = {
       checked: false,
       property: TEXT_TRANSFORM,
       style: LOWERCASE,
+      pageTypes: [],
+    },
+    {
+      id: "download-badge",
+      selector: "//p[text()[contains(., 'Downloaded')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
       pageTypes: [],
     },
     {
