@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TubeMod",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "description": "TubeMod allows you to customize YouTube's UI to your preferences, by  keeping you focused on what matters!",
   "action": {
     "default_popup": "./public/popup.html"

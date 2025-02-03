@@ -1,5 +1,12 @@
 # TubeMod - Release Notes
 
+## 1.13.0
+
+Add:
+
+- Home:
+  - Hide Partially Viewed Videos
+
 ## 1.12.0
 
 Add:

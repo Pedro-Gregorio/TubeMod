@@ -63,7 +63,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.12.0",
+  tubemod_version: "1.13.0A",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -452,6 +452,15 @@ const STORAGE = {
       id: "viewed-videos",
       selector:
         "//ytd-rich-item-renderer[.//div[@id='progress'][contains(@style, 'width: 100%')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.HOME],
+    },
+    {
+      id: "partially-viewed-videos",
+      selector:
+        "//ytd-rich-item-renderer[.//ytd-thumbnail[not(@is-live-video)]//div[@id='progress']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -884,6 +893,13 @@ class YouTubeElement {
       hide
         ? (elements.snapshotItem(i).style[this.property] = this.style)
         : (elements.snapshotItem(i).style[this.property] = "");
+    }
+
+    if (this.id === "home-posts") {
+      const postsElement = document.querySelector("ytd-rich-section-renderer:has(ytd-post-renderer)");
+      if (postsElement) {
+        hide ? (postsElement.disabled = true) : (postsElement.disabled = false);
+      }
     }
 
     if (this.id === "video-views") {
