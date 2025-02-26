@@ -1,18 +1,14 @@
 # TubeMod - Release Notes
 
-## 1.14.0
-
-Add:
-
-- Downloads:
-  - Hide 'Downloaded' badge beneath downloaded videos
-
 ## 1.13.0
 
 Add:
 
 - Home:
   - Hide Partially Viewed Videos
+
+- Downloads:
+  - Hide 'Downloaded' badge beneath downloaded videos
 
 ## 1.12.0
 
