@@ -781,6 +781,15 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
+      id: "video-suggested-videos-new-badge",
+      selector:
+        "//ytd-compact-video-renderer//div/ytd-badge-supported-renderer[.//div[contains(@class, 'badge')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
       id: "video-suggested-shorts",
       selector:
         "//div[@id='contents']/parent::ytd-item-section-renderer[contains(@class, 'watch-next')]//ytd-reel-shelf-renderer",

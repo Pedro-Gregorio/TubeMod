@@ -7,6 +7,9 @@ Add:
 - Home:
   - Hide Partially Viewed Videos
 
+- Videos
+  - Hide 'New' Badge under recommended videos
+
 - Downloads:
   - Hide 'Downloaded' badge beneath downloaded videos
 
