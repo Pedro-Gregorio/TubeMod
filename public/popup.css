@@ -217,3 +217,37 @@ input:checked + .slider:before {
 .version {
   text-align: right;
 }
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-bottom: 10px;
+}
+
+.search-container label {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-accent);
+}
+
+#search-input {
+  width: 75%;
+  padding: 8px;
+  border: 1px solid var(--color-secondary);
+  border-radius: 8px;
+  background-color: var(--color-background);
+  color: var(--color-accent);
+  outline: none;
+  transition: 0.3s;
+}
+
+#search-input::placeholder {
+  color: var(--color-secondary);
+  opacity: 0.8;
+}
+
+#search-input:focus {
+  border-color: var(--color-tertiary);
+  box-shadow: 0 0 5px var(--color-tertiary);
+}

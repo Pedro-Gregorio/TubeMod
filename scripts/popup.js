@@ -1,85 +1,142 @@
-let inputs = document.querySelectorAll("input");
-let collapsibleElements = document.getElementsByClassName("collapsible");
-
 document.addEventListener("DOMContentLoaded", () => {
-  chrome.storage.local.get(["tubemod_elements"], (result) => {
-    const elements = result.tubemod_elements
-      ? JSON.parse(result.tubemod_elements)
-      : null;
-
-    if (elements !== null) {
-      elements.forEach((element) => {
-        if (document.getElementById(element.id)) {
-          document.getElementById(element.id).checked = element.checked;
-        }
-      });
-    }
-
-    for (i = 0; i < collapsibleElements.length; i++) {
-      collapsibleElements[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
-    }
-
-    inputs.forEach((element) => {
-      element.addEventListener("change", () => {
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-          chrome.tabs.sendMessage(tabs[0].id, {
-            action: {
-              target: element.id,
-              hide: element.checked,
-            },
-          });
-        });
-      });
-    });
-  });
+	loadSettings();
+	setupCollapsibleSections();
+	setupInputChangeListeners();
+	setupSearch();
 });
 
 chrome.runtime.onMessage.addListener(function (message) {
-  if (message.type === "popup") {
-    chrome.storage.local.set({ elements: JSON.stringify(message.data) });
-  }
+	if (message.type === "popup") {
+		chrome.storage.local.set({elements: JSON.stringify(message.data)});
+	}
 });
 
 document.getElementById("reset-settings").addEventListener("click", () => {
-  chrome.storage.local.clear(() => {
-    console.info("Settings cleared.");
-  });
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {
-      action: "clearLocalStorage",
-    });
-  });
-  window.close();
+	chrome.storage.local.clear(() => {
+		console.info("Settings cleared.");
+	});
+	chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+		chrome.tabs.sendMessage(tabs[0].id, {
+			action: "clearLocalStorage",
+		});
+	});
+	window.close();
 });
 
 document.getElementById("save-settings").addEventListener("click", () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {
-      action: "saveSettings",
-    });
-  });
+	chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+		chrome.tabs.sendMessage(tabs[0].id, {
+			action: "saveSettings",
+		});
+	});
 });
 
 document
-  .getElementById("import-settings")
-  .addEventListener("change", async (e) => {
-    let file = e.target.files.item(0);
+	.getElementById("import-settings")
+	.addEventListener("change", async (e) => {
+		let file = e.target.files.item(0);
 
-    const text = await file.text();
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {
-        action: "importSettings",
-        content: text,
-      });
-    });
-  });
+		const text = await file.text();
+		chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+			chrome.tabs.sendMessage(tabs[0].id, {
+				action: "importSettings",
+				content: text,
+			});
+		});
+	});
 
 // [...document.querySelectorAll('#sidebar input')].every(checkbox => checkbox.checked) -> if all the checkboxes are checked, we may want to collapse the sidebar or simply remove the left margin
+
+/**
+ * Loads saved settings from Chrome's local storage and applies them to the UI.
+ * Retrieves stored elements and updates their checked state accordingly.
+ */
+function loadSettings() {
+	chrome.storage.local.get(["tubemod_elements"], (result) => {
+		const elements = result.tubemod_elements ? JSON.parse(result.tubemod_elements) : null;
+
+		if (elements) {
+			elements.forEach((element) => {
+				const el = document.getElementById(element.id);
+				if (el) {
+					el.checked = element.checked;
+				}
+			});
+		}
+	});
+}
+
+/**
+ * Initializes collapsible sections by adding event listeners.
+ * Toggles the visibility of the associated content when clicked.
+ */
+function setupCollapsibleSections() {
+	const collapsibleElements = document.getElementsByClassName("collapsible");
+	for (let i = 0; i < collapsibleElements.length; i++) {
+		collapsibleElements[i].addEventListener("click", function () {
+			this.classList.toggle("active");
+			const content = this.nextElementSibling;
+			content.style.display = content.style.display === "block" ? "none" : "block";
+		});
+	}
+}
+
+/**
+ * Adds event listeners to input elements to detect changes.
+ * Sends a message to the active tab to apply the changes in real time.
+ */
+function setupInputChangeListeners() {
+	const inputs = document.querySelectorAll("input");
+	inputs.forEach((element) => {
+		element.addEventListener("change", () => {
+			chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+				if (tabs.length > 0) {
+					chrome.tabs.sendMessage(tabs[0].id, {
+						action: {
+							target: element.id,
+							hide: element.checked,
+						},
+					});
+				}
+			});
+		});
+	});
+}
+
+/**
+ * Sets up the search settings functionality.
+ */
+function setupSearch() {
+	const searchInput = document.getElementById("search-input");
+	const containers = document.querySelectorAll(".container");
+	const collapsibleElements = document.getElementsByClassName("collapsible");
+
+	searchInput.addEventListener("input", () => {
+		const searchTerm = searchInput.value.toLowerCase();
+
+		// Open all collapsible containers when searching, close them otherwise.
+		for (let i = 0; i < collapsibleElements.length; i++) {
+			const content = collapsibleElements[i].nextElementSibling;
+			content.style.display = searchTerm !== "" ? "block" : "none";
+		}
+
+		containers.forEach((container) => {
+			//let containerVisible = false;
+			const labels = container.querySelectorAll("label");
+
+			labels.forEach((label) => {
+				const labelText = label.textContent.toLowerCase().trim();
+
+				if (labelText === "" || labelText === " ") {
+					return;
+				}
+
+				const checkboxContainer = label.closest(".checkbox-container");
+
+				const match = searchTerm ? labelText.includes(searchTerm) : true;
+
+				checkboxContainer.style.display = match ? "flex" : "none";
+			});
+		});
+	});
+}
