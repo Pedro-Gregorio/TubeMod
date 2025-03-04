@@ -15,7 +15,7 @@ document.getElementById("reset-settings").addEventListener("click", () => {
   chrome.storage.local.clear(() => {
     console.info("Settings cleared.");
   });
-  chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {
       action: "clearLocalStorage",
     });
@@ -24,7 +24,7 @@ document.getElementById("reset-settings").addEventListener("click", () => {
 });
 
 document.getElementById("save-settings").addEventListener("click", () => {
-  chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {
       action: "saveSettings",
     });
@@ -37,7 +37,7 @@ document
     let file = e.target.files.item(0);
 
     const text = await file.text();
-    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {
         action: "importSettings",
         content: text,
