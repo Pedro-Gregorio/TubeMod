@@ -40,6 +40,20 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
+
+  const dropdown = document.getElementById("channel-dropdown");
+
+  // Load and apply the user's saved preferred channel tab preference.
+  chrome.storage.local.get("tubemod_preferredChannelTab", (data) => {
+    if (data.tubemod_preferredChannelTab) {
+      dropdown.value = data.tubemod_preferredChannelTab;
+    }
+  });
+
+  // Save new selection when the user updates the dropdown.
+  dropdown.addEventListener("change", (event) => {
+    chrome.storage.local.set({tubemod_preferredChannelTab: event.target.value});
+  });
 });
 
 chrome.runtime.onMessage.addListener(function (message) {

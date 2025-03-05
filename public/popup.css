@@ -217,3 +217,33 @@ input:checked + .slider:before {
 .version {
   text-align: right;
 }
+
+/* Dropdown Styles */
+.channel-dropdown {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-accent);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-secondary);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 10px;
+}
+
+.channel-dropdown:hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-tertiary);
+}
+
+label[for="channel-dropdown"] {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--color-accent);
+  display: block;
+}
