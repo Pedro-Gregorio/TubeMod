@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 chrome.runtime.onMessage.addListener(function (message) {
   if (message.type === "popup") {
-    chrome.storage.local.set({ elements: JSON.stringify(message.data) });
+    chrome.storage.local.set({ tubemod_elements: JSON.stringify(message.data) });
   }
 });
 

@@ -79,8 +79,7 @@ const STORAGE = {
     },
     {
       id: "live-videos",
-      selector:
-        "//ytd-rich-item-renderer[.//div[@id='meta']/ytd-badge-supported-renderer[not(@hidden)]]",
+      selector: "//ytd-rich-item-renderer[.//ytd-badge-supported-renderer[.//span[contains(text(), 'LIVE')]] or .//ytd-thumbnail-overlay-time-status-renderer[@overlay-style='LIVE']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -113,6 +112,16 @@ const STORAGE = {
     {
       id: "video-meta-data",
       selector: "//div[@id='metadata-line']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+// Configuration for hiding "Members Only" videos by targeting YouTube's DOM structure.  
+// It identifies video elements containing the "Members only" badge and hides them when enabled.
+    {
+      id: "members-only-videos",
+      selector: "//ytd-rich-item-renderer[.//ytd-badge-supported-renderer[.//span[contains(text(), 'Members only')]]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
