@@ -30,6 +30,7 @@ These changes affect every page on YouTube.
 - Hide Video Previews
 - Hide Video Thumbnails
 - Hide Video Extra Information (Views and Posted Time)
+- Hide Members Only Videos
 
 ### Header
 
