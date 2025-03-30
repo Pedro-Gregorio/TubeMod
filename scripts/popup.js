@@ -108,6 +108,7 @@ function setupInputChangeListeners() {
  */
 function setupSearch() {
   const searchInput = document.getElementById("search-input");
+  const clearButton = document.getElementById("clear-search");
   const containers = document.querySelectorAll(".container");
   const collapsibleElements = document.getElementsByClassName("collapsible");
 
@@ -121,7 +122,6 @@ function setupSearch() {
     }
 
     containers.forEach((container) => {
-      //let containerVisible = false;
       const labels = container.querySelectorAll("label");
 
       labels.forEach((label) => {
@@ -138,5 +138,12 @@ function setupSearch() {
         checkboxContainer.style.display = match ? "flex" : "none";
       });
     });
+
+    clearButton.style.display = searchTerm ? "inline" : "none";
+  });
+
+  clearButton.addEventListener("click", () => {
+    searchInput.value = "";
+    searchInput.dispatchEvent(new Event("input"));
   });
 }
