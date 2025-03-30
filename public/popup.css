@@ -168,6 +168,13 @@ input:checked + .slider:before {
   color: var(--color-accent);
 }
 
+/* On search, collapsible with no matching options are greyed-out. */
+.collapsible.greyed {
+  background-color: #ccc;
+  color: #888;
+  cursor: default;
+}
+
 .active {
   background-color: var(--color-tertiary);
   color: var(--color-background);

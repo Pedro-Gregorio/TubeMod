@@ -109,34 +109,44 @@ function setupInputChangeListeners() {
 function setupSearch() {
   const searchInput = document.getElementById("search-input");
   const clearButton = document.getElementById("clear-search");
-  const containers = document.querySelectorAll(".container");
-  const collapsibleElements = document.getElementsByClassName("collapsible");
+  const collapsibleElements = Array.from(document.getElementsByClassName("collapsible"));
 
   searchInput.addEventListener("input", () => {
-    const searchTerm = searchInput.value.toLowerCase();
+    const searchTerm = searchInput.value.toLowerCase().trim();
 
-    // Open all collapsible containers when searching, close them otherwise.
-    for (let i = 0; i < collapsibleElements.length; i++) {
-      const content = collapsibleElements[i].nextElementSibling;
-      content.style.display = searchTerm !== "" ? "block" : "none";
-    }
+    collapsibleElements.forEach((collapsible) => {
+      const container = collapsible.nextElementSibling;
+      const labels = Array.from(container.querySelectorAll("label"));
 
-    containers.forEach((container) => {
-      const labels = container.querySelectorAll("label");
+      // When search is empty, ensure all sections are collapsed.
+      if (searchTerm === "") {
+        collapsible.classList.remove("greyed");
+        container.style.display = "none";
+        return;
+      }
 
-      labels.forEach((label) => {
-        const labelText = label.textContent.toLowerCase().trim();
-
-        if (labelText === "" || labelText === " ") {
-          return;
-        }
-
-        const checkboxContainer = label.closest(".checkbox-container");
-
-        const match = searchTerm ? labelText.includes(searchTerm) : true;
-
-        checkboxContainer.style.display = match ? "flex" : "none";
+      // Determine if any label in this container matches the search term.
+      const anyMatch = labels.some((label) => {
+        const text = label.textContent.toLowerCase().trim();
+        return text && text.includes(searchTerm);
       });
+
+      if (anyMatch) {
+        // Matching section: remove greyed style and open container.
+        collapsible.classList.remove("greyed");
+        container.style.display = "block";
+
+        // Toggle each checkbox container within the section based on match.
+        Array.from(container.querySelectorAll(".checkbox-container")).forEach((checkboxContainer) => {
+          const label = checkboxContainer.querySelector("label");
+          const text = label.textContent.toLowerCase().trim();
+          checkboxContainer.style.display = text.includes(searchTerm) ? "flex" : "none";
+        });
+      } else {
+        // No matching label: grey out the collapsible button and collapse the container.
+        collapsible.classList.add("greyed");
+        container.style.display = "none";
+      }
     });
 
     clearButton.style.display = searchTerm ? "inline" : "none";
