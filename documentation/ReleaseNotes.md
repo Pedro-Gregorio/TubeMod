@@ -5,6 +5,7 @@
 Add:
 
 - Home:
+  - Hide Primetime Movies for You Section
   - Hide Partially Viewed Videos
 
 - Videos

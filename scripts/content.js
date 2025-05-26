@@ -4,7 +4,7 @@ const FILTER = "filter";
 const TEXT_TRANSFORM = "text-transform";
 const DISPLAY_NONE = "none";
 const LOWERCASE = "lowercase";
-const YT_RED = "#F03"
+const YT_RED = "#F03";
 
 const PAGE_TYPES = {
   HOME: "home",
@@ -12,7 +12,7 @@ const PAGE_TYPES = {
   VIDEO: "video",
   SEARCH: "search",
   TRENDING: "trending",
-  DOWNLOADS: "downloads"
+  DOWNLOADS: "downloads",
 };
 
 function saveSettings() {
@@ -180,7 +180,7 @@ const STORAGE = {
       id: "studio-button",
       selector: "//ytd-notification-topbar-button-renderer",
       checked: false,
-      pageTypes: []
+      pageTypes: [],
     },
     {
       id: "profile-sign-out",
@@ -192,11 +192,12 @@ const STORAGE = {
     },
     {
       id: "sidebar",
-      selector: "//tp-yt-app-drawer | //ytd-mini-guide-renderer | //yt-icon-button[@id='guide-button']",
+      selector:
+        "//tp-yt-app-drawer | //ytd-mini-guide-renderer | //yt-icon-button[@id='guide-button']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
-      pageTypes: []
+      pageTypes: [],
     },
     {
       id: "home",
@@ -419,7 +420,8 @@ const STORAGE = {
     },
     {
       id: "home-news",
-      selector: "//ytd-rich-section-renderer[not(.//ytm-shorts-lockup-view-model) and not(.//div[contains(@class, 'button-container') and not(@hidden)][.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='m18 9.28-6.35 6.35-6.37-6.35.72-.71 5.64 5.65 5.65-5.65z']])]",
+      selector:
+        "//ytd-rich-section-renderer[not(.//ytm-shorts-lockup-view-model) and not(.//div[contains(@class, 'button-container') and not(@hidden)][.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='m18 9.28-6.35 6.35-6.37-6.35.72-.71 5.64 5.65 5.65-5.65z']])]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -427,7 +429,8 @@ const STORAGE = {
     },
     {
       id: "home-trending",
-      selector: "//ytd-rich-section-renderer[.//div[contains(@class, 'button-container') and not(@hidden)][.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='m18 9.28-6.35 6.35-6.37-6.35.72-.71 5.64 5.65 5.65-5.65z']]]",
+      selector:
+        "//ytd-rich-section-renderer[.//div[contains(@class, 'button-container') and not(@hidden)][.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='m18 9.28-6.35 6.35-6.37-6.35.72-.71 5.64 5.65 5.65-5.65z']]]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -437,6 +440,14 @@ const STORAGE = {
       id: "home-playables",
       selector:
         "//ytd-rich-section-renderer[.//a[contains(@href, '/playables')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.HOME],
+    },
+    {
+      id: "home-primetime-movies",
+      selector: "//ytd-rich-section-renderer[.//a[@href='/feed/storefront']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -601,7 +612,8 @@ const STORAGE = {
     },
     {
       id: "video-thanks",
-      selector: "//div[@id='flexible-item-buttons']/yt-button-view-model[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm5.5-15c-1.74 0-3.41.88-4.5 2.28C10.91 2.88 9.24 2 7.5 2 4.42 2 2 4.64 2 7.99c0 4.12 3.4 7.48 8.55 12.58L12 22l1.45-1.44C18.6 15.47 22 12.11 22 7.99 22 4.64 19.58 2 16.5 2zm-3.75 17.85-.75.74-.74-.73-.04-.04C6.27 14.92 3 11.69 3 7.99 3 5.19 4.98 3 7.5 3c1.4 0 2.79.71 3.71 1.89L12 5.9l.79-1.01C13.71 3.71 15.1 3 16.5 3 19.02 3 21 5.19 21 7.99c0 3.7-3.28 6.94-8.25 11.86z']]",
+      selector:
+        "//div[@id='flexible-item-buttons']/yt-button-view-model[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm5.5-15c-1.74 0-3.41.88-4.5 2.28C10.91 2.88 9.24 2 7.5 2 4.42 2 2 4.64 2 7.99c0 4.12 3.4 7.48 8.55 12.58L12 22l1.45-1.44C18.6 15.47 22 12.11 22 7.99 22 4.64 19.58 2 16.5 2zm-3.75 17.85-.75.74-.74-.73-.04-.04C6.27 14.92 3 11.69 3 7.99 3 5.19 4.98 3 7.5 3c1.4 0 2.79.71 3.71 1.89L12 5.9l.79-1.01C13.71 3.71 15.1 3 16.5 3 19.02 3 21 5.19 21 7.99c0 3.7-3.28 6.94-8.25 11.86z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -609,7 +621,8 @@ const STORAGE = {
     },
     {
       id: "video-save",
-      selector: "//div[@id='flexible-item-buttons']/yt-button-view-model[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M18 4v15.06l-5.42-3.87-.58-.42-.58.42L6 19.06V4h12m1-1H5v18l7-5 7 5V3z']]",
+      selector:
+        "//div[@id='flexible-item-buttons']/yt-button-view-model[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M18 4v15.06l-5.42-3.87-.58-.42-.58.42L6 19.06V4h12m1-1H5v18l7-5 7 5V3z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -617,7 +630,8 @@ const STORAGE = {
     },
     {
       id: "video-clip",
-      selector: "//div[@id='flexible-item-buttons']/yt-button-view-model[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M8 7c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1zm-1 9c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3.79-7.77L21 18.44V20h-3.27l-5.76-5.76-1.27 1.27c.19.46.3.96.3 1.49 0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c.42 0 .81.08 1.19.2l1.37-1.37-1.11-1.11C8 10.89 7.51 11 7 11c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4c0 .43-.09.84-.21 1.23zm-.71.71-.43-.44.19-.58c.11-.34.16-.64.16-.92 0-1.65-1.35-3-3-3S4 5.35 4 7s1.35 3 3 3c.36 0 .73-.07 1.09-.21l.61-.24.46.46 1.11 1.11.71.71-.71.71-1.37 1.37-.43.43-.58-.18C7.55 14.05 7.27 14 7 14c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3c0-.38-.07-.75-.22-1.12l-.25-.61.47-.47 1.27-1.27.71-.71.71.71L18.15 19H20v-.15l-9.92-9.91zM17.73 4H21v1.56l-5.52 5.52-2.41-2.41L17.73 4zm.42 1-3.67 3.67 1 1L20 5.15V5h-1.85z']]",
+      selector:
+        "//div[@id='flexible-item-buttons']/yt-button-view-model[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M8 7c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1zm-1 9c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3.79-7.77L21 18.44V20h-3.27l-5.76-5.76-1.27 1.27c.19.46.3.96.3 1.49 0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c.42 0 .81.08 1.19.2l1.37-1.37-1.11-1.11C8 10.89 7.51 11 7 11c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4c0 .43-.09.84-.21 1.23zm-.71.71-.43-.44.19-.58c.11-.34.16-.64.16-.92 0-1.65-1.35-3-3-3S4 5.35 4 7s1.35 3 3 3c.36 0 .73-.07 1.09-.21l.61-.24.46.46 1.11 1.11.71.71-.71.71-1.37 1.37-.43.43-.58-.18C7.55 14.05 7.27 14 7 14c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3c0-.38-.07-.75-.22-1.12l-.25-.61.47-.47 1.27-1.27.71-.71.71.71L18.15 19H20v-.15l-9.92-9.91zM17.73 4H21v1.56l-5.52 5.52-2.41-2.41L17.73 4zm.42 1-3.67 3.67 1 1L20 5.15V5h-1.85z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -819,7 +833,7 @@ const STORAGE = {
       property: BACKGROUND,
       style: YT_RED,
       pageTypes: [PAGE_TYPES.VIDEO],
-    }
+    },
   ],
 };
 
@@ -916,7 +930,9 @@ class YouTubeElement {
     }
 
     if (this.id === "home-posts") {
-      const postsElement = document.querySelector("ytd-rich-section-renderer:has(ytd-post-renderer)");
+      const postsElement = document.querySelector(
+        "ytd-rich-section-renderer:has(ytd-post-renderer)"
+      );
       if (postsElement) {
         hide ? (postsElement.disabled = true) : (postsElement.disabled = false);
       }
@@ -990,7 +1006,10 @@ class YouTubeElement {
 
           let anchorTag = document.createElement("a");
           anchorTag.setAttribute("target", "_blank");
-          anchorTag.setAttribute("href", "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg");
+          anchorTag.setAttribute(
+            "href",
+            "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg"
+          );
 
           let image = document.createElement("img");
           image.setAttribute("id", "video-thumbnail-tubemod");
@@ -1014,7 +1033,9 @@ class YouTubeElement {
     }
 
     if (this.id === "sidebar") {
-      const videoContainer = document.querySelector("ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app");
+      const videoContainer = document.querySelector(
+        "ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app"
+      );
 
       if (videoContainer) {
         videoContainer.style.marginLeft = hide ? 0 : null;
@@ -1028,34 +1049,58 @@ class YouTubeElement {
 
       if (hide && youtubeStudioButton === null) {
         const youtubeStudioButtonAnchor = document.createElement("a");
-        youtubeStudioButtonAnchor.setAttribute("href", "https://studio.youtube.com/");
+        youtubeStudioButtonAnchor.setAttribute(
+          "href",
+          "https://studio.youtube.com/"
+        );
         youtubeStudioButtonAnchor.setAttribute("id", "studio-button-tubemod");
-        youtubeStudioButtonAnchor.setAttribute("style", "margin-right: 8px;")
+        youtubeStudioButtonAnchor.setAttribute("style", "margin-right: 8px;");
 
         const svgNS = "http://www.w3.org/2000/svg";
         const svg = document.createElementNS(svgNS, "svg");
-        svg.setAttribute("fill", (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "#fff" : "#000");
+        svg.setAttribute(
+          "fill",
+          window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "#fff"
+            : "#000"
+        );
         svg.setAttribute("width", "24");
         svg.setAttribute("height", "24");
         svg.setAttribute("viewBox", "0 0 24 24");
-        svg.setAttribute("style", "pointer-events: none; display: inherit; width: 100%; height: 100%;");
+        svg.setAttribute(
+          "style",
+          "pointer-events: none; display: inherit; width: 100%; height: 100%;"
+        );
 
         const path = document.createElementNS(svgNS, "path");
-        path.setAttribute("d", "M10 9.35 15 12l-5 2.65ZM12 3a.73.73 0 00-.31.06L4.3 7.28a.79.79 0 00-.3.52v8.4a.79.79 0 00.3.52l7.39 4.22a.83.83 0 00.62 0l7.39-4.22a.79.79 0 00.3-.52V7.8a.79.79 0 00-.3-.52l-7.39-4.22A.73.73 0 0012 3m0-1a1.6 1.6 0 01.8.19l7.4 4.22A1.77 1.77 0 0121 7.8v8.4a1.77 1.77 0 01-.8 1.39l-7.4 4.22a1.78 1.78 0 01-1.6 0l-7.4-4.22A1.77 1.77 0 013 16.2V7.8a1.77 1.77 0 01.8-1.39l7.4-4.22A1.6 1.6 0 0112 2Zm0 4a.42.42 0 00-.17 0l-4.7 2.8a.59.59 0 00-.13.39v5.61a.65.65 0 00.13.37l4.7 2.8A.42.42 0 0012 18a.34.34 0 00.17 0l4.7-2.81a.56.56 0 00.13-.39V9.19a.62.62 0 00-.13-.37L12.17 6A.34.34 0 0012 6m0-1a1.44 1.44 0 01.69.17L17.39 8A1.46 1.46 0 0118 9.19v5.61a1.46 1.46 0 01-.61 1.2l-4.7 2.81A1.44 1.44 0 0112 19a1.4 1.4 0 01-.68-.17L6.62 16A1.47 1.47 0 016 14.8V9.19A1.47 1.47 0 016.62 8l4.7-2.8A1.4 1.4 0 0112 5Z");
+        path.setAttribute(
+          "d",
+          "M10 9.35 15 12l-5 2.65ZM12 3a.73.73 0 00-.31.06L4.3 7.28a.79.79 0 00-.3.52v8.4a.79.79 0 00.3.52l7.39 4.22a.83.83 0 00.62 0l7.39-4.22a.79.79 0 00.3-.52V7.8a.79.79 0 00-.3-.52l-7.39-4.22A.73.73 0 0012 3m0-1a1.6 1.6 0 01.8.19l7.4 4.22A1.77 1.77 0 0121 7.8v8.4a1.77 1.77 0 01-.8 1.39l-7.4 4.22a1.78 1.78 0 01-1.6 0l-7.4-4.22A1.77 1.77 0 013 16.2V7.8a1.77 1.77 0 01.8-1.39l7.4-4.22A1.6 1.6 0 0112 2Zm0 4a.42.42 0 00-.17 0l-4.7 2.8a.59.59 0 00-.13.39v5.61a.65.65 0 00.13.37l4.7 2.8A.42.42 0 0012 18a.34.34 0 00.17 0l4.7-2.81a.56.56 0 00.13-.39V9.19a.62.62 0 00-.13-.37L12.17 6A.34.34 0 0012 6m0-1a1.44 1.44 0 01.69.17L17.39 8A1.46 1.46 0 0118 9.19v5.61a1.46 1.46 0 01-.61 1.2l-4.7 2.81A1.44 1.44 0 0112 19a1.4 1.4 0 01-.68-.17L6.62 16A1.47 1.47 0 016 14.8V9.19A1.47 1.47 0 016.62 8l4.7-2.8A1.4 1.4 0 0112 5Z"
+        );
 
         svg.appendChild(path);
 
         const div = document.createElement("div");
-        div.setAttribute("style", "width: 24px; height: 24px; display: block; fill: currentcolor;");
+        div.setAttribute(
+          "style",
+          "width: 24px; height: 24px; display: block; fill: currentcolor;"
+        );
 
         div.appendChild(svg);
 
         const span = document.createElement("span");
-        span.setAttribute("class", "yt-icon-shape style-scope yt-icon yt-spec-icon-shape");
+        span.setAttribute(
+          "class",
+          "yt-icon-shape style-scope yt-icon yt-spec-icon-shape"
+        );
         span.appendChild(div);
 
         const button = document.createElement("button");
-        button.setAttribute("style", "display: inline-block; vertical-align: middle; justify-items: center; color: inherit; outline: none; background: none; margin: 0; border: none; padding: 0; width: 100%; height: 100%; line-height: 0; cursor: pointer;");
+        button.setAttribute(
+          "style",
+          "display: inline-block; vertical-align: middle; justify-items: center; color: inherit; outline: none; background: none; margin: 0; border: none; padding: 0; width: 100%; height: 100%; line-height: 0; cursor: pointer;"
+        );
         button.append(span);
 
         const ytIconButton = document.createElement("div");
@@ -1064,11 +1109,16 @@ class YouTubeElement {
 
         youtubeStudioButtonAnchor.appendChild(ytIconButton);
 
-        const headerButtons = document.querySelector("ytd-masthead div#buttons");
+        const headerButtons = document.querySelector(
+          "ytd-masthead div#buttons"
+        );
         const headerButtonsChildren = Array.from(headerButtons.children);
         const position = 1;
 
-        headerButtons.insertBefore(youtubeStudioButtonAnchor, headerButtonsChildren[position]);
+        headerButtons.insertBefore(
+          youtubeStudioButtonAnchor,
+          headerButtonsChildren[position]
+        );
       } else if (!hide && youtubeStudioButton) {
         youtubeStudioButton.remove();
       }
