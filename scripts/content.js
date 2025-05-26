@@ -13,6 +13,7 @@ const PAGE_TYPES = {
   SEARCH: "search",
   TRENDING: "trending",
   DOWNLOADS: "downloads",
+  CHANNEL: "channel",
 };
 
 function saveSettings() {
@@ -61,12 +62,14 @@ function getCurrentPageType() {
     return PAGE_TYPES.TRENDING;
   } else if (url.includes("/feed/downloads")) {
     return PAGE_TYPES.DOWNLOADS;
+  } else if (url.includes("/@")) {
+    return PAGE_TYPES.CHANNEL;
   }
   return null;
 }
 
 const STORAGE = {
-  tubemod_version: "1.13.0A",
+  tubemod_version: "1.13.0",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -405,7 +408,8 @@ const STORAGE = {
     },
     {
       id: "members-only",
-      selector: "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7Zm2.47 10.5L7.99 9.94 5.5 11.5l.67-2.97L4 6.5l2.87-.22L8.01 3.5l1.12 2.78L12 6.5 9.82 8.53l.65 2.97Z']]",
+      selector:
+        "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7Zm2.47 10.5L7.99 9.94 5.5 11.5l.67-2.97L4 6.5l2.87-.22L8.01 3.5l1.12 2.78L12 6.5 9.82 8.53l.65 2.97Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -528,6 +532,12 @@ const STORAGE = {
       property: DISPLAY,
       style: DISPLAY_NONE,
       pageTypes: [PAGE_TYPES.TRENDING],
+    },
+    {
+      id: "channel-trailer",
+      selector: "//*[@id='c4-player']",
+      checked: false,
+      pageTypes: [PAGE_TYPES.CHANNEL],
     },
     {
       id: "video-progress-bar-dot",
@@ -936,6 +946,10 @@ class YouTubeElement {
       hide
         ? (elements.snapshotItem(i).style[this.property] = this.style)
         : (elements.snapshotItem(i).style[this.property] = "");
+    }
+
+    if (this.id === "channel-trailer" && this.checked) {
+      document.querySelector("video").pause();
     }
 
     if (this.id === "home-posts") {

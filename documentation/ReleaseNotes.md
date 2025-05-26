@@ -9,6 +9,9 @@ Add:
   - Hide Primetime Movies for You Section
   - Hide Partially Viewed Videos
 
+- Channel (new):
+  - Pause Channel Trailer
+
 - Videos
   - Hide 'New' Badge under recommended videos
 
