@@ -104,7 +104,8 @@ const STORAGE = {
     },
     {
       id: "video-thumbnails-blur",
-      selector: "//ytd-thumbnail//yt-image | //ytd-playlist-thumbnail | //yt-thumbnail-view-model",
+      selector:
+        "//ytd-thumbnail//yt-image | //ytd-playlist-thumbnail | //yt-thumbnail-view-model",
       checked: false,
       property: FILTER,
       style: "blur(10px)",
@@ -397,6 +398,14 @@ const STORAGE = {
     {
       id: "all-videos",
       selector: "//*[@page-subtype='home']/div[@id='primary']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.HOME],
+    },
+    {
+      id: "members-only",
+      selector: "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7Zm2.47 10.5L7.99 9.94 5.5 11.5l.67-2.97L4 6.5l2.87-.22L8.01 3.5l1.12 2.78L12 6.5 9.82 8.53l.65 2.97Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

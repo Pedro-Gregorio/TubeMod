@@ -5,6 +5,7 @@
 Add:
 
 - Home:
+  - Hide Members Only Content
   - Hide Primetime Movies for You Section
   - Hide Partially Viewed Videos
 
