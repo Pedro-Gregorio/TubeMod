@@ -14,6 +14,13 @@ Add:
 - Downloads:
   - Hide 'Downloaded' badge beneath downloaded videos
 
+
+Fix:
+
+- General
+  - Hide Thumbnails
+  - Blur Thumbnails
+
 ## 1.12.0
 
 Add:

@@ -96,7 +96,7 @@ const STORAGE = {
     },
     {
       id: "video-thumbnails",
-      selector: "//ytd-thumbnail//yt-image | //ytd-playlist-thumbnail",
+      selector: "//div[@id='thumbnail'] | //yt-collection-thumbnail-view-model",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -104,7 +104,7 @@ const STORAGE = {
     },
     {
       id: "video-thumbnails-blur",
-      selector: "//ytd-thumbnail//yt-image | //ytd-playlist-thumbnail",
+      selector: "//ytd-thumbnail//yt-image | //ytd-playlist-thumbnail | //yt-thumbnail-view-model",
       checked: false,
       property: FILTER,
       style: "blur(10px)",
