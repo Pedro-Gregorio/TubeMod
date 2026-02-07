@@ -1,5 +1,12 @@
 # TubeMod - Release Notes
 
+## Hide-Liked-Videos-Playlist
+
+Add:
+
+- Playlists:
+  - Hide "Liked videos" playlist
+
 ## 1.13.0
 
 Add:

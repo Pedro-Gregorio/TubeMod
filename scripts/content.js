@@ -14,6 +14,7 @@ const PAGE_TYPES = {
   TRENDING: "trending",
   DOWNLOADS: "downloads",
   CHANNEL: "channel",
+  PLAYLISTS: "playlists",
 };
 
 function saveSettings() {
@@ -62,6 +63,13 @@ function getCurrentPageType() {
     return PAGE_TYPES.TRENDING;
   } else if (url.includes("/feed/downloads")) {
     return PAGE_TYPES.DOWNLOADS;
+  } else if (
+    url.includes("/feed/playlists") ||
+    url.includes("/playlist") ||
+    url.match(/\/user\/[^\/]+\/playlists/) ||
+    url.includes("playlist_aggregation")
+  ) {
+    return PAGE_TYPES.PLAYLISTS;
   } else if (url.includes("/@")) {
     return PAGE_TYPES.CHANNEL;
   }
@@ -313,6 +321,24 @@ const STORAGE = {
       property: DISPLAY,
       style: DISPLAY_NONE,
       pageTypes: [],
+    },
+    {
+      id: "playlists-liked-videos",
+      selector:
+        "//ytd-rich-item-renderer | //ytm-rich-item-renderer | //div[contains(@class, 'rich-item-renderer')] | //*[@id='dismissible']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.PLAYLISTS],
+    },
+    {
+      id: "playlists-watch-later",
+      selector:
+        "//ytd-rich-item-renderer | //ytm-rich-item-renderer | //div[contains(@class, 'rich-item-renderer')] | //*[@id='dismissible']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.PLAYLISTS],
     },
     {
       id: "my-clips",
@@ -943,9 +969,24 @@ class YouTubeElement {
     );
 
     for (let i = 0; i < elements.snapshotLength; i++) {
+      const element = elements.snapshotItem(i);
+      const playlistListCodeById = {
+        "playlists-liked-videos": "LL",
+        "playlists-watch-later": "WL",
+      };
+      const playlistListCode = playlistListCodeById[this.id];
+
+      if (playlistListCode) {
+        const playlistLink = element.querySelector(
+          `a[href*="list=${playlistListCode}"]`
+        );
+        if (!playlistLink) {
+          continue;
+        }
+      }
       hide
-        ? (elements.snapshotItem(i).style[this.property] = this.style)
-        : (elements.snapshotItem(i).style[this.property] = "");
+        ? (element.style[this.property] = this.style)
+        : (element.style[this.property] = "");
     }
 
     if (this.id === "channel-trailer" && this.checked) {
