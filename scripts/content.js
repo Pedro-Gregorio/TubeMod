@@ -69,7 +69,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.14.0-asdasda",
+  tubemod_version: "1.14.0-1231asd",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -510,7 +510,7 @@ const STORAGE = {
     },
     {
       id: "search-shorts",
-      selector: "//ytd-reel-shelf-renderer",
+      selector: "//grid-shelf-view-model[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='m19.45,3.88c1.12,1.82.48,4.15-1.42,5.22l-1.32.74.94.41c1.36.58,2.27,1.85,2.35,3.27.08,1.43-.68,2.77-1.97,3.49l-8,4.47c-1.91,1.06-4.35.46-5.48-1.35-1.12-1.82-.48-4.15,1.42-5.22l1.33-.74-.94-.41c-1.36-.58-2.27-1.85-2.35-3.27-.08-1.43.68-2.77,1.97-3.49l8-4.47c1.91-1.06,4.35-.46,5.48,1.35Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

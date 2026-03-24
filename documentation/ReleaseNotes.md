@@ -19,6 +19,9 @@ Fix:
   - Hide Video Thumbnails
   - Hide Video Views and Posted Time
 
+- Search:
+  - Hide Shorts
+
 - Video:
   - Hide Video Comments Avatars
   - Hide Suggested Videos "New" Badge
