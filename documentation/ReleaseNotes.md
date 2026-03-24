@@ -7,6 +7,8 @@ Add:
 - Sidebar:
   - Compatibility with YouTube's new Sidebar
 
+- Subscriptions:
+  - Hide "Most Relevant" section
 
 Fix:
 
