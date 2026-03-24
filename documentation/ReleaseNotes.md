@@ -25,6 +25,9 @@ Fix:
   - Hide Video Thumbnails
   - Hide Video Views and Posted Time
 
+- Home:
+  - Hide Mix Playlists
+
 - Search:
   - Hide Shorts
 

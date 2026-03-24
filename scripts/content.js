@@ -69,7 +69,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.14.0-adas",
+  tubemod_version: "1.14.0-sdasd",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -460,7 +460,7 @@ const STORAGE = {
     {
       id: "playlist-mix",
       selector:
-        "//ytd-rich-item-renderer[.//ytd-playlist-thumbnail[not(@hidden)]] | //ytd-rich-item-renderer[.//a[contains(@href, 'start_radio=1')]]",
+        "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M3 3.657v16.689a1 1 0 001.466.883L8 19.369V4.632l-3.534-1.86A1 1 0 003 3.657ZM14 7.79l-4-2.105v12.631l4-2.106V7.79ZM22 12l-6-3.157v6.315L22 12Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
