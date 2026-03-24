@@ -72,7 +72,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.14.0-sashdjkbasl",
+  tubemod_version: "1.14.0-sasdasd",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -866,6 +866,14 @@ const STORAGE = {
     {
       id: "playlists-watch-later",
       selector: "//ytd-rich-item-renderer[.//a[contains(@href, 'list=WL')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.PLAYLISTS],
+    },
+    {
+      id: "playlists-liked-videos",
+      selector: "//ytd-rich-item-renderer[.//a[contains(@href, 'list=LL')]]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
