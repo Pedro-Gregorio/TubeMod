@@ -69,7 +69,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.14.0-adasdas",
+  tubemod_version: "1.14.0-adas",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -852,6 +852,14 @@ const STORAGE = {
       style: YT_RED,
       pageTypes: [PAGE_TYPES.VIDEO],
     },
+    {
+      id: "search-history-thumbnails",
+      selector: "//yt-searchbox//div[@class='ytSuggestionComponentThumbnailContainer']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    }
   ],
 };
 

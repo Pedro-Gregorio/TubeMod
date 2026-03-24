@@ -10,6 +10,9 @@ Add:
 - Sidebar:
   - Compatibility with YouTube's new Sidebar
 
+- Search Results (NEW SECTION):
+  - Hide Thumbnails next to Search History
+
 - Subscriptions:
   - Hide "Most Relevant" section
 
