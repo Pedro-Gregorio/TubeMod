@@ -74,7 +74,7 @@ const STORAGE = {
     {
       id: "scheduled-videos",
       selector:
-        "//ytd-rich-item-renderer[.//ytd-thumbnail-overlay-time-status-renderer[@overlay-style='UPCOMING']]",
+        "//ytd-rich-item-renderer[count(.//button) > 1]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
