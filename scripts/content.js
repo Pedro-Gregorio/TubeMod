@@ -14,6 +14,7 @@ const PAGE_TYPES = {
   TRENDING: "trending",
   DOWNLOADS: "downloads",
   CHANNEL: "channel",
+  PLAYLISTS: "playlists"
 };
 
 function saveSettings() {
@@ -64,12 +65,14 @@ function getCurrentPageType() {
     return PAGE_TYPES.DOWNLOADS;
   } else if (url.includes("/@")) {
     return PAGE_TYPES.CHANNEL;
+  } else if (url.includes("/feed/playlists")) {
+    return PAGE_TYPES.PLAYLISTS;
   }
   return null;
 }
 
 const STORAGE = {
-  tubemod_version: "1.14.0-sdasd",
+  tubemod_version: "1.14.0-sashdjkbasl",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -859,6 +862,14 @@ const STORAGE = {
       property: DISPLAY,
       style: DISPLAY_NONE,
       pageTypes: [],
+    },
+    {
+      id: "playlists-watch-later",
+      selector: "//ytd-rich-item-renderer[.//a[contains(@href, 'list=WL')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.PLAYLISTS],
     }
   ],
 };

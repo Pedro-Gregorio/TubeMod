@@ -13,6 +13,9 @@ Add:
 - Search Results (NEW SECTION):
   - Hide Thumbnails next to Search History
 
+- Playlists (NEW SECTION):
+  - Hide "Watch Later" Playlist
+
 - Subscriptions:
   - Hide "Most Relevant" section
 
