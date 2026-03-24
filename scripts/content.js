@@ -69,7 +69,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.14.0-1231asd",
+  tubemod_version: "1.14.0-adasdas",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -91,7 +91,7 @@ const STORAGE = {
     },
     {
       id: "video-previews",
-      selector: "//div[@id='video-preview' or @id='mouseover-overlay']",
+      selector: "//div[@id='video-preview' or @id='mouseover-overlay'] | //yt-thumbnail-hover-overlay-toggle-actions-view-model | //animated-thumbnail-overlay-view-model",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

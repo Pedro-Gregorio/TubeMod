@@ -4,6 +4,9 @@
 
 Add:
 
+- General:
+  - Hide Video Previews (on hover) also works for suggested videos on video being watched
+
 - Sidebar:
   - Compatibility with YouTube's new Sidebar
 
