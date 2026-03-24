@@ -31,7 +31,7 @@ function saveSettings() {
         a.download = "tubeModSettings.json";
         a.click();
       }
-    }
+    },
   );
   document.body.removeChild(a);
 }
@@ -69,7 +69,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.13.0",
+  tubemod_version: "1.14.0-a",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -240,9 +240,17 @@ const STORAGE = {
       pageTypes: [],
     },
     {
+      id: "you-panel",
+      selector: "(//ytd-guide-section-renderer)[3]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
       id: "you",
       selector:
-        "(//div[@id='header']/ytd-guide-entry-renderer)[1] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
+        "//ytd-guide-entry-renderer[a[@href='/feed/you']] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -268,23 +276,6 @@ const STORAGE = {
       id: "my-videos",
       selector:
         "//ytd-guide-entry-renderer[a[starts-with(@href, 'https://studio.youtube.com/channel')]]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "your-movies-and-tv",
-      selector:
-        "//ytd-guide-entry-renderer[a[@href='/feed/storefront?bp=ogUCKAQ%3D']]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "your-podcasts",
-      selector: "//ytd-guide-entry-renderer[a[@href='/feed/podcasts']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -350,14 +341,6 @@ const STORAGE = {
     },
     {
       id: "explore-panel",
-      selector: "(//ytd-guide-section-renderer)[3]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "youtube-panel",
       selector: "(//ytd-guide-section-renderer)[4]",
       checked: false,
       property: DISPLAY,
@@ -365,8 +348,16 @@ const STORAGE = {
       pageTypes: [],
     },
     {
-      id: "youtube-settings",
+      id: "youtube-panel",
       selector: "(//ytd-guide-section-renderer)[5]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "youtube-settings",
+      selector: "(//ytd-guide-section-renderer)[6]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -878,7 +869,7 @@ function waitForElements(selector, callback) {
       document,
       null,
       XPathResult.FIRST_ORDERED_NODE_TYPE,
-      null
+      null,
     ).singleNodeValue;
     if (element) {
       obs.disconnect();
@@ -896,7 +887,7 @@ function waitForElements(selector, callback) {
     document,
     null,
     XPathResult.FIRST_ORDERED_NODE_TYPE,
-    null
+    null,
   ).singleNodeValue;
   if (existingElement) {
     callback([existingElement]);
@@ -939,7 +930,7 @@ class YouTubeElement {
       document,
       null,
       XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
-      null
+      null,
     );
 
     for (let i = 0; i < elements.snapshotLength; i++) {
@@ -954,7 +945,7 @@ class YouTubeElement {
 
     if (this.id === "home-posts") {
       const postsElement = document.querySelector(
-        "ytd-rich-section-renderer:has(ytd-post-renderer)"
+        "ytd-rich-section-renderer:has(ytd-post-renderer)",
       );
       if (postsElement) {
         hide ? (postsElement.disabled = true) : (postsElement.disabled = false);
@@ -970,7 +961,7 @@ class YouTubeElement {
 
     if (this.id === "video-shorts-description") {
       const descriptionShorts = document.querySelector(
-        "ytd-structured-description-content-renderer > div#items > ytd-reel-shelf-renderer"
+        "ytd-structured-description-content-renderer > div#items > ytd-reel-shelf-renderer",
       );
       if (descriptionShorts) {
         hide
@@ -990,7 +981,7 @@ class YouTubeElement {
 
     if (this.id === "you") {
       const elementWithTopBorder = document.querySelector(
-        "ytd-guide-collapsible-section-entry-renderer"
+        "ytd-guide-collapsible-section-entry-renderer",
       );
       if (elementWithTopBorder) {
         elementWithTopBorder.style.borderTop = hide
@@ -1001,7 +992,7 @@ class YouTubeElement {
 
     if (this.id === "my-clips") {
       const elementWithBottomBorder = document.querySelector(
-        "ytd-guide-section-renderer"
+        "ytd-guide-section-renderer",
       );
       if (elementWithBottomBorder) {
         elementWithBottomBorder.style.borderBottom = hide
@@ -1012,12 +1003,12 @@ class YouTubeElement {
 
     if (this.id === "video-thumbnail") {
       const thumbnailElement = document.getElementById(
-        "video-thumbnail-tubemod"
+        "video-thumbnail-tubemod",
       );
 
       if (hide && thumbnailElement === null) {
         const items = document.querySelector(
-          "ytd-watch-next-secondary-results-renderer div#items"
+          "ytd-watch-next-secondary-results-renderer div#items",
         );
 
         let currentVideo = new URL(document.URL);
@@ -1031,7 +1022,7 @@ class YouTubeElement {
           anchorTag.setAttribute("target", "_blank");
           anchorTag.setAttribute(
             "href",
-            "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg"
+            "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg",
           );
 
           let image = document.createElement("img");
@@ -1039,11 +1030,11 @@ class YouTubeElement {
           image.setAttribute("src", thumbnailSource);
           image.setAttribute(
             "class",
-            "yt-core-image--fill-parent-width yt-core-image--loaded"
+            "yt-core-image--fill-parent-width yt-core-image--loaded",
           );
           image.setAttribute(
             "style",
-            "border-radius: 8px; margin-bottom: 8px;"
+            "border-radius: 8px; margin-bottom: 8px;",
           );
 
           anchorTag.append(image);
@@ -1057,7 +1048,7 @@ class YouTubeElement {
 
     if (this.id === "sidebar") {
       const videoContainer = document.querySelector(
-        "ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app"
+        "ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app",
       );
 
       if (videoContainer) {
@@ -1067,14 +1058,14 @@ class YouTubeElement {
 
     if (this.id === "studio-button") {
       const youtubeStudioButton = document.getElementById(
-        "studio-button-tubemod"
+        "studio-button-tubemod",
       );
 
       if (hide && youtubeStudioButton === null) {
         const youtubeStudioButtonAnchor = document.createElement("a");
         youtubeStudioButtonAnchor.setAttribute(
           "href",
-          "https://studio.youtube.com/"
+          "https://studio.youtube.com/",
         );
         youtubeStudioButtonAnchor.setAttribute("id", "studio-button-tubemod");
         youtubeStudioButtonAnchor.setAttribute("style", "margin-right: 8px;");
@@ -1086,20 +1077,20 @@ class YouTubeElement {
           window.matchMedia &&
             window.matchMedia("(prefers-color-scheme: dark)").matches
             ? "#fff"
-            : "#000"
+            : "#000",
         );
         svg.setAttribute("width", "24");
         svg.setAttribute("height", "24");
         svg.setAttribute("viewBox", "0 0 24 24");
         svg.setAttribute(
           "style",
-          "pointer-events: none; display: inherit; width: 100%; height: 100%;"
+          "pointer-events: none; display: inherit; width: 100%; height: 100%;",
         );
 
         const path = document.createElementNS(svgNS, "path");
         path.setAttribute(
           "d",
-          "M10 9.35 15 12l-5 2.65ZM12 3a.73.73 0 00-.31.06L4.3 7.28a.79.79 0 00-.3.52v8.4a.79.79 0 00.3.52l7.39 4.22a.83.83 0 00.62 0l7.39-4.22a.79.79 0 00.3-.52V7.8a.79.79 0 00-.3-.52l-7.39-4.22A.73.73 0 0012 3m0-1a1.6 1.6 0 01.8.19l7.4 4.22A1.77 1.77 0 0121 7.8v8.4a1.77 1.77 0 01-.8 1.39l-7.4 4.22a1.78 1.78 0 01-1.6 0l-7.4-4.22A1.77 1.77 0 013 16.2V7.8a1.77 1.77 0 01.8-1.39l7.4-4.22A1.6 1.6 0 0112 2Zm0 4a.42.42 0 00-.17 0l-4.7 2.8a.59.59 0 00-.13.39v5.61a.65.65 0 00.13.37l4.7 2.8A.42.42 0 0012 18a.34.34 0 00.17 0l4.7-2.81a.56.56 0 00.13-.39V9.19a.62.62 0 00-.13-.37L12.17 6A.34.34 0 0012 6m0-1a1.44 1.44 0 01.69.17L17.39 8A1.46 1.46 0 0118 9.19v5.61a1.46 1.46 0 01-.61 1.2l-4.7 2.81A1.44 1.44 0 0112 19a1.4 1.4 0 01-.68-.17L6.62 16A1.47 1.47 0 016 14.8V9.19A1.47 1.47 0 016.62 8l4.7-2.8A1.4 1.4 0 0112 5Z"
+          "M10 9.35 15 12l-5 2.65ZM12 3a.73.73 0 00-.31.06L4.3 7.28a.79.79 0 00-.3.52v8.4a.79.79 0 00.3.52l7.39 4.22a.83.83 0 00.62 0l7.39-4.22a.79.79 0 00.3-.52V7.8a.79.79 0 00-.3-.52l-7.39-4.22A.73.73 0 0012 3m0-1a1.6 1.6 0 01.8.19l7.4 4.22A1.77 1.77 0 0121 7.8v8.4a1.77 1.77 0 01-.8 1.39l-7.4 4.22a1.78 1.78 0 01-1.6 0l-7.4-4.22A1.77 1.77 0 013 16.2V7.8a1.77 1.77 0 01.8-1.39l7.4-4.22A1.6 1.6 0 0112 2Zm0 4a.42.42 0 00-.17 0l-4.7 2.8a.59.59 0 00-.13.39v5.61a.65.65 0 00.13.37l4.7 2.8A.42.42 0 0012 18a.34.34 0 00.17 0l4.7-2.81a.56.56 0 00.13-.39V9.19a.62.62 0 00-.13-.37L12.17 6A.34.34 0 0012 6m0-1a1.44 1.44 0 01.69.17L17.39 8A1.46 1.46 0 0118 9.19v5.61a1.46 1.46 0 01-.61 1.2l-4.7 2.81A1.44 1.44 0 0112 19a1.4 1.4 0 01-.68-.17L6.62 16A1.47 1.47 0 016 14.8V9.19A1.47 1.47 0 016.62 8l4.7-2.8A1.4 1.4 0 0112 5Z",
         );
 
         svg.appendChild(path);
@@ -1107,7 +1098,7 @@ class YouTubeElement {
         const div = document.createElement("div");
         div.setAttribute(
           "style",
-          "width: 24px; height: 24px; display: block; fill: currentcolor;"
+          "width: 24px; height: 24px; display: block; fill: currentcolor;",
         );
 
         div.appendChild(svg);
@@ -1115,14 +1106,14 @@ class YouTubeElement {
         const span = document.createElement("span");
         span.setAttribute(
           "class",
-          "yt-icon-shape style-scope yt-icon yt-spec-icon-shape"
+          "yt-icon-shape style-scope yt-icon yt-spec-icon-shape",
         );
         span.appendChild(div);
 
         const button = document.createElement("button");
         button.setAttribute(
           "style",
-          "display: inline-block; vertical-align: middle; justify-items: center; color: inherit; outline: none; background: none; margin: 0; border: none; padding: 0; width: 100%; height: 100%; line-height: 0; cursor: pointer;"
+          "display: inline-block; vertical-align: middle; justify-items: center; color: inherit; outline: none; background: none; margin: 0; border: none; padding: 0; width: 100%; height: 100%; line-height: 0; cursor: pointer;",
         );
         button.append(span);
 
@@ -1133,14 +1124,14 @@ class YouTubeElement {
         youtubeStudioButtonAnchor.appendChild(ytIconButton);
 
         const headerButtons = document.querySelector(
-          "ytd-masthead div#buttons"
+          "ytd-masthead div#buttons",
         );
         const headerButtonsChildren = Array.from(headerButtons.children);
         const position = 1;
 
         headerButtons.insertBefore(
           youtubeStudioButtonAnchor,
-          headerButtonsChildren[position]
+          headerButtonsChildren[position],
         );
       } else if (!hide && youtubeStudioButton) {
         youtubeStudioButton.remove();
@@ -1179,13 +1170,13 @@ class ElementManager {
             const mergedElements = STORAGE.tubemod_elements.map(
               (newElement) => {
                 const storedElement = storedElements.find(
-                  (el) => el.id === newElement.id
+                  (el) => el.id === newElement.id,
                 );
                 if (storedElement) {
                   return { ...newElement, checked: storedElement.checked };
                 }
                 return newElement;
-              }
+              },
             );
             chrome.storage.local.set({
               tubemod_elements: JSON.stringify(mergedElements),
@@ -1199,7 +1190,7 @@ class ElementManager {
             });
             resolve(STORAGE.tubemod_elements);
           }
-        }
+        },
       );
     });
   }
@@ -1223,7 +1214,7 @@ class ElementManager {
   setupObserver() {
     this.observer?.disconnect();
     this.observer = new MutationObserver(
-      debounce(this.handleMutations.bind(this), 100)
+      debounce(this.handleMutations.bind(this), 100),
     );
     this.observer.observe(document.body, { childList: true, subtree: true });
   }
@@ -1234,13 +1225,13 @@ class ElementManager {
 
   async applyAllElements(pageType) {
     const relevantElements = this.elements.filter(
-      (el) => el.pageTypes.length === 0 || el.pageTypes.includes(pageType)
+      (el) => el.pageTypes.length === 0 || el.pageTypes.includes(pageType),
     );
 
     await Promise.all(
       relevantElements.map((element) => {
         element.checked !== undefined ? element.toggle(element.checked) : null;
-      })
+      }),
     );
   }
 }
@@ -1255,7 +1246,7 @@ class TubeMod {
     chrome.runtime.onMessage.addListener(this.handleMessage.bind(this));
     window.addEventListener(
       "DOMContentLoaded",
-      this.handleYouTubeNavigate.bind(this)
+      this.handleYouTubeNavigate.bind(this),
     );
     window.addEventListener("popstate", this.handleYouTubeNavigate.bind(this));
     window.addEventListener("load", this.handleLoad.bind(this));
@@ -1280,7 +1271,7 @@ class TubeMod {
         () => {
           console.info("Default settings restored.");
           location.reload();
-        }
+        },
       );
     });
   }

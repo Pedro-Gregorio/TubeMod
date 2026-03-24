@@ -1,5 +1,23 @@
 # TubeMod - Release Notes
 
+## 1.14.0
+
+Add:
+
+- Sidebar:
+  - Compatibility with YouTube's new Sidebar
+
+
+Fix:
+
+- General:
+  - 
+
+Delete:
+
+- Sidebar:
+  - Options that no longer exist
+
 ## 1.13.0
 
 Add:

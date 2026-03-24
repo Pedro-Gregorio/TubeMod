@@ -166,6 +166,17 @@
         </label>
       </div>
       <div class="checkbox-container">
+        <label for="subscriptions-panel">Hide Subscriptions Panel</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="subscriptions-panel"
+            name="subscriptions-panel"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
         <label for="subscriptions">Hide Subscriptions Button</label>
         <label class="switch">
           <input type="checkbox" id="subscriptions" name="subscriptions" />
@@ -173,9 +184,20 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="youtube-music">Hide YouTube Music Button (Premium)</label>
+        <label for="subscriptions-panel-new-indicator">Hide Subscribed Channel New Indicator<br>(Blue Dot)</label>
         <label class="switch">
-          <input type="checkbox" id="youtube-music" name="youtube-music" />
+          <input
+            type="checkbox"
+            id="subscriptions-panel-new-indicator"
+            name="subscriptions-panel-new-indicator"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="you-panel">Hide You Panel</label>
+        <label class="switch">
+          <input type="checkbox" id="you-panel" name="you-panel" />
           <span class="slider round"></span>
         </label>
       </div>
@@ -204,28 +226,6 @@
         <label for="my-videos">Hide Your Videos Button</label>
         <label class="switch">
           <input type="checkbox" id="my-videos" name="my-videos" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="your-movies-and-tv">Hide Your Movies & TV Button</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="your-movies-and-tv"
-            name="your-movies-and-tv"
-          />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="your-podcasts">Hide Your Podcasts</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="your-podcasts"
-            name="your-podcasts"
-          />
           <span class="slider round"></span>
         </label>
       </div>
@@ -265,28 +265,6 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="subscriptions-panel">Hide Subscriptions Panel</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="subscriptions-panel"
-            name="subscriptions-panel"
-          />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="subscriptions-panel-new-indicator">Hide Subscribed Channel New Indicator<br>(Blue Dot)</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="subscriptions-panel-new-indicator"
-            name="subscriptions-panel-new-indicator"
-          />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
         <label for="explore-panel">Hide Explore Panel</label>
         <label class="switch">
           <input type="checkbox" id="explore-panel" name="explore-panel" />
@@ -294,7 +272,7 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="youtube-panel">Hide Youtube Panel</label>
+        <label for="youtube-panel">Hide More from Youtube Panel</label>
         <label class="switch">
           <input type="checkbox" id="youtube-panel" name="youtube-panel" />
           <span class="slider round"></span>
@@ -876,7 +854,7 @@
     </div>
 
     <button class="collapsible">Downloads</button>
-    <div class="container" id="subscriptions" style="display: none">
+    <div class="container" id="downloads" style="display: none">
       <div class="checkbox-container">
         <label for="download-badge">Hide Downloaded Badge in Downloads</label>
         <label class="switch">
