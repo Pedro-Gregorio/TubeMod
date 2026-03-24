@@ -13,6 +13,7 @@ Add:
 Fix:
 
 - General:
+  - Set Video Titles to lowercase
   - Hide Video Thumbnails
   - Hide Video Views and Posted Time
 

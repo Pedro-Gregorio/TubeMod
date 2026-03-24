@@ -69,7 +69,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.14.0-d",
+  tubemod_version: "1.14.0-c",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -125,7 +125,7 @@ const STORAGE = {
     {
       id: "lowercase-title",
       selector:
-        "//ytd-watch-metadata//div[@id='title'] | //*[@id='video-title']",
+        "//a[contains(@class, '__title')]",
       checked: false,
       property: TEXT_TRANSFORM,
       style: LOWERCASE,
