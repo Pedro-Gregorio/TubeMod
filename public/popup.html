@@ -61,7 +61,7 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="lowercase-title">Set all Video Titles to lowercase</label>
+        <label for="lowercase-title">Set Video Titles to lowercase</label>
         <label class="switch">
           <input type="checkbox" id="lowercase-title" name="lowercase-title" />
           <span class="slider round"></span>
@@ -131,6 +131,17 @@
       </div>
     </div>
 
+   <button class="collapsible">Search Results</button>
+    <div class="container" id="search-settings" style="display: none;">
+      <div class="checkbox-container">
+        <label for="search-history-thumbnails">Hide Search History Thumbnails</label>
+        <label class="switch">
+          <input type="checkbox" id="search-history-thumbnails" name="search-history-thumbnails" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
     <button class="collapsible">Profile Settings</button>
     <div class="container" id="profile-settings" style="display: none;">
       <div class="checkbox-container">
@@ -166,6 +177,17 @@
         </label>
       </div>
       <div class="checkbox-container">
+        <label for="subscriptions-panel">Hide Subscriptions Panel</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="subscriptions-panel"
+            name="subscriptions-panel"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
         <label for="subscriptions">Hide Subscriptions Button</label>
         <label class="switch">
           <input type="checkbox" id="subscriptions" name="subscriptions" />
@@ -173,9 +195,20 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="youtube-music">Hide YouTube Music Button (Premium)</label>
+        <label for="subscriptions-panel-new-indicator">Hide Subscribed Channel New Indicator<br>(Blue Dot)</label>
         <label class="switch">
-          <input type="checkbox" id="youtube-music" name="youtube-music" />
+          <input
+            type="checkbox"
+            id="subscriptions-panel-new-indicator"
+            name="subscriptions-panel-new-indicator"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="you-panel">Hide You Panel</label>
+        <label class="switch">
+          <input type="checkbox" id="you-panel" name="you-panel" />
           <span class="slider round"></span>
         </label>
       </div>
@@ -204,28 +237,6 @@
         <label for="my-videos">Hide Your Videos Button</label>
         <label class="switch">
           <input type="checkbox" id="my-videos" name="my-videos" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="your-movies-and-tv">Hide Your Movies & TV Button</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="your-movies-and-tv"
-            name="your-movies-and-tv"
-          />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="your-podcasts">Hide Your Podcasts</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="your-podcasts"
-            name="your-podcasts"
-          />
           <span class="slider round"></span>
         </label>
       </div>
@@ -265,28 +276,6 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="subscriptions-panel">Hide Subscriptions Panel</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="subscriptions-panel"
-            name="subscriptions-panel"
-          />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="subscriptions-panel-new-indicator">Hide Subscribed Channel New Indicator<br>(Blue Dot)</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="subscriptions-panel-new-indicator"
-            name="subscriptions-panel-new-indicator"
-          />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
         <label for="explore-panel">Hide Explore Panel</label>
         <label class="switch">
           <input type="checkbox" id="explore-panel" name="explore-panel" />
@@ -294,7 +283,7 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="youtube-panel">Hide Youtube Panel</label>
+        <label for="youtube-panel">Hide More from Youtube Panel</label>
         <label class="switch">
           <input type="checkbox" id="youtube-panel" name="youtube-panel" />
           <span class="slider round"></span>
@@ -400,7 +389,7 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="podcast-playlist">Hide Podcasts and Playlists</label>
+        <label for="podcast-playlist">Hide Podcasts Playlists/label>
         <label class="switch">
           <input type="checkbox" id="podcast-playlist" name="podcast-playlist" />
           <span class="slider round"></span>
@@ -425,6 +414,17 @@
     <button class="collapsible">Subscriptions</button>
     <div class="container" id="subscriptions" style="display: none">
       <div class="checkbox-container">
+        <label for="subscriptions-most-relevant">Hide Most Relevant</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="subscriptions-most-relevant"
+            name="subscriptions-most-relevant"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
         <label for="subscriptions-shorts">Hide Shorts</label>
         <label class="switch">
           <input
@@ -436,6 +436,33 @@
         </label>
       </div>
     </div>
+
+    <button class="collapsible">Playlists</button>
+    <div class="container" id="playlists" style="display: none">
+      <div class="checkbox-container">
+        <label for="playlists-watch-later">Hide Watch Later Playlist</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="playlists-watch-later"
+            name="playlists-watch-later"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="playlists-liked-videos">Hide Liked Videos Playlist</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="playlists-liked-videos"
+            name="playlists-liked-videos"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
 
     <button class="collapsible">Search</button>
     <div class="container" id="search" style="display: none;">
@@ -876,7 +903,7 @@
     </div>
 
     <button class="collapsible">Downloads</button>
-    <div class="container" id="subscriptions" style="display: none">
+    <div class="container" id="downloads" style="display: none">
       <div class="checkbox-container">
         <label for="download-badge">Hide Downloaded Badge in Downloads</label>
         <label class="switch">
@@ -908,7 +935,7 @@
     </div>
 
     <p class="version">
-      Current Version 1.13.0 |
+      Current Version 1.14.0 |
       <a
         href="https://github.com/Pedro-Gregorio/TubeMod/blob/master/documentation/ReleaseNotes.md"
         target="_blank"

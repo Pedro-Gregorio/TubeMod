@@ -14,6 +14,7 @@ const PAGE_TYPES = {
   TRENDING: "trending",
   DOWNLOADS: "downloads",
   CHANNEL: "channel",
+  PLAYLISTS: "playlists"
 };
 
 function saveSettings() {
@@ -31,7 +32,7 @@ function saveSettings() {
         a.download = "tubeModSettings.json";
         a.click();
       }
-    }
+    },
   );
   document.body.removeChild(a);
 }
@@ -64,17 +65,19 @@ function getCurrentPageType() {
     return PAGE_TYPES.DOWNLOADS;
   } else if (url.includes("/@")) {
     return PAGE_TYPES.CHANNEL;
+  } else if (url.includes("/feed/playlists")) {
+    return PAGE_TYPES.PLAYLISTS;
   }
   return null;
 }
 
 const STORAGE = {
-  tubemod_version: "1.13.0",
+  tubemod_version: "1.14.0",
   tubemod_elements: [
     {
       id: "scheduled-videos",
       selector:
-        "//ytd-rich-item-renderer[.//ytd-thumbnail-overlay-time-status-renderer[@overlay-style='UPCOMING']]",
+        "//ytd-rich-item-renderer[count(.//button) > 1]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -83,7 +86,7 @@ const STORAGE = {
     {
       id: "live-videos",
       selector:
-        "//ytd-rich-item-renderer[.//div[@id='meta']/ytd-badge-supported-renderer[not(@hidden)]]",
+        "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M4.222 4.223a11 11 0 000 15.555 1 1 0 101.414-1.414 9 9 0 010-12.727 1 1 0 10-1.414-1.414Zm13.79.353a1 1 0 000 1.414 8.5 8.5 0 010 12.022 1 1 0 001.413 1.414 10.501 10.501 0 000-14.85 1 1 0 00-1.413 0Zm-2.83 2.827a1 1 0 000 1.414 4.501 4.501 0 010 6.365 1.001 1.001 0 001.414 1.414 6.5 6.5 0 000-9.193 1 1 0 00-1.415 0Zm-7.78 0a6.5 6.5 0 000 9.194 1 1 0 001.415-1.415 4.5 4.5 0 010-6.364 1.001 1.001 0 00-1.415-1.415ZM12 10a2 2 0 100 4 2 2 0 000-4Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -91,7 +94,7 @@ const STORAGE = {
     },
     {
       id: "video-previews",
-      selector: "//div[@id='video-preview' or @id='mouseover-overlay']",
+      selector: "//div[@id='video-preview' or @id='mouseover-overlay'] | //yt-thumbnail-hover-overlay-toggle-actions-view-model | //animated-thumbnail-overlay-view-model",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -99,7 +102,7 @@ const STORAGE = {
     },
     {
       id: "video-thumbnails",
-      selector: "//div[@id='thumbnail'] | //yt-collection-thumbnail-view-model",
+      selector: "//ytd-thumbnail//yt-image | //ytd-playlist-thumbnail | //yt-thumbnail-view-model",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -116,7 +119,7 @@ const STORAGE = {
     },
     {
       id: "video-meta-data",
-      selector: "//div[@id='metadata-line']",
+      selector: "//yt-content-metadata-view-model/div[2]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -125,7 +128,7 @@ const STORAGE = {
     {
       id: "lowercase-title",
       selector:
-        "//ytd-watch-metadata//div[@id='title'] | //*[@id='video-title']",
+        "//a[contains(@class, '__title')]",
       checked: false,
       property: TEXT_TRANSFORM,
       style: LOWERCASE,
@@ -240,9 +243,17 @@ const STORAGE = {
       pageTypes: [],
     },
     {
+      id: "you-panel",
+      selector: "(//ytd-guide-section-renderer)[3]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
       id: "you",
       selector:
-        "(//div[@id='header']/ytd-guide-entry-renderer)[1] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
+        "//ytd-guide-entry-renderer[a[@href='/feed/you']] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -268,23 +279,6 @@ const STORAGE = {
       id: "my-videos",
       selector:
         "//ytd-guide-entry-renderer[a[starts-with(@href, 'https://studio.youtube.com/channel')]]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "your-movies-and-tv",
-      selector:
-        "//ytd-guide-entry-renderer[a[@href='/feed/storefront?bp=ogUCKAQ%3D']]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "your-podcasts",
-      selector: "//ytd-guide-entry-renderer[a[@href='/feed/podcasts']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -350,14 +344,6 @@ const STORAGE = {
     },
     {
       id: "explore-panel",
-      selector: "(//ytd-guide-section-renderer)[3]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "youtube-panel",
       selector: "(//ytd-guide-section-renderer)[4]",
       checked: false,
       property: DISPLAY,
@@ -365,8 +351,16 @@ const STORAGE = {
       pageTypes: [],
     },
     {
-      id: "youtube-settings",
+      id: "youtube-panel",
       selector: "(//ytd-guide-section-renderer)[5]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "youtube-settings",
+      selector: "(//ytd-guide-section-renderer)[6]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -469,7 +463,7 @@ const STORAGE = {
     {
       id: "playlist-mix",
       selector:
-        "//ytd-rich-item-renderer[.//ytd-playlist-thumbnail[not(@hidden)]] | //ytd-rich-item-renderer[.//a[contains(@href, 'start_radio=1')]]",
+        "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M3 3.657v16.689a1 1 0 001.466.883L8 19.369V4.632l-3.534-1.86A1 1 0 003 3.657ZM14 7.79l-4-2.105v12.631l4-2.106V7.79ZM22 12l-6-3.157v6.315L22 12Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -477,7 +471,7 @@ const STORAGE = {
     },
     {
       id: "podcast-playlist",
-      selector: "//ytd-rich-item-renderer[.//a[contains(@href, 'pp=')]]",
+      selector: "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M6 .5A5 5 0 0110.33 8l-.433-.25-.433-.25a4 4 0 10-6.928 0 .5.5 0 01-.866.5A5 5 0 016 .5ZM6 3a2 2 0 00-2 2v2c0 .932.638 1.711 1.5 1.934V10H5a.5.5 0 000 1h2a.5.5 0 000-1h-.5V8.934A2 2 0 008 7V5a2 2 0 00-2-2Zm4.33 5-.866-.5a.5.5 0 00.866.5Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -502,8 +496,16 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.HOME],
     },
     {
+      id: "subscriptions-most-relevant",
+      selector: "(//ytd-rich-section-renderer[not(.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='m19.45,3.88c1.12,1.82.48,4.15-1.42,5.22l-1.32.74.94.41c1.36.58,2.27,1.85,2.35,3.27.08,1.43-.68,2.77-1.97,3.49l-8,4.47c-1.91,1.06-4.35.46-5.48-1.35-1.12-1.82-.48-4.15,1.42-5.22l1.33-.74-.94-.41c-1.36-.58-2.27-1.85-2.35-3.27-.08-1.43.68-2.77,1.97-3.49l8-4.47c-1.91-1.06,4.35-.46,5.48,1.35Z'])])[position() > 1]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.SUBSCRIPTIONS],
+    },
+    {
       id: "subscriptions-shorts",
-      selector: "//ytd-rich-shelf-renderer/../.. | //ytd-rich-shelf-renderer",
+      selector: "//ytd-rich-section-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='m19.45,3.88c1.12,1.82.48,4.15-1.42,5.22l-1.32.74.94.41c1.36.58,2.27,1.85,2.35,3.27.08,1.43-.68,2.77-1.97,3.49l-8,4.47c-1.91,1.06-4.35.46-5.48-1.35-1.12-1.82-.48-4.15,1.42-5.22l1.33-.74-.94-.41c-1.36-.58-2.27-1.85-2.35-3.27-.08-1.43.68-2.77,1.97-3.49l8-4.47c1.91-1.06,4.35-.46,5.48,1.35Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -511,7 +513,7 @@ const STORAGE = {
     },
     {
       id: "search-shorts",
-      selector: "//ytd-reel-shelf-renderer",
+      selector: "//grid-shelf-view-model[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='m19.45,3.88c1.12,1.82.48,4.15-1.42,5.22l-1.32.74.94.41c1.36.58,2.27,1.85,2.35,3.27.08,1.43-.68,2.77-1.97,3.49l-8,4.47c-1.91,1.06-4.35.46-5.48-1.35-1.12-1.82-.48-4.15,1.42-5.22l1.33-.74-.94-.41c-1.36-.58-2.27-1.85-2.35-3.27-.08-1.43.68-2.77,1.97-3.49l8-4.47c1.91-1.06,4.35-.46,5.48,1.35Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -758,7 +760,7 @@ const STORAGE = {
     },
     {
       id: "video-comments-avatars",
-      selector: "//ytd-comments[@id='comments']//div[@id='author-thumbnail']/a",
+      selector: "//ytd-comments[@id='comments']//div[@id='author-thumbnail']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -816,7 +818,7 @@ const STORAGE = {
     {
       id: "video-suggested-videos-new-badge",
       selector:
-        "//ytd-compact-video-renderer//div/ytd-badge-supported-renderer[.//div[contains(@class, 'badge')]]",
+        "//yt-lockup-view-model//yt-content-metadata-view-model//div[.//yt-badge-view-model]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -853,6 +855,30 @@ const STORAGE = {
       style: YT_RED,
       pageTypes: [PAGE_TYPES.VIDEO],
     },
+    {
+      id: "search-history-thumbnails",
+      selector: "//yt-searchbox//div[@class='ytSuggestionComponentThumbnailContainer']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "playlists-watch-later",
+      selector: "//ytd-rich-item-renderer[.//a[contains(@href, 'list=WL')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.PLAYLISTS],
+    },
+    {
+      id: "playlists-liked-videos",
+      selector: "//ytd-rich-item-renderer[.//a[contains(@href, 'list=LL')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.PLAYLISTS],
+    }
   ],
 };
 
@@ -878,7 +904,7 @@ function waitForElements(selector, callback) {
       document,
       null,
       XPathResult.FIRST_ORDERED_NODE_TYPE,
-      null
+      null,
     ).singleNodeValue;
     if (element) {
       obs.disconnect();
@@ -896,7 +922,7 @@ function waitForElements(selector, callback) {
     document,
     null,
     XPathResult.FIRST_ORDERED_NODE_TYPE,
-    null
+    null,
   ).singleNodeValue;
   if (existingElement) {
     callback([existingElement]);
@@ -939,7 +965,7 @@ class YouTubeElement {
       document,
       null,
       XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
-      null
+      null,
     );
 
     for (let i = 0; i < elements.snapshotLength; i++) {
@@ -954,7 +980,7 @@ class YouTubeElement {
 
     if (this.id === "home-posts") {
       const postsElement = document.querySelector(
-        "ytd-rich-section-renderer:has(ytd-post-renderer)"
+        "ytd-rich-section-renderer:has(ytd-post-renderer)",
       );
       if (postsElement) {
         hide ? (postsElement.disabled = true) : (postsElement.disabled = false);
@@ -970,7 +996,7 @@ class YouTubeElement {
 
     if (this.id === "video-shorts-description") {
       const descriptionShorts = document.querySelector(
-        "ytd-structured-description-content-renderer > div#items > ytd-reel-shelf-renderer"
+        "ytd-structured-description-content-renderer > div#items > ytd-reel-shelf-renderer",
       );
       if (descriptionShorts) {
         hide
@@ -990,7 +1016,7 @@ class YouTubeElement {
 
     if (this.id === "you") {
       const elementWithTopBorder = document.querySelector(
-        "ytd-guide-collapsible-section-entry-renderer"
+        "ytd-guide-collapsible-section-entry-renderer",
       );
       if (elementWithTopBorder) {
         elementWithTopBorder.style.borderTop = hide
@@ -1001,7 +1027,7 @@ class YouTubeElement {
 
     if (this.id === "my-clips") {
       const elementWithBottomBorder = document.querySelector(
-        "ytd-guide-section-renderer"
+        "ytd-guide-section-renderer",
       );
       if (elementWithBottomBorder) {
         elementWithBottomBorder.style.borderBottom = hide
@@ -1012,12 +1038,12 @@ class YouTubeElement {
 
     if (this.id === "video-thumbnail") {
       const thumbnailElement = document.getElementById(
-        "video-thumbnail-tubemod"
+        "video-thumbnail-tubemod",
       );
 
       if (hide && thumbnailElement === null) {
         const items = document.querySelector(
-          "ytd-watch-next-secondary-results-renderer div#items"
+          "ytd-watch-next-secondary-results-renderer div#items",
         );
 
         let currentVideo = new URL(document.URL);
@@ -1031,7 +1057,7 @@ class YouTubeElement {
           anchorTag.setAttribute("target", "_blank");
           anchorTag.setAttribute(
             "href",
-            "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg"
+            "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg",
           );
 
           let image = document.createElement("img");
@@ -1039,11 +1065,11 @@ class YouTubeElement {
           image.setAttribute("src", thumbnailSource);
           image.setAttribute(
             "class",
-            "yt-core-image--fill-parent-width yt-core-image--loaded"
+            "yt-core-image--fill-parent-width yt-core-image--loaded",
           );
           image.setAttribute(
             "style",
-            "border-radius: 8px; margin-bottom: 8px;"
+            "border-radius: 8px; margin-bottom: 8px;",
           );
 
           anchorTag.append(image);
@@ -1057,7 +1083,7 @@ class YouTubeElement {
 
     if (this.id === "sidebar") {
       const videoContainer = document.querySelector(
-        "ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app"
+        "ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app",
       );
 
       if (videoContainer) {
@@ -1067,14 +1093,14 @@ class YouTubeElement {
 
     if (this.id === "studio-button") {
       const youtubeStudioButton = document.getElementById(
-        "studio-button-tubemod"
+        "studio-button-tubemod",
       );
 
       if (hide && youtubeStudioButton === null) {
         const youtubeStudioButtonAnchor = document.createElement("a");
         youtubeStudioButtonAnchor.setAttribute(
           "href",
-          "https://studio.youtube.com/"
+          "https://studio.youtube.com/",
         );
         youtubeStudioButtonAnchor.setAttribute("id", "studio-button-tubemod");
         youtubeStudioButtonAnchor.setAttribute("style", "margin-right: 8px;");
@@ -1086,20 +1112,20 @@ class YouTubeElement {
           window.matchMedia &&
             window.matchMedia("(prefers-color-scheme: dark)").matches
             ? "#fff"
-            : "#000"
+            : "#000",
         );
         svg.setAttribute("width", "24");
         svg.setAttribute("height", "24");
         svg.setAttribute("viewBox", "0 0 24 24");
         svg.setAttribute(
           "style",
-          "pointer-events: none; display: inherit; width: 100%; height: 100%;"
+          "pointer-events: none; display: inherit; width: 100%; height: 100%;",
         );
 
         const path = document.createElementNS(svgNS, "path");
         path.setAttribute(
           "d",
-          "M10 9.35 15 12l-5 2.65ZM12 3a.73.73 0 00-.31.06L4.3 7.28a.79.79 0 00-.3.52v8.4a.79.79 0 00.3.52l7.39 4.22a.83.83 0 00.62 0l7.39-4.22a.79.79 0 00.3-.52V7.8a.79.79 0 00-.3-.52l-7.39-4.22A.73.73 0 0012 3m0-1a1.6 1.6 0 01.8.19l7.4 4.22A1.77 1.77 0 0121 7.8v8.4a1.77 1.77 0 01-.8 1.39l-7.4 4.22a1.78 1.78 0 01-1.6 0l-7.4-4.22A1.77 1.77 0 013 16.2V7.8a1.77 1.77 0 01.8-1.39l7.4-4.22A1.6 1.6 0 0112 2Zm0 4a.42.42 0 00-.17 0l-4.7 2.8a.59.59 0 00-.13.39v5.61a.65.65 0 00.13.37l4.7 2.8A.42.42 0 0012 18a.34.34 0 00.17 0l4.7-2.81a.56.56 0 00.13-.39V9.19a.62.62 0 00-.13-.37L12.17 6A.34.34 0 0012 6m0-1a1.44 1.44 0 01.69.17L17.39 8A1.46 1.46 0 0118 9.19v5.61a1.46 1.46 0 01-.61 1.2l-4.7 2.81A1.44 1.44 0 0112 19a1.4 1.4 0 01-.68-.17L6.62 16A1.47 1.47 0 016 14.8V9.19A1.47 1.47 0 016.62 8l4.7-2.8A1.4 1.4 0 0112 5Z"
+          "M10 9.35 15 12l-5 2.65ZM12 3a.73.73 0 00-.31.06L4.3 7.28a.79.79 0 00-.3.52v8.4a.79.79 0 00.3.52l7.39 4.22a.83.83 0 00.62 0l7.39-4.22a.79.79 0 00.3-.52V7.8a.79.79 0 00-.3-.52l-7.39-4.22A.73.73 0 0012 3m0-1a1.6 1.6 0 01.8.19l7.4 4.22A1.77 1.77 0 0121 7.8v8.4a1.77 1.77 0 01-.8 1.39l-7.4 4.22a1.78 1.78 0 01-1.6 0l-7.4-4.22A1.77 1.77 0 013 16.2V7.8a1.77 1.77 0 01.8-1.39l7.4-4.22A1.6 1.6 0 0112 2Zm0 4a.42.42 0 00-.17 0l-4.7 2.8a.59.59 0 00-.13.39v5.61a.65.65 0 00.13.37l4.7 2.8A.42.42 0 0012 18a.34.34 0 00.17 0l4.7-2.81a.56.56 0 00.13-.39V9.19a.62.62 0 00-.13-.37L12.17 6A.34.34 0 0012 6m0-1a1.44 1.44 0 01.69.17L17.39 8A1.46 1.46 0 0118 9.19v5.61a1.46 1.46 0 01-.61 1.2l-4.7 2.81A1.44 1.44 0 0112 19a1.4 1.4 0 01-.68-.17L6.62 16A1.47 1.47 0 016 14.8V9.19A1.47 1.47 0 016.62 8l4.7-2.8A1.4 1.4 0 0112 5Z",
         );
 
         svg.appendChild(path);
@@ -1107,7 +1133,7 @@ class YouTubeElement {
         const div = document.createElement("div");
         div.setAttribute(
           "style",
-          "width: 24px; height: 24px; display: block; fill: currentcolor;"
+          "width: 24px; height: 24px; display: block; fill: currentcolor;",
         );
 
         div.appendChild(svg);
@@ -1115,14 +1141,14 @@ class YouTubeElement {
         const span = document.createElement("span");
         span.setAttribute(
           "class",
-          "yt-icon-shape style-scope yt-icon yt-spec-icon-shape"
+          "yt-icon-shape style-scope yt-icon yt-spec-icon-shape",
         );
         span.appendChild(div);
 
         const button = document.createElement("button");
         button.setAttribute(
           "style",
-          "display: inline-block; vertical-align: middle; justify-items: center; color: inherit; outline: none; background: none; margin: 0; border: none; padding: 0; width: 100%; height: 100%; line-height: 0; cursor: pointer;"
+          "display: inline-block; vertical-align: middle; justify-items: center; color: inherit; outline: none; background: none; margin: 0; border: none; padding: 0; width: 100%; height: 100%; line-height: 0; cursor: pointer;",
         );
         button.append(span);
 
@@ -1133,14 +1159,14 @@ class YouTubeElement {
         youtubeStudioButtonAnchor.appendChild(ytIconButton);
 
         const headerButtons = document.querySelector(
-          "ytd-masthead div#buttons"
+          "ytd-masthead div#buttons",
         );
         const headerButtonsChildren = Array.from(headerButtons.children);
         const position = 1;
 
         headerButtons.insertBefore(
           youtubeStudioButtonAnchor,
-          headerButtonsChildren[position]
+          headerButtonsChildren[position],
         );
       } else if (!hide && youtubeStudioButton) {
         youtubeStudioButton.remove();
@@ -1179,13 +1205,13 @@ class ElementManager {
             const mergedElements = STORAGE.tubemod_elements.map(
               (newElement) => {
                 const storedElement = storedElements.find(
-                  (el) => el.id === newElement.id
+                  (el) => el.id === newElement.id,
                 );
                 if (storedElement) {
                   return { ...newElement, checked: storedElement.checked };
                 }
                 return newElement;
-              }
+              },
             );
             chrome.storage.local.set({
               tubemod_elements: JSON.stringify(mergedElements),
@@ -1199,7 +1225,7 @@ class ElementManager {
             });
             resolve(STORAGE.tubemod_elements);
           }
-        }
+        },
       );
     });
   }
@@ -1223,7 +1249,7 @@ class ElementManager {
   setupObserver() {
     this.observer?.disconnect();
     this.observer = new MutationObserver(
-      debounce(this.handleMutations.bind(this), 100)
+      debounce(this.handleMutations.bind(this), 100),
     );
     this.observer.observe(document.body, { childList: true, subtree: true });
   }
@@ -1234,13 +1260,13 @@ class ElementManager {
 
   async applyAllElements(pageType) {
     const relevantElements = this.elements.filter(
-      (el) => el.pageTypes.length === 0 || el.pageTypes.includes(pageType)
+      (el) => el.pageTypes.length === 0 || el.pageTypes.includes(pageType),
     );
 
     await Promise.all(
       relevantElements.map((element) => {
         element.checked !== undefined ? element.toggle(element.checked) : null;
-      })
+      }),
     );
   }
 }
@@ -1255,7 +1281,7 @@ class TubeMod {
     chrome.runtime.onMessage.addListener(this.handleMessage.bind(this));
     window.addEventListener(
       "DOMContentLoaded",
-      this.handleYouTubeNavigate.bind(this)
+      this.handleYouTubeNavigate.bind(this),
     );
     window.addEventListener("popstate", this.handleYouTubeNavigate.bind(this));
     window.addEventListener("load", this.handleLoad.bind(this));
@@ -1280,7 +1306,7 @@ class TubeMod {
         () => {
           console.info("Default settings restored.");
           location.reload();
-        }
+        },
       );
     });
   }

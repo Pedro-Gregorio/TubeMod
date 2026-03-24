@@ -1,5 +1,50 @@
 # TubeMod - Release Notes
 
+## 1.14.0
+
+Add:
+
+- General:
+  - Hide Video Previews (on hover) also works for suggested videos on video being watched
+
+- Sidebar:
+  - Compatibility with YouTube's new Sidebar
+
+- Search Results (NEW SECTION):
+  - Hide Thumbnails next to Search History
+
+- Playlists (NEW SECTION):
+  - Hide "Watch Later" Playlist
+  - Hide "Liked Videos" Playlist
+
+- Subscriptions:
+  - Hide "Most Relevant" section
+
+Fix:
+
+- General:
+  - Hide Scheduled Videos
+  - Hide Livestreams
+  - Set Video Titles to lowercase
+  - Hide Video Thumbnails
+  - Hide Video Views and Posted Time
+
+- Home:
+  - Hide Podcasts Playlists
+  - Hide Mix Playlists
+
+- Search:
+  - Hide Shorts
+
+- Video:
+  - Hide Video Comments Avatars
+  - Hide Suggested Videos "New" Badge
+
+Delete:
+
+- Sidebar:
+  - Options that no longer exist
+
 ## 1.13.0
 
 Add:
