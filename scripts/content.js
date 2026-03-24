@@ -69,7 +69,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.14.0-c",
+  tubemod_version: "1.14.0-asdasda",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -83,7 +83,7 @@ const STORAGE = {
     {
       id: "live-videos",
       selector:
-        "//ytd-rich-item-renderer[.//div[@id='meta']/ytd-badge-supported-renderer[not(@hidden)]]",
+        "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M4.222 4.223a11 11 0 000 15.555 1 1 0 101.414-1.414 9 9 0 010-12.727 1 1 0 10-1.414-1.414Zm13.79.353a1 1 0 000 1.414 8.5 8.5 0 010 12.022 1 1 0 001.413 1.414 10.501 10.501 0 000-14.85 1 1 0 00-1.413 0Zm-2.83 2.827a1 1 0 000 1.414 4.501 4.501 0 010 6.365 1.001 1.001 0 001.414 1.414 6.5 6.5 0 000-9.193 1 1 0 00-1.415 0Zm-7.78 0a6.5 6.5 0 000 9.194 1 1 0 001.415-1.415 4.5 4.5 0 010-6.364 1.001 1.001 0 00-1.415-1.415ZM12 10a2 2 0 100 4 2 2 0 000-4Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -757,7 +757,7 @@ const STORAGE = {
     },
     {
       id: "video-comments-avatars",
-      selector: "//ytd-comments[@id='comments']//div[@id='author-thumbnail']/a",
+      selector: "//ytd-comments[@id='comments']//div[@id='author-thumbnail']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -815,7 +815,7 @@ const STORAGE = {
     {
       id: "video-suggested-videos-new-badge",
       selector:
-        "//ytd-compact-video-renderer//div/ytd-badge-supported-renderer[.//div[contains(@class, 'badge')]]",
+        "//yt-lockup-view-model//yt-content-metadata-view-model//div[.//yt-badge-view-model]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

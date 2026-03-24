@@ -14,9 +14,14 @@ Fix:
 
 - General:
   - Hide Scheduled Videos
+  - Hide Livestreams
   - Set Video Titles to lowercase
   - Hide Video Thumbnails
   - Hide Video Views and Posted Time
+
+- Video:
+  - Hide Video Comments Avatars
+  - Hide Suggested Videos "New" Badge
 
 Delete:
 
