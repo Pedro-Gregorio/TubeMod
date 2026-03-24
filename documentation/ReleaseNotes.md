@@ -15,6 +15,7 @@ Add:
 
 - Playlists (NEW SECTION):
   - Hide "Watch Later" Playlist
+  - Hide "Liked Videos" Playlist
 
 - Subscriptions:
   - Hide "Most Relevant" section
