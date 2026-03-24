@@ -468,7 +468,7 @@ const STORAGE = {
     },
     {
       id: "podcast-playlist",
-      selector: "//ytd-rich-item-renderer[.//a[contains(@href, 'pp=')]]",
+      selector: "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M6 .5A5 5 0 0110.33 8l-.433-.25-.433-.25a4 4 0 10-6.928 0 .5.5 0 01-.866.5A5 5 0 016 .5ZM6 3a2 2 0 00-2 2v2c0 .932.638 1.711 1.5 1.934V10H5a.5.5 0 000 1h2a.5.5 0 000-1h-.5V8.934A2 2 0 008 7V5a2 2 0 00-2-2Zm4.33 5-.866-.5a.5.5 0 00.866.5Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

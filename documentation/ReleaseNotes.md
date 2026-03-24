@@ -26,6 +26,7 @@ Fix:
   - Hide Video Views and Posted Time
 
 - Home:
+  - Hide Podcasts Playlists
   - Hide Mix Playlists
 
 - Search:
