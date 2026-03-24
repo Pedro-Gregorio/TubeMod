@@ -69,7 +69,7 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.14.0-b",
+  tubemod_version: "1.14.0-d",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -99,7 +99,7 @@ const STORAGE = {
     },
     {
       id: "video-thumbnails",
-      selector: "//div[@id='thumbnail'] | //yt-collection-thumbnail-view-model",
+      selector: "//ytd-thumbnail//yt-image | //ytd-playlist-thumbnail | //yt-thumbnail-view-model",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -116,7 +116,7 @@ const STORAGE = {
     },
     {
       id: "video-meta-data",
-      selector: "//div[@id='metadata-line']",
+      selector: "//yt-content-metadata-view-model/div[2]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,

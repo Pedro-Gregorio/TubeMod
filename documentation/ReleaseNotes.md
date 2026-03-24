@@ -13,7 +13,8 @@ Add:
 Fix:
 
 - General:
-  - 
+  - Hide Video Thumbnails
+  - Hide Video Views and Posted Time
 
 Delete:
 
