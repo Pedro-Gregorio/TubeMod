@@ -1,5 +1,12 @@
 # TubeMod - Release Notes
 
+# 1.14.1
+
+Fix:
+
+- UI:
+  - Label on Hide Podcasts Option
+
 ## 1.14.0
 
 Add:
