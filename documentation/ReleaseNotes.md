@@ -1,5 +1,22 @@
 # TubeMod - Release Notes
 
+# 1.15.0
+
+Add:
+
+- General:
+  - Hide Livestreams also include livestreams on the Subscriptions Feed
+
+- Sidebar:
+  - Hide "Your Channel"
+  - On the "You" section, hide both "Show more" and "Show less" options
+
+Fix:
+
+- General:
+  - Hide Scheduled Videos was hiding everything on the channel videos tab (lol)
+  - Hide Video Previews (on hover) no longer hides action buttons
+
 # 1.14.1
 
 Fix:

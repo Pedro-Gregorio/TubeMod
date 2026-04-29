@@ -72,12 +72,12 @@ function getCurrentPageType() {
 }
 
 const STORAGE = {
-  tubemod_version: "1.14.0",
+  tubemod_version: "1.15.0",
   tubemod_elements: [
     {
       id: "scheduled-videos",
       selector:
-        "//ytd-rich-item-renderer[count(.//button) > 1]",
+        "//ytd-rich-item-renderer[.//lockup-attachments-view-model] | //yt-lockup-view-model[.//lockup-attachments-view-model]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -86,7 +86,7 @@ const STORAGE = {
     {
       id: "live-videos",
       selector:
-        "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M4.222 4.223a11 11 0 000 15.555 1 1 0 101.414-1.414 9 9 0 010-12.727 1 1 0 10-1.414-1.414Zm13.79.353a1 1 0 000 1.414 8.5 8.5 0 010 12.022 1 1 0 001.413 1.414 10.501 10.501 0 000-14.85 1 1 0 00-1.413 0Zm-2.83 2.827a1 1 0 000 1.414 4.501 4.501 0 010 6.365 1.001 1.001 0 001.414 1.414 6.5 6.5 0 000-9.193 1 1 0 00-1.415 0Zm-7.78 0a6.5 6.5 0 000 9.194 1 1 0 001.415-1.415 4.5 4.5 0 010-6.364 1.001 1.001 0 00-1.415-1.415ZM12 10a2 2 0 100 4 2 2 0 000-4Z']]",
+        "//ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M4.222 4.223a11 11 0 000 15.555 1 1 0 101.414-1.414 9 9 0 010-12.727 1 1 0 10-1.414-1.414Zm13.79.353a1 1 0 000 1.414 8.5 8.5 0 010 12.022 1 1 0 001.413 1.414 10.501 10.501 0 000-14.85 1 1 0 00-1.413 0Zm-2.83 2.827a1 1 0 000 1.414 4.501 4.501 0 010 6.365 1.001 1.001 0 001.414 1.414 6.5 6.5 0 000-9.193 1 1 0 00-1.415 0Zm-7.78 0a6.5 6.5 0 000 9.194 1 1 0 001.415-1.415 4.5 4.5 0 010-6.364 1.001 1.001 0 00-1.415-1.415ZM12 10a2 2 0 100 4 2 2 0 000-4Z']] | //ytd-rich-item-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M2.111 2.111a.5.5 0 11.707.707 4.501 4.501 0 000 6.364.5.5 0 01-.707.707 5.5 5.5 0 010-7.778Zm7.07 0a.5.5 0 01.708 0 5.5 5.5 0 010 7.778.5.5 0 11-.707-.707 4.5 4.5 0 000-6.364.5.5 0 010-.707ZM3.703 3.702a.5.5 0 11.707.707 2.25 2.25 0 000 3.182.5.5 0 01-.707.707 3.25 3.25 0 01-.705-3.542 3.25 3.25 0 01.705-1.054Zm3.889 0a.5.5 0 01.707 0 3.25 3.25 0 010 4.596.5.5 0 01-.707-.707 2.25 2.25 0 000-3.182.5.5 0 010-.707ZM6 5a1 1 0 110 2 1 1 0 010-2Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -94,7 +94,7 @@ const STORAGE = {
     },
     {
       id: "video-previews",
-      selector: "//div[@id='video-preview' or @id='mouseover-overlay'] | //yt-thumbnail-hover-overlay-toggle-actions-view-model | //animated-thumbnail-overlay-view-model",
+      selector: "//animated-thumbnail-overlay-view-model | //div[@id='video-preview']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -260,6 +260,15 @@ const STORAGE = {
       pageTypes: [],
     },
     {
+      id: "your-channel",
+      selector:
+        "(//ytd-guide-section-renderer)[3]//ytd-guide-entry-renderer/a[contains(@href, '@')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
       id: "history",
       selector: "//ytd-guide-entry-renderer[a[@href='/feed/history']]",
       checked: false,
@@ -311,6 +320,22 @@ const STORAGE = {
     {
       id: "my-clips",
       selector: "//ytd-guide-entry-renderer[a[@href='/feed/clips']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "you-show-fewer",
+      selector: "(//ytd-guide-section-renderer)[3]//ytd-guide-entry-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M5.293 15.207a1 1 0 001.414 0L12 9.914l5.293 5.293a1 1 0 101.414-1.414L12 7.086l-6.707 6.707a1 1 0 000 1.414Z']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "you-show-more",
+      selector: "(//ytd-guide-section-renderer)[3]//ytd-guide-entry-renderer[.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M18.707 8.793a1 1 0 00-1.414 0L12 14.086 6.707 8.793a1 1 0 10-1.414 1.414L12 16.914l6.707-6.707a1 1 0 000-1.414Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
