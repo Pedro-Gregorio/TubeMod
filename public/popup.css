@@ -168,6 +168,13 @@ input:checked + .slider:before {
   color: var(--color-accent);
 }
 
+/* On search, collapsible with no matching options are greyed-out. */
+.collapsible.greyed {
+  background-color: #ccc;
+  color: #888;
+  cursor: default;
+}
+
 .active {
   background-color: var(--color-tertiary);
   color: var(--color-background);
@@ -216,4 +223,60 @@ input:checked + .slider:before {
 
 .version {
   text-align: right;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-bottom: 10px;
+}
+
+.search-container label {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-accent);
+}
+
+#search-input {
+  width: 100%;
+  height: 30px;
+  padding-right: 8px;
+  border: 1px solid var(--color-secondary);
+  border-radius: 8px;
+  background-color: var(--color-background);
+  color: var(--color-accent);
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-wrapper input {
+  padding-left: 8px;
+}
+
+#clear-search {
+  position: absolute;
+  right: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: none;
+}
+
+#search-input::placeholder {
+  color: var(--color-secondary);
+  opacity: 0.8;
+}
+
+#search-input:focus {
+  border-color: var(--color-tertiary);
+  box-shadow: 0 0 5px var(--color-tertiary);
 }
