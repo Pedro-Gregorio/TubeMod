@@ -35,23 +35,26 @@ cd TubeMod
 
 If the clone command doesn't work just download the repository as a ZIP file and extract it to your desired location.
 
-Depending on your browser you will have to take different routes:
+The extension is built from the sources into `dist/` (requires Node.js). The version comes from `package.json`, and the build fails unless [the release notes](./documentation/ReleaseNotes.md) have an entry for it.
+
+```
+npm run build
+```
+
+This creates `dist/chrome`, `dist/firefox` and the two release zips (`dist/tubemod-<browser>-v<version>.zip`). Re-run it after every change.
 
 ### For Chromium based browsers:
 
-2.  Go to `chrome://extensions`. The "chrome" part might be changed to the name of the browser.
-3.  Enable the developer mode toggle.
-4.  Click on "Load unpacked".
-5.  Select the folder where the repository is (it should contain the manifest.json)
-6.  Every time you make a change either reload the extension or remove it an add it again. The latter works better when dealing with js parts of the code.
+1.  Go to `chrome://extensions`. The "chrome" part might be changed to the name of the browser.
+2.  Enable the developer mode toggle.
+3.  Click on "Load unpacked".
+4.  Select the `dist/chrome` folder.
+5.  Every time you make a change, rebuild and reload the extension. Removing and adding it again works better when dealing with js parts of the code.
 
 ### For Firefox based browsers:
 
-2.  Change the name of the `manifest.json` to something like `manifest_chrome.json` to avoid conflicts.
-3.  Also rename `manifest_firefox.json` to `manifest.json`.
-4.  On Firefox set it up as a temporary add-on by going to `about:debugging` and on the "Load Temporary Addon" click add and select any file of the repository.
-5.  Every time you make a change either reload the temporary add-on or remove it and add it again. The latter works better when dealing with js parts of the code.
-6.  Before pushing your changes to GitHub, make sure to revert the name changes in the manifests.
+1.  On Firefox set it up as a temporary add-on by going to `about:debugging` and on the "Load Temporary Addon" click add and select `dist/firefox/manifest.json`.
+2.  Every time you make a change, rebuild and reload the temporary add-on.
 
 Before pushing to GitHub, please update [the release notes](./documentation/ReleaseNotes.md) with the feature you're adding.
 
