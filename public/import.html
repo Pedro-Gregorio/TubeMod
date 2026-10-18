@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="popup.css" />
+  <link rel="icon" type="image/x-icon" href="/icons/icon_128.png" />
+  <meta charset="UTF-8" />
+  <title>TubeMod - Import Settings</title>
+</head>
+<html>
+  <body class="import-page">
+    <div class="title-container">
+      <h1>TubeMod</h1>
+      <h3>Import Settings</h3>
+    </div>
+
+    <p>
+      Choose a settings file previously created with "Export Settings". Your
+      open YouTube tabs will be reloaded once the settings are applied.
+    </p>
+
+    <label class="button" for="settings-file">Choose settings file</label>
+    <input id="settings-file" type="file" accept=".json" hidden />
+
+    <p id="import-status" role="status"></p>
+
+    <script src="../scripts/import.js"></script>
+  </body>
+</html>

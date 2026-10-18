@@ -1,11 +1,18 @@
 # TubeMod - Release Notes
 
-# 1.15.1
+# 1.16.0
+
+Change:
+
+- Settings:
+  - Importing settings now opens in its own tab (works on Firefox, which closed the popup when the file picker opened); the file is validated and open YouTube tabs are reloaded
 
 Fix:
 
 - Settings:
   - Exporting settings no longer logs an error in the console
+  - Settings are no longer tied to the stored version, so updates and imports always use the latest toggle definitions
+  - Settings are applied on page load even when the page finishes loading before they are read (affected Firefox)
 
 # 1.15.0
 

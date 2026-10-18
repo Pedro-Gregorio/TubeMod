@@ -37,15 +37,6 @@ function saveSettings() {
   );
 }
 
-function importSettings(settings) {
-  chrome.storage.local.set({
-    tubemod_elements: JSON.parse(settings)["tubemod_elements"],
-    tubemod_version: JSON.parse(settings)["tubemod_version"],
-  });
-  location.reload();
-  alert("TubeMod settings uploaded and applied!");
-}
-
 function getCurrentPageType() {
   const url = window.location.href;
   if (
@@ -1204,7 +1195,8 @@ class ElementManager {
   constructor() {
     this.elements = [];
     this.observer = null;
-    this.initialize();
+    // Page load events can fire before storage answers, so everything that reads this.elements waits on this.
+    this.ready = this.initialize();
   }
 
   async initialize() {
@@ -1217,39 +1209,33 @@ class ElementManager {
       chrome.storage.local.get(
         ["tubemod_elements", "tubemod_version"],
         (result) => {
+          let storedElements = [];
+          try {
+            storedElements = JSON.parse(result.tubemod_elements ?? "[]");
+          } catch (error) {
+            console.error("TubeMod: stored settings are corrupt, using defaults.", error);
+          }
+
+          // Selectors and styles always come from the shipped definitions, so only the user's choices are read from storage.
+          const checkedById = new Map(
+            storedElements.map((el) => [el.id, el.checked]),
+          );
+          const elements = STORAGE.tubemod_elements.map((element) =>
+            checkedById.has(element.id)
+              ? { ...element, checked: checkedById.get(element.id) }
+              : element,
+          );
+
           if (
-            result.tubemod_elements &&
-            result.tubemod_version === STORAGE.tubemod_version
-          ) {
-            resolve(JSON.parse(result.tubemod_elements));
-          } else if (
-            result.tubemod_elements &&
+            !result.tubemod_elements ||
             result.tubemod_version !== STORAGE.tubemod_version
           ) {
-            const storedElements = JSON.parse(result.tubemod_elements);
-            const mergedElements = STORAGE.tubemod_elements.map(
-              (newElement) => {
-                const storedElement = storedElements.find(
-                  (el) => el.id === newElement.id,
-                );
-                if (storedElement) {
-                  return { ...newElement, checked: storedElement.checked };
-                }
-                return newElement;
-              },
-            );
             chrome.storage.local.set({
-              tubemod_elements: JSON.stringify(mergedElements),
+              tubemod_elements: JSON.stringify(elements),
               tubemod_version: STORAGE.tubemod_version,
             });
-            resolve(mergedElements);
-          } else {
-            chrome.storage.local.set({
-              tubemod_elements: JSON.stringify(STORAGE.tubemod_elements),
-              tubemod_version: STORAGE.tubemod_version,
-            });
-            resolve(STORAGE.tubemod_elements);
           }
+          resolve(elements);
         },
       );
     });
@@ -1264,6 +1250,7 @@ class ElementManager {
   }
 
   async handleAction(action) {
+    await this.ready;
     const element = this.elements.find((el) => el.id === action.target);
     if (element) {
       await element.toggle(action.hide);
@@ -1284,15 +1271,14 @@ class ElementManager {
   }
 
   async applyAllElements(pageType) {
-    const relevantElements = this.elements.filter(
-      (el) => el.pageTypes.length === 0 || el.pageTypes.includes(pageType),
-    );
-
-    await Promise.all(
-      relevantElements.map((element) => {
-        element.checked !== undefined ? element.toggle(element.checked) : null;
-      }),
-    );
+    await this.ready;
+    this.elements
+      .filter(
+        (el) => el.pageTypes.length === 0 || el.pageTypes.includes(pageType),
+      )
+      .forEach((element) => {
+        if (element.checked !== undefined) element.toggle(element.checked);
+      });
   }
 }
 
@@ -1317,8 +1303,6 @@ class TubeMod {
       this.clearLocalStorage();
     } else if (request.action === "saveSettings") {
       saveSettings();
-    } else if (request.action === "importSettings") {
-      importSettings(request.content);
     } else {
       this.elementManager.handleAction(request.action);
     }
