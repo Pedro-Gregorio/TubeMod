@@ -1311,7 +1311,10 @@ class TubeMod {
   clearLocalStorage() {
     chrome.storage.local.clear(() => {
       chrome.storage.local.set(
-        { elements: JSON.stringify(STORAGE.tubemod_elements) },
+        {
+          tubemod_elements: JSON.stringify(STORAGE.tubemod_elements),
+          tubemod_version: STORAGE.tubemod_version,
+        },
         () => {
           console.info("Default settings restored.");
           location.reload();

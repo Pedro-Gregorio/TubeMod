@@ -42,12 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-chrome.runtime.onMessage.addListener(function (message) {
-  if (message.type === "popup") {
-    chrome.storage.local.set({ elements: JSON.stringify(message.data) });
-  }
-});
-
 document.getElementById("reset-settings").addEventListener("click", () => {
   chrome.storage.local.clear(() => {
     console.info("Settings cleared.");

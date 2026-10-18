@@ -13,6 +13,7 @@ Fix:
   - Exporting settings no longer logs an error in the console
   - Settings are no longer tied to the stored version, so updates and imports always use the latest toggle definitions
   - Settings are applied on page load even when the page finishes loading before they are read (affected Firefox)
+  - Resetting settings no longer leaves a stray copy of the default settings in storage
 
 # 1.15.0
 
