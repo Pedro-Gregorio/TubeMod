@@ -31,10 +31,10 @@ function saveSettings() {
         a.href = URL.createObjectURL(file);
         a.download = "tubeModSettings.json";
         a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
       }
     },
   );
-  document.body.removeChild(a);
 }
 
 function importSettings(settings) {

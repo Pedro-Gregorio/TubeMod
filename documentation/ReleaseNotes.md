@@ -1,5 +1,12 @@
 # TubeMod - Release Notes
 
+# 1.15.1
+
+Fix:
+
+- Settings:
+  - Exporting settings no longer logs an error in the console
+
 # 1.15.0
 
 Add:
