@@ -15,6 +15,9 @@ Fix:
   - Settings are applied on page load even when the page finishes loading before they are read (affected Firefox)
   - Resetting settings no longer leaves a stray copy of the default settings in storage
 
+- Channel:
+  - Pausing the channel trailer no longer logs an error when the channel has no video playing
+
 # 1.15.0
 
 Add:

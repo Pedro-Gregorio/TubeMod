@@ -991,7 +991,7 @@ class YouTubeElement {
     }
 
     if (this.id === "channel-trailer" && this.checked) {
-      document.querySelector("video").pause();
+      document.querySelector("video")?.pause();
     }
 
     if (this.id === "home-posts") {
