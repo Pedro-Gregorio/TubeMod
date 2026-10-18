@@ -17,6 +17,7 @@ Fix:
 
 - Channel:
   - Pausing the channel trailer no longer logs an error when the channel has no video playing
+  - Channel settings also apply on older channel URLs (/channel/, /c/ and /user/)
 
 # 1.15.0
 

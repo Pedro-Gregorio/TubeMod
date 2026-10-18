@@ -38,25 +38,22 @@ function saveSettings() {
 }
 
 function getCurrentPageType() {
-  const url = window.location.href;
-  if (
-    url === "https://www.youtube.com/" ||
-    url.startsWith("https://www.youtube.com/?")
-  ) {
+  const { pathname, searchParams } = new URL(window.location.href);
+  if (pathname === "/") {
     return PAGE_TYPES.HOME;
-  } else if (url.includes("/watch")) {
+  } else if (pathname.startsWith("/watch")) {
     return PAGE_TYPES.VIDEO;
-  } else if (url.includes("/feed/subscriptions")) {
+  } else if (pathname.startsWith("/feed/subscriptions")) {
     return PAGE_TYPES.SUBSCRIPTIONS;
-  } else if (url.includes("/results?search_query")) {
+  } else if (pathname === "/results" && searchParams.has("search_query")) {
     return PAGE_TYPES.SEARCH;
-  } else if (url.includes("/feed/trending")) {
+  } else if (pathname.startsWith("/feed/trending")) {
     return PAGE_TYPES.TRENDING;
-  } else if (url.includes("/feed/downloads")) {
+  } else if (pathname.startsWith("/feed/downloads")) {
     return PAGE_TYPES.DOWNLOADS;
-  } else if (url.includes("/@")) {
+  } else if (/^\/(@|channel\/|c\/|user\/)/.test(pathname)) {
     return PAGE_TYPES.CHANNEL;
-  } else if (url.includes("/feed/playlists")) {
+  } else if (pathname.startsWith("/feed/playlists")) {
     return PAGE_TYPES.PLAYLISTS;
   }
   return null;
