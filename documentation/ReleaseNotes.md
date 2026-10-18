@@ -19,6 +19,9 @@ Fix:
   - Pausing the channel trailer no longer logs an error when the channel has no video playing
   - Channel settings also apply on older channel URLs (/channel/, /c/ and /user/)
 
+- Video:
+  - Hide Save Button works again with YouTube's new icon, and also hides it when it moves into the "..." menu
+
 # 1.15.0
 
 Add:
