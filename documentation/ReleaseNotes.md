@@ -13,6 +13,9 @@ Add:
 
 Fix:
 
+- Build:
+  - Use built-in PowerShell compression on Windows instead of requiring `zip`.
+
 - General:
   - Hide Scheduled Videos was hiding everything on the channel videos tab (lol)
   - Hide Video Previews (on hover) no longer hides action buttons
