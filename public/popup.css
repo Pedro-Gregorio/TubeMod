@@ -20,6 +20,13 @@ label {
   cursor: pointer;
 }
 
+#video-columns {
+  max-width: 48%;
+  padding: 4px;
+  border: 1px solid var(--color-secondary);
+  border-radius: 3px;
+}
+
 .title-container {
   margin-bottom: 1rem;
 }

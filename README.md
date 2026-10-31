@@ -43,6 +43,8 @@ npm run build
 
 This creates `dist/chrome`, `dist/firefox` and the two release zips (`dist/tubemod-<browser>-v<version>.zip`). Re-run it after every change.
 
+On Windows, archives are created with the built-in .NET compression API through Windows PowerShell. On macOS and Linux, the `zip` command must be installed.
+
 ### For Chromium based browsers:
 
 1.  Go to `chrome://extensions`. The "chrome" part might be changed to the name of the browser.

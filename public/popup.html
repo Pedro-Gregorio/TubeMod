@@ -14,6 +14,16 @@
     <button class="collapsible">General</button>
     <div class="container" id="general" style="display: none">
       <div class="checkbox-container">
+        <label for="video-columns">Videos Per Row (Desktop Grids)</label>
+        <select id="video-columns" name="video-columns">
+          <option value="auto">Auto (YouTube default)</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </div>
+      <div class="checkbox-container">
         <label for="scheduled-videos">Hide Scheduled Videos</label>
         <label class="switch">
           <input

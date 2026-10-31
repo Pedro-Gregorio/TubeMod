@@ -5,6 +5,7 @@
 Add:
 
 - General:
+  - Choose Auto, 3, 4, 5, or 6 videos per row in desktop grids (issue #156).
   - Hide Livestreams also include livestreams on the Subscriptions Feed
 
 - Sidebar:
@@ -12,6 +13,9 @@ Add:
   - On the "You" section, hide both "Show more" and "Show less" options
 
 Fix:
+
+- Build:
+  - Use built-in PowerShell compression on Windows instead of requiring `zip`.
 
 - General:
   - Hide Scheduled Videos was hiding everything on the channel videos tab (lol)

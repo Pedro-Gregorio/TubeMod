@@ -25,6 +25,8 @@ In later versions of TubeMod (2.0.0+), actions and themes will be introduced:
 
 These changes affect every page on YouTube.
 
+- Choose 3, 4, 5, or 6 videos per row in desktop rich grids (768px and wider), or Auto to keep YouTube's responsive layout. The choice is saved locally and included in settings import/export.
+
 - Hide Scheduled Videos
 - Hide Livestreams
 - Hide Video Previews
