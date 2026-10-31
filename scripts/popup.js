@@ -2,6 +2,19 @@ let inputs = document.querySelectorAll("input");
 let collapsibleElements = document.getElementsByClassName("collapsible");
 
 document.addEventListener("DOMContentLoaded", () => {
+  const videoColumns = document.getElementById("video-columns");
+  chrome.storage.local.get(["tubemod_video_columns"], (result) => {
+    videoColumns.value = [3, 4, 5, 6].includes(result.tubemod_video_columns)
+      ? String(result.tubemod_video_columns)
+      : "auto";
+  });
+  videoColumns.addEventListener("change", () => {
+    chrome.storage.local.set({
+      tubemod_video_columns: videoColumns.value === "auto"
+        ? "auto"
+        : Number(videoColumns.value),
+    });
+  });
   chrome.storage.local.get(["tubemod_elements"], (result) => {
     const elements = result.tubemod_elements
       ? JSON.parse(result.tubemod_elements)

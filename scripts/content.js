@@ -17,10 +17,46 @@ const PAGE_TYPES = {
   PLAYLISTS: "playlists"
 };
 
+function applyVideoColumns(value) {
+  const styleId = "tubemod-video-columns";
+  const existingStyle = document.getElementById(styleId);
+  if (![3, 4, 5, 6].includes(value)) {
+    existingStyle?.remove();
+    return;
+  }
+
+  const style = existingStyle ?? document.createElement("style");
+  style.id = styleId;
+  style.textContent = `
+    @media (min-width: 768px) {
+      ytd-rich-grid-renderer {
+        --ytd-rich-grid-items-per-row: ${value} !important;
+        --ytd-rich-grid-posts-per-row: ${value} !important;
+      }
+      ytd-rich-grid-renderer ytd-rich-grid-row,
+      ytd-rich-grid-renderer ytd-rich-grid-row > #contents {
+        display: contents !important;
+      }
+    }
+  `;
+  if (!existingStyle) {
+    (document.head ?? document.documentElement).appendChild(style);
+  }
+}
+
+chrome.storage.local.get(["tubemod_video_columns"], (result) => {
+  applyVideoColumns(result.tubemod_video_columns);
+});
+chrome.storage.onChanged.addListener((changes, areaName) => {
+  if (areaName === "local" && changes.tubemod_video_columns) {
+    applyVideoColumns(changes.tubemod_video_columns.newValue);
+  }
+});
+
 function saveSettings() {
   const a = document.createElement("a");
   chrome.storage.local.get(
-    ["tubemod_elements", "tubemod_version"],
+    ["tubemod_elements", "tubemod_version", "tubemod_video_columns"],
     (result) => {
       if (chrome.runtime.lastError) {
         console.error(chrome.runtime.lastError);
@@ -34,15 +70,19 @@ function saveSettings() {
       }
     },
   );
-  document.body.removeChild(a);
 }
 
 function importSettings(settings) {
+  const imported = JSON.parse(settings);
   chrome.storage.local.set({
-    tubemod_elements: JSON.parse(settings)["tubemod_elements"],
-    tubemod_version: JSON.parse(settings)["tubemod_version"],
+    tubemod_elements: imported.tubemod_elements,
+    tubemod_version: imported.tubemod_version,
+    tubemod_video_columns: [3, 4, 5, 6].includes(imported.tubemod_video_columns)
+      ? imported.tubemod_video_columns
+      : "auto",
+  }, () => {
+    location.reload();
   });
-  location.reload();
   alert("TubeMod settings uploaded and applied!");
 }
 
