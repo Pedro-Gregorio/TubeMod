@@ -17,10 +17,88 @@ const PAGE_TYPES = {
   PLAYLISTS: "playlists"
 };
 
+function applyVideoColumns(value) {
+  const styleId = "tubemod-video-columns";
+  const existingStyle = document.getElementById(styleId);
+  if (![3, 4, 5, 6].includes(value)) {
+    existingStyle?.remove();
+    return;
+  }
+
+  const style = existingStyle ?? document.createElement("style");
+  style.id = styleId;
+  style.textContent = `
+    @media (min-width: 768px) {
+      ytd-rich-grid-renderer {
+        --ytd-rich-grid-items-per-row: ${value} !important;
+        --ytd-rich-grid-posts-per-row: ${value} !important;
+      }
+      ytd-rich-grid-renderer ytd-rich-grid-row,
+      ytd-rich-grid-renderer ytd-rich-grid-row > #contents {
+        display: contents !important;
+      }
+    }
+  `;
+  if (!existingStyle) {
+    (document.head ?? document.documentElement).appendChild(style);
+  }
+}
+
+chrome.storage.local.get(["tubemod_video_columns"], (result) => {
+  applyVideoColumns(result.tubemod_video_columns);
+});
+chrome.storage.onChanged.addListener((changes, areaName) => {
+  if (areaName === "local" && changes.tubemod_video_columns) {
+    applyVideoColumns(changes.tubemod_video_columns.newValue);
+  }
+});
+
+function applyCenteredVideo(elements) {
+  const enabled = ["video-center-player", "video-suggested-videos"].every(
+    (id) => elements.some((element) => element.id === id && element.checked),
+  );
+  const styleId = "tubemod-centered-video";
+  const existingStyle = document.getElementById(styleId);
+  if (!enabled) {
+    existingStyle?.remove();
+    return;
+  }
+  if (existingStyle) return;
+
+  const style = document.createElement("style");
+  style.id = styleId;
+  // YouTube keeps hidden chat/playlist nodes mounted on ordinary video pages.
+  // Center the main column independently of those nodes and keep side panels below it.
+  const columns = 'ytd-watch-flexy:not([theater]):not([fullscreen]) #columns';
+  style.textContent = `
+    @media (min-width: 1000px) {
+      ${columns} {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+      }
+      ${columns} > #primary,
+      ${columns} > #secondary {
+        box-sizing: border-box !important;
+        flex: none !important;
+        width: calc(100% - var(--ytd-watch-flexy-sidebar-width, 402px) - 48px) !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      ${columns} > #secondary #related { display: none !important; }
+    }
+  `;
+  (document.head ?? document.documentElement).appendChild(style);
+}
+
 function saveSettings() {
   const a = document.createElement("a");
   chrome.storage.local.get(
-    ["tubemod_elements", "tubemod_version"],
+    ["tubemod_elements", "tubemod_version", "tubemod_video_columns"],
     (result) => {
       if (chrome.runtime.lastError) {
         console.error(chrome.runtime.lastError);
@@ -34,15 +112,19 @@ function saveSettings() {
       }
     },
   );
-  document.body.removeChild(a);
 }
 
 function importSettings(settings) {
+  const imported = JSON.parse(settings);
   chrome.storage.local.set({
-    tubemod_elements: JSON.parse(settings)["tubemod_elements"],
-    tubemod_version: JSON.parse(settings)["tubemod_version"],
+    tubemod_elements: imported.tubemod_elements,
+    tubemod_version: imported.tubemod_version,
+    tubemod_video_columns: [3, 4, 5, 6].includes(imported.tubemod_video_columns)
+      ? imported.tubemod_video_columns
+      : "auto",
+  }, () => {
+    location.reload();
   });
-  location.reload();
   alert("TubeMod settings uploaded and applied!");
 }
 
@@ -841,6 +923,12 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
+      id: "video-center-player",
+      selector: "//ytd-watch-flexy",
+      checked: false,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
       id: "video-suggested-videos-new-badge",
       selector:
         "//yt-lockup-view-model//yt-content-metadata-view-model//div[.//yt-badge-view-model]",
@@ -985,6 +1073,7 @@ class YouTubeElement {
   }
 
   applyVisibility(hide) {
+    if (this.id === "video-center-player") return;
     const elements = document.evaluate(
       this.selector,
       document,
@@ -1210,6 +1299,7 @@ class ElementManager {
   async initialize() {
     const storedElements = await this.getStoredElements();
     this.elements = storedElements.map((el) => new YouTubeElement(el));
+    applyCenteredVideo(this.elements);
   }
 
   async getStoredElements() {
@@ -1217,15 +1307,7 @@ class ElementManager {
       chrome.storage.local.get(
         ["tubemod_elements", "tubemod_version"],
         (result) => {
-          if (
-            result.tubemod_elements &&
-            result.tubemod_version === STORAGE.tubemod_version
-          ) {
-            resolve(JSON.parse(result.tubemod_elements));
-          } else if (
-            result.tubemod_elements &&
-            result.tubemod_version !== STORAGE.tubemod_version
-          ) {
+          if (result.tubemod_elements) {
             const storedElements = JSON.parse(result.tubemod_elements);
             const mergedElements = STORAGE.tubemod_elements.map(
               (newElement) => {
@@ -1267,6 +1349,7 @@ class ElementManager {
     const element = this.elements.find((el) => el.id === action.target);
     if (element) {
       await element.toggle(action.hide);
+      applyCenteredVideo(this.elements);
       await this.saveElements();
     }
   }

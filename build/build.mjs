@@ -84,8 +84,26 @@ function build(target, version) {
   }
 
   const zip = join(DIST, `tubemod-${target}-v${version}.zip`);
-  // Zipping from inside out/ keeps manifest.json at the zip root; -X drops extra file attributes.
-  execFileSync("zip", ["-X", "-r", "-q", zip, "."], { cwd: out });
+  // Archive the contents of out/ so manifest.json stays at the zip root.
+  if (process.platform === "win32") {
+    execFileSync(
+      "powershell.exe",
+      [
+        "-NoProfile",
+        "-NonInteractive",
+        "-Command",
+        "$ErrorActionPreference = 'Stop'; Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::CreateFromDirectory($env:TUBEMOD_ZIP_SOURCE, $env:TUBEMOD_ZIP_PATH, [System.IO.Compression.CompressionLevel]::Optimal, $false)",
+      ],
+      {
+        cwd: out,
+        windowsHide: true,
+        env: { ...process.env, TUBEMOD_ZIP_SOURCE: out, TUBEMOD_ZIP_PATH: zip },
+      },
+    );
+  } else {
+    // -X drops extra file attributes.
+    execFileSync("zip", ["-X", "-r", "-q", zip, "."], { cwd: out });
+  }
   return zip;
 }
 

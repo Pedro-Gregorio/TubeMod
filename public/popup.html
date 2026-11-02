@@ -14,6 +14,16 @@
     <button class="collapsible">General</button>
     <div class="container" id="general" style="display: none">
       <div class="checkbox-container">
+        <label for="video-columns">Videos Per Row (Desktop Grids)</label>
+        <select id="video-columns" name="video-columns">
+          <option value="auto">Auto (YouTube default)</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </div>
+      <div class="checkbox-container">
         <label for="scheduled-videos">Hide Scheduled Videos</label>
         <label class="switch">
           <input
@@ -874,6 +884,13 @@
             id="video-suggested-videos"
             name="video-suggested-videos"
           />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="video-center-player" title="Centers the player, description and comments when suggested videos are hidden in the standard desktop view. Playlist panels and live chat remain available below the video.">Center Video Player<br>(When Suggestions Are Hidden)</label>
+        <label class="switch">
+          <input type="checkbox" id="video-center-player" name="video-center-player" />
           <span class="slider round"></span>
         </label>
       </div>
