@@ -104,5 +104,6 @@ These changes take effect when you open a new YouTube video.
 - Hide Ads Panel
 - Hide Offer Module
 - Hide Suggested Videos
+- Optionally center the player, description and comments when suggested videos are hidden. Applies to the standard desktop view (1000px and wider), with playlist panels and live chat below the main content; theater, fullscreen and narrow layouts keep their default behavior.
 - Hide Shorts on Suggested Videos
 - Hide Suggestion Wall, in the end of the video

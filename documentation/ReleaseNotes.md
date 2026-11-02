@@ -12,6 +12,9 @@ Add:
   - Hide "Your Channel"
   - On the "You" section, hide both "Show more" and "Show less" options
 
+- Video:
+  - Add an optional Center Video Player setting when suggested videos are hidden.
+
 Fix:
 
 - Build:

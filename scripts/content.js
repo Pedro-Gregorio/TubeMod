@@ -53,6 +53,48 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
   }
 });
 
+function applyCenteredVideo(elements) {
+  const enabled = ["video-center-player", "video-suggested-videos"].every(
+    (id) => elements.some((element) => element.id === id && element.checked),
+  );
+  const styleId = "tubemod-centered-video";
+  const existingStyle = document.getElementById(styleId);
+  if (!enabled) {
+    existingStyle?.remove();
+    return;
+  }
+  if (existingStyle) return;
+
+  const style = document.createElement("style");
+  style.id = styleId;
+  // YouTube keeps hidden chat/playlist nodes mounted on ordinary video pages.
+  // Center the main column independently of those nodes and keep side panels below it.
+  const columns = 'ytd-watch-flexy:not([theater]):not([fullscreen]) #columns';
+  style.textContent = `
+    @media (min-width: 1000px) {
+      ${columns} {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+      }
+      ${columns} > #primary,
+      ${columns} > #secondary {
+        box-sizing: border-box !important;
+        flex: none !important;
+        width: calc(100% - var(--ytd-watch-flexy-sidebar-width, 402px) - 48px) !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      ${columns} > #secondary #related { display: none !important; }
+    }
+  `;
+  (document.head ?? document.documentElement).appendChild(style);
+}
+
 function saveSettings() {
   const a = document.createElement("a");
   chrome.storage.local.get(
@@ -881,6 +923,12 @@ const STORAGE = {
       pageTypes: [PAGE_TYPES.VIDEO],
     },
     {
+      id: "video-center-player",
+      selector: "//ytd-watch-flexy",
+      checked: false,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
       id: "video-suggested-videos-new-badge",
       selector:
         "//yt-lockup-view-model//yt-content-metadata-view-model//div[.//yt-badge-view-model]",
@@ -1025,6 +1073,7 @@ class YouTubeElement {
   }
 
   applyVisibility(hide) {
+    if (this.id === "video-center-player") return;
     const elements = document.evaluate(
       this.selector,
       document,
@@ -1250,6 +1299,7 @@ class ElementManager {
   async initialize() {
     const storedElements = await this.getStoredElements();
     this.elements = storedElements.map((el) => new YouTubeElement(el));
+    applyCenteredVideo(this.elements);
   }
 
   async getStoredElements() {
@@ -1257,15 +1307,7 @@ class ElementManager {
       chrome.storage.local.get(
         ["tubemod_elements", "tubemod_version"],
         (result) => {
-          if (
-            result.tubemod_elements &&
-            result.tubemod_version === STORAGE.tubemod_version
-          ) {
-            resolve(JSON.parse(result.tubemod_elements));
-          } else if (
-            result.tubemod_elements &&
-            result.tubemod_version !== STORAGE.tubemod_version
-          ) {
+          if (result.tubemod_elements) {
             const storedElements = JSON.parse(result.tubemod_elements);
             const mergedElements = STORAGE.tubemod_elements.map(
               (newElement) => {
@@ -1307,6 +1349,7 @@ class ElementManager {
     const element = this.elements.find((el) => el.id === action.target);
     if (element) {
       await element.toggle(action.hide);
+      applyCenteredVideo(this.elements);
       await this.saveElements();
     }
   }
